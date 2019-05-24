@@ -24,9 +24,9 @@ fn main() {
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
 
-    // Write the bindings to the src directory to enable the IDE autocomplete
-    let out_path = PathBuf::from("src");
-    bindings
-        .write_to_file(out_path.join("bindings.rs"))
-        .expect("Couldn't write bindings!");
+    //    // Write the bindings to the src directory to enable the IDE autocomplete
+    //    let out_path = PathBuf::from("src");
+    //    bindings
+    //        .write_to_file(out_path.join("bindings.rs"))
+    //        .expect("Couldn't write bindings!");
 }
