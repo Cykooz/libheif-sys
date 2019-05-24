@@ -2,14 +2,14 @@
 name = "libheif-sys"
 version = "1.4.0"
 authors = ["Kirill Kuzminykh <cykooz@gmail.com>"]
-build = "build.rs"
 edition = "2018"
-links = "libheif-rs"
 description = "libheif bindings"
 repository = "https://github.com/cykooz/libheif-sys"
 keywords = ["heic", "heif", "libheif"]
 license = "MIT"
 documentation = "https://docs.rs/libheif-sys"
+links = "heif"
+build = "build.rs"
 
 [dependencies]
 
