@@ -2,10 +2,10 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
+#[cfg(feature = "use-bindgen")]
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
-// Fake using of bindings module to enable an autocomplete in IDE
-#[cfg(fake)]
+#[cfg(not(feature = "use-bindgen"))]
 mod bindings;
-#[cfg(fake)]
+#[cfg(not(feature = "use-bindgen"))]
 pub use bindings::*;
