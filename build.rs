@@ -17,6 +17,11 @@ fn main() {
             // The input header we would like to generate
             // bindings for.
             .header("wrapper.h")
+            .generate_comments(true)
+            .use_core()
+            .ctypes_prefix("libc")
+            .whitelist_function("heif_.*")
+            .whitelist_type("heif_.*")
             // Finish the builder and generate the bindings.
             .generate()
             // Unwrap the Result and panic on failure.
