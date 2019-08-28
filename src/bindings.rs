@@ -61,7 +61,7 @@ pub const heif_suberror_code_heif_suberror_No_iprp_box: heif_suberror_code = 112
 pub const heif_suberror_code_heif_suberror_No_iref_box: heif_suberror_code = 113;
 pub const heif_suberror_code_heif_suberror_No_pict_handler: heif_suberror_code = 114;
 pub const heif_suberror_code_heif_suberror_Ipma_box_references_nonexisting_property:
-    heif_suberror_code = 115;
+heif_suberror_code = 115;
 pub const heif_suberror_code_heif_suberror_No_properties_assigned_to_item: heif_suberror_code = 116;
 pub const heif_suberror_code_heif_suberror_No_item_data: heif_suberror_code = 117;
 pub const heif_suberror_code_heif_suberror_Invalid_grid_data: heif_suberror_code = 118;
@@ -76,11 +76,13 @@ pub const heif_suberror_code_heif_suberror_No_or_invalid_primary_item: heif_sube
 pub const heif_suberror_code_heif_suberror_No_infe_box: heif_suberror_code = 125;
 pub const heif_suberror_code_heif_suberror_Unknown_color_profile_type: heif_suberror_code = 126;
 pub const heif_suberror_code_heif_suberror_Wrong_tile_image_chroma_format: heif_suberror_code = 127;
+pub const heif_suberror_code_heif_suberror_Invalid_fractional_number: heif_suberror_code = 128;
+pub const heif_suberror_code_heif_suberror_Invalid_image_size: heif_suberror_code = 129;
 pub const heif_suberror_code_heif_suberror_Security_limit_exceeded: heif_suberror_code = 1000;
 pub const heif_suberror_code_heif_suberror_Nonexisting_item_referenced: heif_suberror_code = 2000;
 pub const heif_suberror_code_heif_suberror_Null_pointer_argument: heif_suberror_code = 2001;
 pub const heif_suberror_code_heif_suberror_Nonexisting_image_channel_referenced:
-    heif_suberror_code = 2002;
+heif_suberror_code = 2002;
 pub const heif_suberror_code_heif_suberror_Unsupported_plugin_version: heif_suberror_code = 2003;
 pub const heif_suberror_code_heif_suberror_Unsupported_writer_version: heif_suberror_code = 2004;
 pub const heif_suberror_code_heif_suberror_Unsupported_parameter: heif_suberror_code = 2005;
@@ -90,7 +92,7 @@ pub const heif_suberror_code_heif_suberror_Unsupported_image_type: heif_suberror
 pub const heif_suberror_code_heif_suberror_Unsupported_data_version: heif_suberror_code = 3002;
 pub const heif_suberror_code_heif_suberror_Unsupported_color_conversion: heif_suberror_code = 3003;
 pub const heif_suberror_code_heif_suberror_Unsupported_item_construction_method:
-    heif_suberror_code = 3004;
+heif_suberror_code = 3004;
 pub const heif_suberror_code_heif_suberror_Unsupported_bit_depth: heif_suberror_code = 4000;
 pub const heif_suberror_code_heif_suberror_Cannot_write_output_data: heif_suberror_code = 5000;
 pub type heif_suberror_code = u32;
@@ -163,9 +165,13 @@ pub const heif_brand_heif_heis: heif_brand = 6;
 pub const heif_brand_heif_hevm: heif_brand = 7;
 pub const heif_brand_heif_hevs: heif_brand = 8;
 pub const heif_brand_heif_mif1: heif_brand = 9;
+pub const heif_brand_heif_msf1: heif_brand = 10;
 pub type heif_brand = u32;
 extern "C" {
     pub fn heif_main_brand(data: *const u8, len: libc::c_int) -> heif_brand;
+}
+extern "C" {
+    pub fn heif_get_file_mime_type(data: *const u8, len: libc::c_int) -> *const libc::c_char;
 }
 extern "C" {
     pub fn heif_context_alloc() -> *mut heif_context;
@@ -188,7 +194,7 @@ pub type heif_reader_grow_status = u32;
 pub struct heif_reader {
     pub reader_api_version: libc::c_int,
     pub get_position:
-        ::core::option::Option<unsafe extern "C" fn(userdata: *mut libc::c_void) -> i64>,
+    ::core::option::Option<unsafe extern "C" fn(userdata: *mut libc::c_void) -> i64>,
     pub read: ::core::option::Option<
         unsafe extern "C" fn(
             data: *mut libc::c_void,
@@ -355,7 +361,7 @@ extern "C" {
 }
 extern "C" {
     pub fn heif_image_handle_get_luma_bits_per_pixel(arg1: *const heif_image_handle)
-        -> libc::c_int;
+                                                     -> libc::c_int;
 }
 extern "C" {
     pub fn heif_image_handle_get_chroma_bits_per_pixel(
@@ -391,13 +397,13 @@ extern "C" {
     ) -> heif_error;
 }
 pub const heif_depth_representation_type_heif_depth_representation_type_uniform_inverse_Z:
-    heif_depth_representation_type = 0;
+heif_depth_representation_type = 0;
 pub const heif_depth_representation_type_heif_depth_representation_type_uniform_disparity:
-    heif_depth_representation_type = 1;
+heif_depth_representation_type = 1;
 pub const heif_depth_representation_type_heif_depth_representation_type_uniform_Z:
-    heif_depth_representation_type = 2;
+heif_depth_representation_type = 2;
 pub const heif_depth_representation_type_heif_depth_representation_type_nonuniform_disparity:
-    heif_depth_representation_type = 3;
+heif_depth_representation_type = 3;
 pub type heif_depth_representation_type = u32;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -688,42 +694,42 @@ pub const heif_color_primaries_heif_color_primaries_unspecified: heif_color_prim
 pub const heif_color_primaries_heif_color_primaries_ITU_R_BT_470_6_System_M: heif_color_primaries =
     4;
 pub const heif_color_primaries_heif_color_primaries_ITU_R_BT_470_6_System_B_G:
-    heif_color_primaries = 5;
+heif_color_primaries = 5;
 pub const heif_color_primaries_heif_color_primaries_ITU_R_BT_601_6: heif_color_primaries = 6;
 pub const heif_color_primaries_heif_color_primaries_SMPTE_240M: heif_color_primaries = 7;
 pub type heif_color_primaries = u32;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_ITU_R_BT_709_5:
-    heif_transfer_characteristics = 1;
+heif_transfer_characteristics = 1;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_unspecified:
-    heif_transfer_characteristics = 2;
+heif_transfer_characteristics = 2;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_ITU_R_BT_470_6_System_M:
-    heif_transfer_characteristics = 4;
+heif_transfer_characteristics = 4;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_ITU_R_BT_470_6_System_B_G:
-    heif_transfer_characteristics = 5;
+heif_transfer_characteristics = 5;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_ITU_R_BT_601_6:
-    heif_transfer_characteristics = 6;
+heif_transfer_characteristics = 6;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_SMPTE_240M:
-    heif_transfer_characteristics = 7;
+heif_transfer_characteristics = 7;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_linear:
-    heif_transfer_characteristics = 8;
+heif_transfer_characteristics = 8;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_IEC_61966_2_4:
-    heif_transfer_characteristics = 11;
+heif_transfer_characteristics = 11;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_ITU_R_BT_1361:
-    heif_transfer_characteristics = 12;
+heif_transfer_characteristics = 12;
 pub const heif_transfer_characteristics_heif_transfer_characteristic_IEC_61966_2_1:
-    heif_transfer_characteristics = 13;
+heif_transfer_characteristics = 13;
 pub type heif_transfer_characteristics = u32;
 pub const heif_matrix_coefficients_heif_matrix_coefficients_RGB_GBR: heif_matrix_coefficients = 0;
 pub const heif_matrix_coefficients_heif_matrix_coefficients_ITU_R_BT_709_5:
-    heif_matrix_coefficients = 1;
+heif_matrix_coefficients = 1;
 pub const heif_matrix_coefficients_heif_matrix_coefficients_unspecified: heif_matrix_coefficients =
     2;
 pub const heif_matrix_coefficients_heif_matrix_coefficients_US_FCC_T47: heif_matrix_coefficients =
     4;
 pub const heif_matrix_coefficients_heif_matrix_coefficients_ITU_R_BT_470_6_System_B_G:
-    heif_matrix_coefficients = 5;
+heif_matrix_coefficients = 5;
 pub const heif_matrix_coefficients_heif_matrix_coefficients_ITU_R_BT_601_6:
-    heif_matrix_coefficients = 6;
+heif_matrix_coefficients = 6;
 pub const heif_matrix_coefficients_heif_matrix_coefficients_SMPTE_240M: heif_matrix_coefficients =
     7;
 pub const heif_matrix_coefficients_heif_matrix_coefficients_YCgCo: heif_matrix_coefficients = 8;
@@ -932,6 +938,24 @@ extern "C" {
         out_data: *mut *mut heif_color_profile_nclx,
     ) -> heif_error;
 }
+extern "C" {
+    pub fn heif_image_get_color_profile_type(image: *const heif_image) -> heif_color_profile_type;
+}
+extern "C" {
+    pub fn heif_image_get_raw_color_profile_size(image: *const heif_image) -> usize;
+}
+extern "C" {
+    pub fn heif_image_get_raw_color_profile(
+        image: *const heif_image,
+        out_data: *mut libc::c_void,
+    ) -> heif_error;
+}
+extern "C" {
+    pub fn heif_image_get_nclx_color_profile(
+        image: *const heif_image,
+        out_data: *mut *mut heif_color_profile_nclx,
+    ) -> heif_error;
+}
 pub const heif_compression_format_heif_compression_undefined: heif_compression_format = 0;
 pub const heif_compression_format_heif_compression_HEVC: heif_compression_format = 1;
 pub const heif_compression_format_heif_compression_AVC: heif_compression_format = 2;
@@ -1104,6 +1128,12 @@ extern "C" {
 }
 extern "C" {
     pub fn heif_image_get_bits_per_pixel(
+        arg1: *const heif_image,
+        channel: heif_channel,
+    ) -> libc::c_int;
+}
+extern "C" {
+    pub fn heif_image_get_bits_per_pixel_range(
         arg1: *const heif_image,
         channel: heif_channel,
     ) -> libc::c_int;
@@ -1316,11 +1346,11 @@ extern "C" {
     ) -> *const libc::c_char;
 }
 pub const heif_encoder_parameter_type_heif_encoder_parameter_type_integer:
-    heif_encoder_parameter_type = 1;
+heif_encoder_parameter_type = 1;
 pub const heif_encoder_parameter_type_heif_encoder_parameter_type_boolean:
-    heif_encoder_parameter_type = 2;
+heif_encoder_parameter_type = 2;
 pub const heif_encoder_parameter_type_heif_encoder_parameter_type_string:
-    heif_encoder_parameter_type = 3;
+heif_encoder_parameter_type = 3;
 pub type heif_encoder_parameter_type = u32;
 extern "C" {
     pub fn heif_encoder_parameter_get_type(

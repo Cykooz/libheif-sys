@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Updated "bindings.rs" to correspond ``libheif 1.5``:
+  - added new value of ``heif_brand`` - ``heif_brand_heif_msf1 = 10``;
+  - added new functions: ``heif_get_file_mime_type``, ``heif_image_get_color_profile_type``,
+    ``heif_image_get_raw_color_profile_size``, ``heif_image_get_raw_color_profile``,
+    ``heif_image_get_nclx_color_profile``, ``heif_image_get_bits_per_pixel_range``.
+
 ## [1.4.2] - 2019-07-16
 
 - Added "libc" as dependency.
