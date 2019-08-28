@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.5.0] - 2019-08-28
 
 - Updated "bindings.rs" to correspond ``libheif 1.5``:
   - added new value of ``heif_brand`` - ``heif_brand_heif_msf1 = 10``;
