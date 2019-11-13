@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.6.0] - 2019-11-13
 
 - Updated "bindings.rs" to correspond ``libheif 1.6``:
   - added new functions: ``heif_context_set_maximum_image_size_limit``, 
