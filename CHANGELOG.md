@@ -1,5 +1,11 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Updated "bindings.rs" to correspond ``libheif 1.6``:
+  - added new functions: ``heif_context_set_maximum_image_size_limit``, 
+    ``heif_context_add_generic_metadata``.
+
 ## [1.5.0] - 2019-08-28
 
 - Updated "bindings.rs" to correspond ``libheif 1.5``:
