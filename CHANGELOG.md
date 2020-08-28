@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.8.0] - 2020-08-28
 
 - Updated version of ``bindgen`` to 0.55.1.
 - Updated "bindings.rs" to correspond ``libheif 1.8``:
