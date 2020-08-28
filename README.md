@@ -2,7 +2,7 @@
 
 ## System dependencies
 
-- libheif-dev >= 1.6.0
+- libheif-dev >= 1.8.0
 
 ## Example of reading and decoding of HEIF-image
 
