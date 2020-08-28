@@ -1,5 +1,43 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Updated version of ``bindgen`` to 0.55.1.
+- Updated "bindings.rs" to correspond ``libheif 1.8``:
+  - added new functions: ``heif_nclx_color_profile_free``, 
+    ``heif_encoder_descriptor_supports_lossy_compression``,
+    ``heif_encoder_descriptor_supports_lossless_compression``.
+  - added new values into ``heif_suberror_code`` "enum":
+    ``heif_suberror_code_heif_suberror_Invalid_pixi_box``,
+    ``heif_suberror_code_heif_suberror_No_av1C_box``.
+  - added new values into ``heif_brand`` "enum":
+    ``heif_brand_heif_avif``, ``heif_brand_heif_avis``.
+  - added new values into ``heif_color_primaries`` "enum":
+    ``heif_color_primaries_heif_color_primaries_generic_film``, 
+    ``heif_color_primaries_heif_color_primaries_ITU_R_BT_2020_2_and_2100_0``,
+    ``heif_color_primaries_heif_color_primaries_SMPTE_ST_428_1``,
+    ``heif_color_primaries_heif_color_primaries_SMPTE_RP_431_2``,
+    ``heif_color_primaries_heif_color_primaries_SMPTE_EG_432_1``,
+    ``heif_color_primaries_heif_color_primaries_EBU_Tech_3213_E``.
+  - added new values into ``heif_transfer_characteristics`` "enum":
+    ``heif_transfer_characteristics_heif_transfer_characteristic_logarithmic_100``,
+    ``heif_transfer_characteristics_heif_transfer_characteristic_logarithmic_100_sqrt10``,
+    ``heif_transfer_characteristics_heif_transfer_characteristic_ITU_R_BT_2020_2_10bit``,
+    ``heif_transfer_characteristics_heif_transfer_characteristic_ITU_R_BT_2020_2_12bit``,
+    ``heif_transfer_characteristics_heif_transfer_characteristic_ITU_R_BT_2100_0_PQ``,
+    ``heif_transfer_characteristics_heif_transfer_characteristic_SMPTE_ST_428_1``,
+    ``heif_transfer_characteristics_heif_transfer_characteristic_ITU_R_BT_2100_0_HLG``.   
+  - added new values into ``heif_matrix_coefficients`` "enum":
+    ``heif_matrix_coefficients_heif_matrix_coefficients_ITU_R_BT_2020_2_non_constant_luminance``,
+    ``heif_matrix_coefficients_heif_matrix_coefficients_ITU_R_BT_2020_2_constant_luminance``,
+    ``heif_matrix_coefficients_heif_matrix_coefficients_SMPTE_ST_2085``,
+    ``heif_matrix_coefficients_heif_matrix_coefficients_chromaticity_derived_non_constant_luminance``,
+    ``heif_matrix_coefficients_heif_matrix_coefficients_chromaticity_derived_constant_luminance``,
+    ``heif_matrix_coefficients_heif_matrix_coefficients_ICtCp``.
+  - added new values into ``heif_compression_format`` "enum":
+    ``heif_compression_format_heif_compression_AV1``.
+  - added field ``convert_hdr_to_8bit`` into ``heif_decoding_options`` struct.
+
 ## [1.6.0] - 2019-11-13
 
 - Updated "bindings.rs" to correspond ``libheif 1.6``:

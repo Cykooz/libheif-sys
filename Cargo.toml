@@ -14,7 +14,7 @@ build = "build.rs"
 
 
 [dependencies]
-libc = "0.2.62"
+libc = "0.2.76"
 
 
 [features]
@@ -22,4 +22,4 @@ use-bindgen = ["bindgen"]
 
 
 [build-dependencies]
-bindgen = { version = "0.51", optional = true }
+bindgen = { version = "0.55.1", optional = true }
