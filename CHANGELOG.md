@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.8.1] - 2020-08-28
 
 - Fixed ``README.md``.
 
