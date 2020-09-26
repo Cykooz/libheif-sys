@@ -1,8 +1,10 @@
 # libheif-sys is bindings to libheif
 
+[CHANGELOG](https://github.com/Cykooz/libheif-sys/blob/master/CHANGELOG.md)
+
 ## System dependencies
 
-- libheif-dev >= 1.8.0
+- libheif-dev >= 1.9.0
 
 ## Example of reading and decoding of HEIF-image
 

@@ -978,6 +978,9 @@ extern "C" {
     ) -> heif_error;
 }
 extern "C" {
+    pub fn heif_nclx_color_profile_alloc() -> *mut heif_color_profile_nclx;
+}
+extern "C" {
     pub fn heif_nclx_color_profile_free(nclx_profile: *mut heif_color_profile_nclx);
 }
 extern "C" {
@@ -1182,6 +1185,21 @@ extern "C" {
 }
 extern "C" {
     pub fn heif_image_get_height(arg1: *const heif_image, channel: heif_channel) -> libc::c_int;
+}
+extern "C" {
+    pub fn heif_image_get_primary_width(arg1: *const heif_image) -> libc::c_int;
+}
+extern "C" {
+    pub fn heif_image_get_primary_height(arg1: *const heif_image) -> libc::c_int;
+}
+extern "C" {
+    pub fn heif_image_crop(
+        img: *mut heif_image,
+        left: libc::c_int,
+        right: libc::c_int,
+        top: libc::c_int,
+        bottom: libc::c_int,
+    ) -> heif_error;
 }
 extern "C" {
     pub fn heif_image_get_bits_per_pixel(

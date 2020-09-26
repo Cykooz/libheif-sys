@@ -1,5 +1,12 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Updated "bindings.rs" to correspond ``libheif 1.9``:
+  - added new functions: ``heif_nclx_color_profile_alloc``, 
+    ``heif_image_get_primary_width``, ``heif_image_get_primary_height``,
+    ``heif_image_crop``.
+    
 ## [1.8.1] - 2020-08-28
 
 - Fixed ``README.md``.
