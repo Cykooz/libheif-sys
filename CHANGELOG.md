@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.9.0] - 2020-09-26
 
 - Updated "bindings.rs" to correspond ``libheif 1.9``:
   - added new functions: ``heif_nclx_color_profile_alloc``, 
