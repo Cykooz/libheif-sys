@@ -1,5 +1,20 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Updated "bindings.rs" to correspond ``libheif 1.10``:
+  - added new values into ``heif_error_code`` "enum":
+    ``heif_error_code_heif_error_Color_profile_does_not_exist``.  
+  - added new functions: ``heif_image_handle_get_number_of_auxiliary_images``,
+    ``heif_image_handle_get_list_of_auxiliary_image_IDs``, 
+    ``heif_image_handle_get_auxiliary_type``,
+    ``heif_image_handle_get_auxiliary_image_handle``,
+    ``heif_encoder_parameter_get_valid_integer_values``,
+    ``heif_encoder_parameter_integer_valid_values``.
+  - added new fields into ``heif_encoding_options`` struct:
+    ``macOS_compatibility_workaround``,
+    ``save_two_colr_boxes_when_ICC_and_nclx_available``.
+
 ## [1.9.0] - 2020-09-26
 
 - Updated "bindings.rs" to correspond ``libheif 1.9``:

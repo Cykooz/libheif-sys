@@ -22,8 +22,6 @@ fn main() {
             .ctypes_prefix("libc")
             .whitelist_function("heif_.*")
             .whitelist_type("heif_.*")
-            // TODO: will disable size_t_is_usize in case of major release of libheif
-            // https://github.com/rust-lang/rust-bindgen/issues/1671
             .size_t_is_usize(true)
             // Finish the builder and generate the bindings.
             .generate()
