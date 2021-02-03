@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.11.0] - 2021-02-03
 
 - Updated "bindings.rs" to correspond ``libheif 1.11``:
   - added new type ``heif_brand2``;
