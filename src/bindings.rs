@@ -175,6 +175,34 @@ pub type heif_brand = libc::c_uint;
 extern "C" {
     pub fn heif_main_brand(data: *const u8, len: libc::c_int) -> heif_brand;
 }
+pub type heif_brand2 = u32;
+extern "C" {
+    pub fn heif_read_main_brand(data: *const u8, len: libc::c_int) -> heif_brand2;
+}
+extern "C" {
+    pub fn heif_fourcc_to_brand(brand_fourcc: *const libc::c_char) -> heif_brand2;
+}
+extern "C" {
+    pub fn heif_brand_to_fourcc(brand: heif_brand2, out_fourcc: *mut libc::c_char);
+}
+extern "C" {
+    pub fn heif_has_compatible_brand(
+        data: *const u8,
+        len: libc::c_int,
+        brand_fourcc: *const libc::c_char,
+    ) -> libc::c_int;
+}
+extern "C" {
+    pub fn heif_list_compatible_brands(
+        data: *const u8,
+        len: libc::c_int,
+        out_brands: *mut *mut heif_brand2,
+        out_size: *mut libc::c_int,
+    ) -> heif_error;
+}
+extern "C" {
+    pub fn heif_free_list_of_compatible_brands(brands_list: *mut heif_brand2);
+}
 extern "C" {
     pub fn heif_get_file_mime_type(data: *const u8, len: libc::c_int) -> *const libc::c_char;
 }
@@ -658,6 +686,12 @@ extern "C" {
         handle: *const heif_image_handle,
         out_type: *mut *const libc::c_char,
     ) -> heif_error;
+}
+extern "C" {
+    pub fn heif_image_handle_free_auxiliary_types(
+        handle: *const heif_image_handle,
+        out_type: *mut *const libc::c_char,
+    );
 }
 extern "C" {
     pub fn heif_image_handle_get_auxiliary_image_handle(
@@ -1584,17 +1618,19 @@ pub struct heif_encoding_options {
     pub save_alpha_channel: u8,
     pub macOS_compatibility_workaround: u8,
     pub save_two_colr_boxes_when_ICC_and_nclx_available: u8,
+    pub output_nclx_profile: *mut heif_color_profile_nclx,
+    pub macOS_compatibility_workaround_no_nclx_profile: u8,
 }
 #[test]
 fn bindgen_test_layout_heif_encoding_options() {
     assert_eq!(
         ::core::mem::size_of::<heif_encoding_options>(),
-        4usize,
+        24usize,
         concat!("Size of: ", stringify!(heif_encoding_options))
     );
     assert_eq!(
         ::core::mem::align_of::<heif_encoding_options>(),
-        1usize,
+        8usize,
         concat!("Alignment of ", stringify!(heif_encoding_options))
     );
     assert_eq!(
@@ -1644,6 +1680,32 @@ fn bindgen_test_layout_heif_encoding_options() {
             stringify!(heif_encoding_options),
             "::",
             stringify!(save_two_colr_boxes_when_ICC_and_nclx_available)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<heif_encoding_options>())).output_nclx_profile as *const _
+                as usize
+        },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(heif_encoding_options),
+            "::",
+            stringify!(output_nclx_profile)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::core::ptr::null::<heif_encoding_options>()))
+                .macOS_compatibility_workaround_no_nclx_profile as *const _ as usize
+        },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(heif_encoding_options),
+            "::",
+            stringify!(macOS_compatibility_workaround_no_nclx_profile)
         )
     );
 }

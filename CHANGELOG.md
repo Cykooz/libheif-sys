@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Updated "bindings.rs" to correspond ``libheif 1.11``:
+  - added new type ``heif_brand2``;
+  - added new functions: ``heif_read_main_brand``,
+    ``heif_fourcc_to_brand``,  ``heif_brand_to_fourcc``,
+    ``heif_has_compatible_brand``, ``heif_list_compatible_brands``,
+    ``heif_free_list_of_compatible_brands``,
+    ``heif_image_handle_free_auxiliary_types``,
+  - added new fields into ``heif_encoding_options`` struct:
+    ``output_nclx_profile``, ``macOS_compatibility_workaround_no_nclx_profile``.
+
 ## [1.10.0] - 2021-01-14
 
 - Updated "bindings.rs" to correspond ``libheif 1.10``:
