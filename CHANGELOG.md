@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.12.0] - 2021-05-12
 
 - Updated "bindings.rs" to correspond ``libheif 1.12``:
   - added new values into ``heif_suberror_code`` "enum":
