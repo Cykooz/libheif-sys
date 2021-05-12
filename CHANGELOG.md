@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Updated "bindings.rs" to correspond ``libheif 1.12``:
+  - added new values into ``heif_suberror_code`` "enum":
+    ``heif_suberror_code_heif_suberror_Wrong_tile_image_pixel_depth``.
+  - added new functions: ``heif_image_handle_is_premultiplied_alpha``,
+    ``heif_image_set_premultiplied_alpha``,  ``heif_image_is_premultiplied_alpha``.
+    
 ## [1.11.0] - 2021-02-03
 
 - Updated "bindings.rs" to correspond ``libheif 1.11``:

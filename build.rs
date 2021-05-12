@@ -20,8 +20,8 @@ fn main() {
             .generate_comments(true)
             .use_core()
             .ctypes_prefix("libc")
-            .whitelist_function("heif_.*")
-            .whitelist_type("heif_.*")
+            .allowlist_function("heif_.*")
+            .allowlist_type("heif_.*")
             .size_t_is_usize(true)
             // Finish the builder and generate the bindings.
             .generate()
