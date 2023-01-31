@@ -4,7 +4,7 @@
 
 ## System dependencies
 
-- libheif-dev >= 1.10.0
+- libheif-dev >= 1.14.0
 
 ## Example of reading and decoding of HEIF-image
 
@@ -15,9 +15,10 @@ use std::ptr;
 
 use libheif_sys as lh;
 
-#[test]
-unsafe fn read_and_decode_heic_file() {
+fn read_and_decode_heic_file() {
     unsafe {
+        lh::heif_init(ptr::null_mut());
+        
         let ctx = lh::heif_context_alloc();
         assert_ne!(ctx, ptr::null_mut());
 
@@ -58,7 +59,9 @@ unsafe fn read_and_decode_heic_file() {
         let height = lh::heif_image_get_height(image, lh::heif_channel_heif_channel_R);
         assert_eq!(height, 3024);
 
-        lh::heif_context_free(ctx)
+        lh::heif_context_free(ctx);
+
+        lh::heif_deinit();
     };
 }
 ```
