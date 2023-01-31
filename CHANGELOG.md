@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.14.2] - 2023-01-31
 
 - Updated version of `bindgen` to 0.63.0.
 - Updated "bindings.rs" to correspond `libheif 1.14.2`:
