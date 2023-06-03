@@ -23,6 +23,7 @@ use-bindgen = ["bindgen"]
 
 [build-dependencies]
 bindgen = { version = "0.63.0", optional = true }
+pkg-config = "0.3.15"
 
 
 [package.metadata.release]
