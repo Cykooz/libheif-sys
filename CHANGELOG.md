@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.14.3] - 2023-06-05
 
 - Updated version of `bindgen` to 0.65.
 - Use `pkg-config` in `build.rs` ([#1](https://github.com/Cykooz/libheif-sys/pull/1)).
