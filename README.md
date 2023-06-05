@@ -10,15 +10,15 @@
 
 ```rust
 use std::ffi;
-use std::mem::MaybeUninit;
 use std::ptr;
 
 use libheif_sys as lh;
 
+#[test]
 fn read_and_decode_heic_file() {
     unsafe {
         lh::heif_init(ptr::null_mut());
-        
+
         let ctx = lh::heif_context_alloc();
         assert_ne!(ctx, ptr::null_mut());
 
@@ -26,11 +26,11 @@ fn read_and_decode_heic_file() {
         let err = lh::heif_context_read_from_file(ctx, c_name.as_ptr(), ptr::null());
         assert_eq!(err.code, 0);
 
-        let mut handle = MaybeUninit::<_>::uninit();
-        let err = lh::heif_context_get_primary_image_handle(ctx, handle.as_mut_ptr());
+        let mut handle = ptr::null_mut();
+        let err = lh::heif_context_get_primary_image_handle(ctx, &mut handle);
         assert_eq!(err.code, 0);
+        assert!(!handle.is_null());
 
-        let handle = handle.assume_init();
         let width = lh::heif_image_handle_get_width(handle);
         assert_eq!(width, 4032);
         let height = lh::heif_image_handle_get_height(handle);
@@ -38,18 +38,18 @@ fn read_and_decode_heic_file() {
 
         let options = lh::heif_decoding_options_alloc();
 
-        let mut image = MaybeUninit::<_>::uninit();
+        let mut image = ptr::null_mut();
         let err = lh::heif_decode_image(
             handle,
-            image.as_mut_ptr(),
+            &mut image,
             lh::heif_colorspace_heif_colorspace_RGB,
             lh::heif_chroma_heif_chroma_444,
             options,
         );
         lh::heif_decoding_options_free(options);
         assert_eq!(err.code, 0);
+        assert!(!image.is_null());
 
-        let image = image.assume_init();
         let colorspace = lh::heif_image_get_colorspace(image);
         assert_eq!(colorspace, lh::heif_colorspace_heif_colorspace_RGB);
         let chroma_format = lh::heif_image_get_chroma_format(image);
