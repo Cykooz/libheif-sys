@@ -2,11 +2,18 @@
 use std::env;
 #[cfg(feature = "use-bindgen")]
 use std::path::PathBuf;
+use std::process;
 
 fn main() {
     // Tell cargo to tell rustc to link the system heif
     // shared library.
-    println!("cargo:rustc-link-lib=heif");
+    if let Err(err) = pkg_config::Config::new()
+        .atleast_version("1.14")
+        .probe("libheif")
+    {
+        println!("cargo:warning={}", err);
+        process::exit(1);
+    }
 
     #[cfg(feature = "use-bindgen")]
     {
