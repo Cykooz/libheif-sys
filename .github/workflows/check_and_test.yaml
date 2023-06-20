@@ -16,6 +16,8 @@ jobs:
     name: Test `cargo check/test` on Ubuntu
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
 #      - name: Install minimal Rust
 #        uses: actions-rs/toolchain@v1
 #        with:
@@ -25,9 +27,11 @@ jobs:
       - name: Install libheif
         run: |
           add-apt-repository -y ppa:strukturag/libheif
-          apt-get install -y libheif-dev libdav1d-dev
 
-      - uses: actions/checkout@v3
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: libheif-dev libdav1d-dev
+          version: 1.0
 
       - uses: Swatinem/rust-cache@v2
         with:
