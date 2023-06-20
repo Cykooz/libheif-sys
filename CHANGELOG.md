@@ -1,5 +1,12 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- For Windows target is used [vcpkg crate](https://crates.io/crates/vcpkg) 
+  to find `libheif` installed with help of `vcpkg`.
+- Added support of [cargo-vcpkg](https://crates.io/crates/cargo-vcpkg)
+  to install `libheif` with help of `cargo`.
+
 ## [1.14.3] - 2023-06-05
 
 - Updated version of `bindgen` to 0.65.

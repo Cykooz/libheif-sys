@@ -1,22 +1,24 @@
-#[cfg(feature = "use-bindgen")]
-use std::env;
-#[cfg(feature = "use-bindgen")]
-use std::path::PathBuf;
-use std::process;
-
 fn main() {
     // Tell cargo to tell rustc to link the system heif
     // shared library.
+    #[cfg(not(target_os = "windows"))]
     if let Err(err) = pkg_config::Config::new()
         .atleast_version("1.14")
         .probe("libheif")
     {
         println!("cargo:warning={}", err);
-        process::exit(1);
+        std::process::exit(1);
+    }
+    #[cfg(target_os = "windows")]
+    if let Err(err) = vcpkg::find_package("libheif") {
+        println!("cargo:warning={}", err);
+        std::process::exit(1);
     }
 
     #[cfg(feature = "use-bindgen")]
     {
+        use std::env;
+        use std::path::PathBuf;
         // The bindgen::Builder is the main entry point
         // to bindgen, and lets you build up options for
         // the resulting bindings.

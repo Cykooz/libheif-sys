@@ -18,12 +18,23 @@ libc = "0.2"
 
 
 [features]
-use-bindgen = ["bindgen"]
+use-bindgen = ["dep:bindgen"]
 
 
 [build-dependencies]
 bindgen = { version = "0.65", optional = true }
-pkg-config = "0.3.15"
+pkg-config = "0.3"
+vcpkg = "0.2"
+
+
+[package.metadata.vcpkg]
+git = "https://github.com/microsoft/vcpkg"
+tag = "2023.06.20"
+dependencies = ["libheif"]
+
+
+[package.metadata.vcpkg.target]
+x86_64-pc-windows-msvc = { triplet = "x64-windows-static-md", dependencies = ["libheif"] }
 
 
 [package.metadata.release]
