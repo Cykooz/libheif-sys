@@ -1,5 +1,122 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Updated version of `bindgen` to 0.66.
+- Updated "bindings.rs" to correspond `libheif 1.16.2`:
+  - added new values into `heif_suberror_code` "enum":
+    - `heif_suberror_code_heif_suberror_Invalid_region_data`
+    - `heif_suberror_code_heif_suberror_Invalid_property` 
+    - `heif_suberror_code_heif_suberror_Item_reference_cycle`
+    - `heif_suberror_code_heif_suberror_Encoder_initialization`
+    - `heif_suberror_code_heif_suberror_Encoder_encoding`
+    - `heif_suberror_code_heif_suberror_Encoder_cleanup`
+    - `heif_suberror_code_heif_suberror_Too_many_regions`
+  - added new values into `heif_brand` "enum":
+    - `heif_brand_heif_vvic` 
+    - `heif_brand_heif_vvis`
+    - `heif_brand_heif_evbi` 
+    - `heif_brand_heif_evbs`
+  - added new values into `heif_compression_format` "enum":
+    - `heif_compression_format_heif_compression_VVC` 
+    - `heif_compression_format_heif_compression_EVC`
+    - `heif_compression_format_heif_compression_JPEG2000` 
+    - `heif_compression_format_heif_compression_uncompressed`
+  - added new "enum" `heif_item_property_type` with follow values:
+    - `heif_item_property_type_heif_item_property_type_invalid`
+    - `heif_item_property_type_heif_item_property_type_user_description`
+    - `heif_item_property_type_heif_item_property_type_transform_mirror`
+    - `heif_item_property_type_heif_item_property_type_transform_rotation`
+    - `heif_item_property_type_heif_item_property_type_transform_crop`
+    - `heif_item_property_type_heif_item_property_type_image_size`
+  - added new "enum" `heif_transform_mirror_direction` with follow values:
+    - `heif_transform_mirror_direction_heif_transform_mirror_direction_vertical`
+    - `heif_transform_mirror_direction_heif_transform_mirror_direction_horizontal`
+  - added new "enum" `heif_chroma_downsampling_algorithm` with follow values:
+    - `heif_chroma_downsampling_algorithm_heif_chroma_downsampling_nearest_neighbor`
+    - `heif_chroma_downsampling_algorithm_heif_chroma_downsampling_average`
+    - `heif_chroma_downsampling_algorithm_heif_chroma_downsampling_sharp_yuv`
+  - added new "enum" `heif_chroma_upsampling_algorithm` with follow values:
+    - `heif_chroma_upsampling_algorithm_heif_chroma_upsampling_nearest_neighbor`
+    - `heif_chroma_upsampling_algorithm_heif_chroma_upsampling_bilinear`
+  - added new "enum" `heif_region_type` with follow values:
+    - `heif_region_type_heif_region_type_point`
+    - `heif_region_type_heif_region_type_rectangle`
+    - `heif_region_type_heif_region_type_ellipse`
+    - `heif_region_type_heif_region_type_polygon`
+    - `heif_region_type_heif_region_type_referenced_mask`
+    - `heif_region_type_heif_region_type_inline_mask`
+    - `heif_region_type_heif_region_type_polyline`
+  - added structs: 
+    - `heif_property_user_description` 
+    - `heif_plugin_info`
+    - `heif_color_conversion_options` 
+    - `heif_content_light_level`
+    - `heif_mastering_display_colour_volume`
+    - `heif_decoded_mastering_display_colour_volume`
+    - `heif_decoder_descriptor` 
+    - `heif_region_item` 
+    - `heif_region`
+  - added new fields into `heif_decoding_options` struct:
+    - `decoder_id`
+    - `color_conversion_options`
+  - added field `color_conversion_options` into structure `heif_encoding_options`;
+  - added functions: 
+    - `heif_image_handle_get_item_id` 
+    - `heif_image_handle_release_auxiliary_type` 
+    - `heif_item_get_properties_of_type` 
+    - `heif_item_get_transformation_properties`
+    - `heif_item_get_property_type`
+    - `heif_item_get_property_user_description`
+    - `heif_item_add_property_user_description` 
+    - `heif_property_user_description_release`
+    - `heif_item_get_property_transform_mirror`
+    - `heif_item_get_property_transform_rotation_ccw`
+    - `heif_item_get_property_transform_crop_borders`
+    - `heif_image_has_content_light_level`
+    - `heif_image_get_content_light_level`
+    - `heif_image_set_content_light_level`
+    - `heif_image_has_mastering_display_colour_volume`
+    - `heif_image_get_mastering_display_colour_volume`
+    - `heif_image_set_mastering_display_colour_volume`
+    - `heif_mastering_display_colour_volume_decode`
+    - `heif_image_get_pixel_aspect_ratio`
+    - `heif_image_set_pixel_aspect_ratio`
+    - `heif_get_decoder_descriptors`
+    - `heif_decoder_descriptor_get_name`
+    - `heif_decoder_descriptor_get_id_name`
+    - `heif_get_encoder_descriptors`
+    - `heif_image_extend_padding_to_size`
+    - `heif_image_handle_get_number_of_region_items`
+    - `heif_image_handle_get_list_of_region_item_ids`
+    - `heif_context_get_region_item`
+    - `heif_region_item_get_id`
+    - `heif_region_item_release`
+    - `heif_region_item_get_reference_size`
+    - `heif_region_item_get_number_of_regions`
+    - `heif_region_item_get_list_of_regions`
+    - `heif_region_release`
+    - `heif_region_release_many`
+    - `heif_region_get_type`
+    - `heif_region_get_point`
+    - `heif_region_get_point_transformed`
+    - `heif_region_get_rectangle`
+    - `heif_region_get_rectangle_transformed`
+    - `heif_region_get_ellipse`
+    - `heif_region_get_ellipse_transformed`
+    - `heif_region_get_polygon_num_points`
+    - `heif_region_get_polygon_points`
+    - `heif_region_get_polygon_points_transformed`
+    - `heif_region_get_polyline_num_points`
+    - `heif_region_get_polyline_points`
+    - `heif_region_get_polyline_points_transformed`
+    - `heif_image_handle_add_region_item`
+    - `heif_region_item_add_region_point`
+    - `heif_region_item_add_region_rectangle`
+    - `heif_region_item_add_region_ellipse`
+    - `heif_region_item_add_region_polygon`
+    - `heif_region_item_add_region_polyline`
+
 ## [1.14.4] - 2023-06-21
 
 - For Windows target [vcpkg crate](https://crates.io/crates/vcpkg) is used 
