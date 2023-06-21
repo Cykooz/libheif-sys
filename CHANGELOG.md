@@ -2,7 +2,7 @@
 
 ## [1.14.4] - 2023-06-21
 
-- For Windows target is used [vcpkg crate](https://crates.io/crates/vcpkg) 
+- For Windows target [vcpkg crate](https://crates.io/crates/vcpkg) is used 
   to find `libheif` installed with help of `vcpkg`.
 - Added support of [cargo-vcpkg](https://crates.io/crates/cargo-vcpkg)
   to install `libheif` with help of `cargo`.
