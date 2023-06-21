@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.16.1] - 2023-06-21
 
 - Fixed minimal required version of `libheif` in `README.md`.
 
