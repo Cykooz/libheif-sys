@@ -4,7 +4,7 @@
 
 ## System dependencies
 
-- libheif-dev >= 1.14.0
+- libheif-dev >= 1.16.0
 
 ### Linux
 

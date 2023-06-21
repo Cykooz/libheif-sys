@@ -1,5 +1,9 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Fixed minimal required version of `libheif` in `README.md`.
+
 ## [1.16.0] - 2023-06-21
 
 - Updated version of `bindgen` to 0.66.
