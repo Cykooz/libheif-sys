@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.14.4] - 2023-06-21
 
 - For Windows target is used [vcpkg crate](https://crates.io/crates/vcpkg) 
   to find `libheif` installed with help of `vcpkg`.
