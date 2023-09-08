@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [1.16.2] - 2023-09-08
 
 - Fixed minimal required version of `libeif` in `build.rs` script.
 - Don't link with `libheif` in case of building documentation for `docs.rs`.
