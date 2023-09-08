@@ -1,9 +1,14 @@
 fn main() {
+    if std::env::var("DOCS_RS").is_ok() {
+        // Don't link with libheif in case of building documentation for docs.rs.
+        return;
+    }
+
     // Tell cargo to tell rustc to link the system heif
     // shared library.
     #[cfg(not(target_os = "windows"))]
     if let Err(err) = pkg_config::Config::new()
-        .atleast_version("1.14")
+        .atleast_version("1.16")
         .probe("libheif")
     {
         println!("cargo:warning={}", err);
