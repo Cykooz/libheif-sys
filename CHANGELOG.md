@@ -1,5 +1,9 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Fixed link to documentation.
+
 ## [1.16.2] - 2023-09-08
 
 - Fixed minimal required version of `libeif` in `build.rs` script.
