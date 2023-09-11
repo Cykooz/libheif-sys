@@ -8,6 +8,12 @@
 - `clang` - to generate rust bindings for `libheif`.
    [See bindgen requirement.](https://rust-lang.github.io/rust-bindgen/requirements.html)
 
+`clang` wouldn't be needed if you disable `use-bindgen` feature. 
+In this case the pre-generated file `bindings.rs` will be used  
+instead of generating it on the fly with help of `binden` crate.
+Warning: `bindings.rs` file was generated under x64 linux and may 
+not work as expected under x32 architectures or other operating systems.
+
 ### Linux
 
 The crate uses `pkg-confing` to find installed `libheif`.

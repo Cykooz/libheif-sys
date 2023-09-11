@@ -7,7 +7,9 @@ fn main() {
 
     // Tell cargo to tell rustc to link the system heif
     // shared library.
+    #[allow(unused_mut)]
     let mut include_dirs: Vec<String> = Vec::new();
+
     #[cfg(not(target_os = "windows"))]
     if let Err(err) = pkg_config::Config::new()
         .atleast_version("1.16")
