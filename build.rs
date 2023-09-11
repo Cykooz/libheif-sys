@@ -7,6 +7,7 @@ fn main() {
 
     // Tell cargo to tell rustc to link the system heif
     // shared library.
+    let mut include_dirs: Vec<String> = Vec::new();
     #[cfg(not(target_os = "windows"))]
     if let Err(err) = pkg_config::Config::new()
         .atleast_version("1.16")
@@ -16,9 +17,29 @@ fn main() {
         std::process::exit(1);
     }
     #[cfg(target_os = "windows")]
-    if let Err(err) = vcpkg::find_package("libheif") {
-        println!("cargo:warning={}", err);
-        std::process::exit(1);
+    {
+        let vcpkg_lib = vcpkg::Config::new()
+            .emit_includes(true)
+            .find_package("libheif");
+        match vcpkg_lib {
+            Ok(lib) => {
+                // https://users.rust-lang.org/t/bindgen-cant-find-included-file/62687
+                use walkdir::WalkDir;
+                for path in lib.include_paths {
+                    for subdir in WalkDir::new(path)
+                        .into_iter()
+                        .filter_entry(|e| e.file_type().is_dir())
+                    {
+                        let dir = subdir.unwrap().path().to_string_lossy().to_string();
+                        include_dirs.push(format!("--include-directory={}", dir));
+                    }
+                }
+            }
+            Err(err) => {
+                println!("cargo:warning={}", err);
+                std::process::exit(1);
+            }
+        }
     }
 
     #[cfg(feature = "use-bindgen")]
@@ -28,7 +49,7 @@ fn main() {
         // The bindgen::Builder is the main entry point
         // to bindgen, and lets you build up options for
         // the resulting bindings.
-        let builder = bindgen::Builder::default()
+        let mut builder = bindgen::Builder::default()
             // The input header we would like to generate
             // bindings for.
             .header("wrapper.h")
@@ -42,6 +63,10 @@ fn main() {
                 "-fparse-all-comments",
                 "-fretain-comments-from-system-headers",
             ]);
+        if !include_dirs.is_empty() {
+            dbg!(&include_dirs);
+            builder = builder.clang_args(include_dirs);
+        }
 
         // Finish the builder and generate the bindings.
         let bindings = builder
