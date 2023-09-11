@@ -4,7 +4,9 @@
 
 ## System dependencies
 
-- libheif-dev >= 1.16.0
+- `libheif-dev` >= 1.16.0
+- `clang` - to generate rust bindings for `libheif`.
+   [See bindgen requirement.](https://rust-lang.github.io/rust-bindgen/requirements.html)
 
 ### Linux
 
@@ -42,7 +44,7 @@ fn read_and_decode_heic_file() {
         let ctx = lh::heif_context_alloc();
         assert_ne!(ctx, ptr::null_mut());
 
-        let c_name = ffi::CString::new("tests/window.heic").unwrap();
+        let c_name = ffi::CString::new("data/test.heif").unwrap();
         let err = lh::heif_context_read_from_file(ctx, c_name.as_ptr(), ptr::null());
         assert_eq!(err.code, 0);
 

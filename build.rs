@@ -1,6 +1,7 @@
 fn main() {
     if std::env::var("DOCS_RS").is_ok() {
         // Don't link with libheif in case of building documentation for docs.rs.
+        println!("cargo:rustc-cfg=docs_rs");
         return;
     }
 
@@ -27,17 +28,23 @@ fn main() {
         // The bindgen::Builder is the main entry point
         // to bindgen, and lets you build up options for
         // the resulting bindings.
-        let bindings = bindgen::Builder::default()
+        let builder = bindgen::Builder::default()
             // The input header we would like to generate
             // bindings for.
             .header("wrapper.h")
             .generate_comments(true)
-            .use_core()
+            .generate_cstr(true)
             .ctypes_prefix("libc")
             .allowlist_function("heif_.*")
             .allowlist_type("heif_.*")
             .size_t_is_usize(true)
-            // Finish the builder and generate the bindings.
+            .clang_args([
+                "-fparse-all-comments",
+                "-fretain-comments-from-system-headers",
+            ]);
+
+        // Finish the builder and generate the bindings.
+        let bindings = builder
             .generate()
             // Unwrap the Result and panic on failure.
             .expect("Unable to generate bindings");

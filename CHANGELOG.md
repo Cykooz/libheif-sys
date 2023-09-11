@@ -2,7 +2,10 @@
 
 ## [Unreleased] - ReleaseDate
 
-- Fixed link to documentation.
+- Fixed link to crate documentation.
+- Added bindgen settings to copy comments from `heif.h` into generated
+  rust file.
+- **BREAKING**: Feature `use-binding` added into list of default features.
 
 ## [1.16.2] - 2023-09-08
 
