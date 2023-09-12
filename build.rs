@@ -8,6 +8,7 @@ fn main() {
     // Tell cargo to tell rustc to link the system heif
     // shared library.
     #[allow(unused_mut)]
+    #[allow(unused_variables)]
     let mut include_dirs: Vec<String> = Vec::new();
 
     #[cfg(not(target_os = "windows"))]
@@ -18,6 +19,7 @@ fn main() {
         println!("cargo:warning={}", err);
         std::process::exit(1);
     }
+
     #[cfg(target_os = "windows")]
     {
         let vcpkg_lib = vcpkg::Config::new()

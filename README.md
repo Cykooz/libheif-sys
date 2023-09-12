@@ -6,7 +6,7 @@
 
 - `libheif-dev` >= 1.16.0
 - `clang` - to generate rust bindings for `libheif`.
-   [See bindgen requirement.](https://rust-lang.github.io/rust-bindgen/requirements.html)
+   [See bindgen requirements.](https://rust-lang.github.io/rust-bindgen/requirements.html)
 
 `clang` wouldn't be needed if you disable `use-bindgen` feature. 
 In this case the pre-generated file `bindings.rs` will be used  
