@@ -3,6 +3,7 @@
 ## [Unreleased] - ReleaseDate
 
 - Fixed link to crate documentation.
+- Updated version of `bindgen` to 0.68.
 - Added bindgen settings to copy comments from `heif.h` into generated
   rust file.
 - **BREAKING**: Feature `use-binding` added into list of default features.
