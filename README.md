@@ -6,12 +6,13 @@
 
 - `libheif-dev` >= 1.16.0
 - `clang` - to generate rust bindings for `libheif`.
-   [See bindgen requirements.](https://rust-lang.github.io/rust-bindgen/requirements.html)
+  [See bindgen requirements.](https://rust-lang.github.io/rust-bindgen/requirements.html)
 
-`clang` wouldn't be needed if you disable `use-bindgen` feature. 
-In this case the pre-generated file `bindings.rs` will be used  
+`clang` wouldn't be needed if you disable `use-bindgen` feature.
+In this case the pre-generated file `bindings.rs` will be used
 instead of generating it on the fly with help of `binden` crate.
-Warning: `bindings.rs` file was generated under x64 linux and may 
+
+Warning: `bindings.rs` file was generated under x64 linux and may
 not work as expected under x32 architectures or other operating systems.
 
 ### Linux
@@ -20,7 +21,7 @@ The crate uses `pkg-confing` to find installed `libheif`.
 
 ### Windows
 
-The crate uses [vcpkg crate](https://crates.io/crates/vcpkg) 
+The crate uses [vcpkg crate](https://crates.io/crates/vcpkg)
 to find `libheif` installed with help of `vcpkg`.
 
 You can use [cargo-vcpkg](https://crates.io/crates/cargo-vcpkg)
@@ -30,8 +31,8 @@ to install `libheif` with help of `cargo` command:
 cargo vcpkg -v build
 ```
 
-`cargo-vcpkg` can fetch and build a `vcpkg` installation of required 
-packages from scratch. It merges package requirements specified in 
+`cargo-vcpkg` can fetch and build a `vcpkg` installation of required
+packages from scratch. It merges package requirements specified in
 the `Cargo.toml` of crates in the dependency tree.
 
 ## Example of reading and decoding of HEIF-image
