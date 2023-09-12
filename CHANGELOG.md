@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [2.0.0] - 2023-09-12
 
 - Fixed link to crate documentation.
 - Updated version of `bindgen` to 0.68.
