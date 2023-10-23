@@ -4,7 +4,7 @@
 
 ## System dependencies
 
-- `libheif-dev` >= 1.16.0
+- `libheif-dev` >= 1.17.0
 - `clang` - to generate rust bindings for `libheif`.
   [See bindgen requirements.](https://rust-lang.github.io/rust-bindgen/requirements.html)
 

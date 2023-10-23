@@ -1,5 +1,20 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Updated "bindings.rs" to correspond `libheif 1.17.1`:
+  - added new values into `heif_compression_format` "enum':
+    - `heif_compression_format_heif_compression_mask`
+  - added new values into `heif_brand` "enum':
+    - `heif_brand_heif_j2ki`
+    - `heif_brand_heif_j2is`
+  - added functions:
+    - `heif_get_plugin_directories`
+    - `heif_free_plugin_directories`
+    - `heif_image_handle_get_preferred_decoding_colorspace`
+    - `heif_image_handle_get_context`
+    - `heif_image_handle_get_metadata_item_uri_type`
+
 ## [2.0.0] - 2023-09-12
 
 - Fixed link to crate documentation.

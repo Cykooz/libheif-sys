@@ -252,7 +252,62 @@ fn bindgen_test_layout_heif_error() {
 }
 pub type heif_item_id = u32;
 pub type heif_property_id = u32;
-#[doc = " You should call heif_init() when you start using libheif and heif_deinit() when you are finished.\n These calls are reference counted. Each call to heif_init() should be matched by one call to heif_deinit().\n For backwards compatibility, it is not really necessary to call heif_init(), but if you don't, the plugins\n registered by default may not be freed correctly.\n However, this should not be mixed, i.e. one part of your program does use heif_init()/heif_deinit() and another doesn't.\n If in doubt, enclose everything with init/deinit."]
+#[doc = " Unspecified / undefined compression format.\n\n This is used to mean \"no match\" or \"any decoder\" for some parts of the\n API. It does not indicate a specific compression format."]
+pub const heif_compression_format_heif_compression_undefined: heif_compression_format = 0;
+#[doc = " HEVC compression, used for HEIC images.\n\n This is equivalent to H.265."]
+pub const heif_compression_format_heif_compression_HEVC: heif_compression_format = 1;
+#[doc = " AVC compression. (Currently unused in libheif.)\n\n The compression is defined in ISO/IEC 14496-10. This is equivalent to H.264.\n\n The encapsulation is defined in ISO/IEC 23008-12:2022 Annex E."]
+pub const heif_compression_format_heif_compression_AVC: heif_compression_format = 2;
+#[doc = " JPEG compression.\n\n The compression format is defined in ISO/IEC 10918-1. The encapsulation\n of JPEG is specified in ISO/IEC 23008-12:2022 Annex H."]
+pub const heif_compression_format_heif_compression_JPEG: heif_compression_format = 3;
+#[doc = " AV1 compression, used for AVIF images.\n\n The compression format is provided at https://aomediacodec.github.io/av1-spec/\n\n The encapsulation is defined in https://aomediacodec.github.io/av1-avif/"]
+pub const heif_compression_format_heif_compression_AV1: heif_compression_format = 4;
+#[doc = " VVC compression. (Currently unused in libheif.)\n\n The compression format is defined in ISO/IEC 23090-3. This is equivalent to H.266.\n\n The encapsulation is defined in ISO/IEC 23008-12:2022 Annex L."]
+pub const heif_compression_format_heif_compression_VVC: heif_compression_format = 5;
+#[doc = " EVC compression. (Currently unused in libheif.)\n\n The compression format is defined in ISO/IEC 23094-1. This is equivalent to H.266.\n\n The encapsulation is defined in ISO/IEC 23008-12:2022 Annex M."]
+pub const heif_compression_format_heif_compression_EVC: heif_compression_format = 6;
+#[doc = " JPEG 2000 compression. (Currently unused in libheif.)\n\n The encapsulation of JPEG 2000 is specified in ISO/IEC 15444-16:2021.\n The core encoding is defined in ISO/IEC 15444-1, or ITU-T T.800."]
+pub const heif_compression_format_heif_compression_JPEG2000: heif_compression_format = 7;
+#[doc = " Uncompressed encoding.\n\n This is defined in ISO/IEC 23001-17:2023 (Draft International Standard)."]
+pub const heif_compression_format_heif_compression_uncompressed: heif_compression_format = 8;
+#[doc = " Mask image encoding.\n\n See ISO/IEC 23008-12:2022 Section 6.10.2"]
+pub const heif_compression_format_heif_compression_mask: heif_compression_format = 9;
+#[doc = " libheif known compression formats."]
+pub type heif_compression_format = libc::c_uint;
+pub const heif_chroma_heif_chroma_undefined: heif_chroma = 99;
+pub const heif_chroma_heif_chroma_monochrome: heif_chroma = 0;
+pub const heif_chroma_heif_chroma_420: heif_chroma = 1;
+pub const heif_chroma_heif_chroma_422: heif_chroma = 2;
+pub const heif_chroma_heif_chroma_444: heif_chroma = 3;
+pub const heif_chroma_heif_chroma_interleaved_RGB: heif_chroma = 10;
+pub const heif_chroma_heif_chroma_interleaved_RGBA: heif_chroma = 11;
+#[doc = " HDR, big endian."]
+pub const heif_chroma_heif_chroma_interleaved_RRGGBB_BE: heif_chroma = 12;
+#[doc = " HDR, big endian."]
+pub const heif_chroma_heif_chroma_interleaved_RRGGBBAA_BE: heif_chroma = 13;
+#[doc = " HDR, little endian."]
+pub const heif_chroma_heif_chroma_interleaved_RRGGBB_LE: heif_chroma = 14;
+#[doc = " HDR, little endian."]
+pub const heif_chroma_heif_chroma_interleaved_RRGGBBAA_LE: heif_chroma = 15;
+pub type heif_chroma = libc::c_uint;
+pub const heif_colorspace_heif_colorspace_undefined: heif_colorspace = 99;
+#[doc = " heif_colorspace_YCbCr should be used with one of these heif_chroma values:\n * heif_chroma_444\n * heif_chroma_422\n * heif_chroma_420"]
+pub const heif_colorspace_heif_colorspace_YCbCr: heif_colorspace = 0;
+#[doc = " heif_colorspace_RGB should be used with one of these heif_chroma values:\n * heif_chroma_444 (for planar RGB)\n * heif_chroma_interleaved_RGB\n * heif_chroma_interleaved_RGBA\n * heif_chroma_interleaved_RRGGBB_BE\n * heif_chroma_interleaved_RRGGBBAA_BE\n * heif_chroma_interleaved_RRGGBB_LE\n * heif_chroma_interleaved_RRGGBBAA_LE"]
+pub const heif_colorspace_heif_colorspace_RGB: heif_colorspace = 1;
+#[doc = " heif_colorspace_monochrome should only be used with heif_chroma = heif_chroma_monochrome"]
+pub const heif_colorspace_heif_colorspace_monochrome: heif_colorspace = 2;
+pub type heif_colorspace = libc::c_uint;
+pub const heif_channel_heif_channel_Y: heif_channel = 0;
+pub const heif_channel_heif_channel_Cb: heif_channel = 1;
+pub const heif_channel_heif_channel_Cr: heif_channel = 2;
+pub const heif_channel_heif_channel_R: heif_channel = 3;
+pub const heif_channel_heif_channel_G: heif_channel = 4;
+pub const heif_channel_heif_channel_B: heif_channel = 5;
+pub const heif_channel_heif_channel_Alpha: heif_channel = 6;
+pub const heif_channel_heif_channel_interleaved: heif_channel = 10;
+pub type heif_channel = libc::c_uint;
+#[doc = " ========================= library initialization ======================"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct heif_init_params {
@@ -376,6 +431,13 @@ extern "C" {
 extern "C" {
     pub fn heif_unload_plugin(plugin: *const heif_plugin_info) -> heif_error;
 }
+extern "C" {
+    #[doc = " Get a NULL terminated array of the plugin directories that are searched by libheif.\n This includes the paths specified in the environment variable LIBHEIF_PLUGIN_PATHS and the built-in path\n (if not overridden by the environment variable)."]
+    pub fn heif_get_plugin_directories() -> *const *const libc::c_char;
+}
+extern "C" {
+    pub fn heif_free_plugin_directories(arg1: *const *const libc::c_char);
+}
 pub const heif_filetype_result_heif_filetype_no: heif_filetype_result = 0;
 #[doc = " it is heif and can be read by libheif"]
 pub const heif_filetype_result_heif_filetype_yes_supported: heif_filetype_result = 1;
@@ -424,6 +486,10 @@ pub const heif_brand_heif_vvis: heif_brand = 14;
 pub const heif_brand_heif_evbi: heif_brand = 15;
 #[doc = " EVC sequence"]
 pub const heif_brand_heif_evbs: heif_brand = 16;
+#[doc = " JPEG2000 image"]
+pub const heif_brand_heif_j2ki: heif_brand = 17;
+#[doc = " JPEG2000 image sequence"]
+pub const heif_brand_heif_j2is: heif_brand = 18;
 #[doc = " DEPRECATED, use heif_brand2 and the heif_brand2_* constants below instead"]
 pub type heif_brand = libc::c_uint;
 extern "C" {
@@ -496,7 +562,7 @@ pub struct heif_reader {
     #[doc = " --- version 1 functions ---"]
     pub get_position:
         ::std::option::Option<unsafe extern "C" fn(userdata: *mut libc::c_void) -> i64>,
-    #[doc = " The functions read(), and seek() return 0 on success.\n Generally, libheif will make sure that we do not read past the file size."]
+    #[doc = " The functions read(), and seek() return heif_error_ok on success.\n Generally, libheif will make sure that we do not read past the file size."]
     pub read: ::std::option::Option<
         unsafe extern "C" fn(
             data: *mut libc::c_void,
@@ -646,7 +712,7 @@ extern "C" {
     ) -> heif_error;
 }
 extern "C" {
-    #[doc = " Get the handle for a specific top-level image from an image ID."]
+    #[doc = " Get the image handle for a known image ID."]
     pub fn heif_context_get_image_handle(
         ctx: *mut heif_context,
         id: heif_item_id,
@@ -703,11 +769,23 @@ extern "C" {
     ) -> libc::c_int;
 }
 extern "C" {
+    #[doc = " Return the colorspace that libheif proposes to use for decoding.\n Usually, these will be either YCbCr or Monochrome, but it may also propose RGB for images\n encoded with matrix_coefficients=0.\n It may also return *_undefined if the file misses relevant information to determine this without decoding."]
+    pub fn heif_image_handle_get_preferred_decoding_colorspace(
+        image_handle: *const heif_image_handle,
+        out_colorspace: *mut heif_colorspace,
+        out_chroma: *mut heif_chroma,
+    ) -> heif_error;
+}
+extern "C" {
     #[doc = " Get the image width from the 'ispe' box. This is the original image size without\n any transformations applied to it. Do not use this unless you know exactly what\n you are doing."]
     pub fn heif_image_handle_get_ispe_width(handle: *const heif_image_handle) -> libc::c_int;
 }
 extern "C" {
     pub fn heif_image_handle_get_ispe_height(handle: *const heif_image_handle) -> libc::c_int;
+}
+extern "C" {
+    #[doc = " This gets the context associated with the image handle.\n Note that you have to release the returned context with heif_context_free() in any case.\n\n This means: when you have several image-handles that originate from the same file and you get the\n context of each of them, the returned pointer may be different even though it refers to the same\n logical context. You have to call heif_context_free() on all those context pointers.\n After you freed a context pointer, you can still use the context through a different pointer that you\n might have acquired from elsewhere."]
+    pub fn heif_image_handle_get_context(handle: *const heif_image_handle) -> *mut heif_context;
 }
 extern "C" {
     #[doc = " ------------------------- depth images -------------------------"]
@@ -1031,6 +1109,13 @@ extern "C" {
         out_data: *mut libc::c_void,
     ) -> heif_error;
 }
+extern "C" {
+    #[doc = " Only valid for item type == \"uri \", an absolute URI"]
+    pub fn heif_image_handle_get_metadata_item_uri_type(
+        handle: *const heif_image_handle,
+        metadata_id: heif_item_id,
+    ) -> *const libc::c_char;
+}
 pub const heif_color_profile_type_heif_color_profile_type_not_present: heif_color_profile_type = 0;
 pub const heif_color_profile_type_heif_color_profile_type_nclx: heif_color_profile_type =
     1852009592;
@@ -1349,234 +1434,9 @@ extern "C" {
         out_data: *mut *mut heif_color_profile_nclx,
     ) -> heif_error;
 }
-#[doc = "  heif_item_property_unknown = -1,"]
-pub const heif_item_property_type_heif_item_property_type_invalid: heif_item_property_type = 0;
-#[doc = "  heif_item_property_unknown = -1,"]
-pub const heif_item_property_type_heif_item_property_type_user_description:
-    heif_item_property_type = 1969513843;
-#[doc = "  heif_item_property_unknown = -1,"]
-pub const heif_item_property_type_heif_item_property_type_transform_mirror:
-    heif_item_property_type = 1768778098;
-#[doc = "  heif_item_property_unknown = -1,"]
-pub const heif_item_property_type_heif_item_property_type_transform_rotation:
-    heif_item_property_type = 1769107316;
-#[doc = "  heif_item_property_unknown = -1,"]
-pub const heif_item_property_type_heif_item_property_type_transform_crop: heif_item_property_type =
-    1668047216;
-#[doc = "  heif_item_property_unknown = -1,"]
-pub const heif_item_property_type_heif_item_property_type_image_size: heif_item_property_type =
-    1769173093;
-#[doc = " ------------------------- item properties -------------------------"]
-pub type heif_item_property_type = libc::c_uint;
-extern "C" {
-    #[doc = " Get the heif_property_id for a heif_item_id.\n You may specify which property 'type' you want to receive.\n If you specify 'heif_item_property_type_invalid', all properties associated to that item are returned.\n The number of properties is returned, which are not more than 'count' if (out_list != nullptr).\n By setting out_list==nullptr, you can query the number of properties, 'count' is ignored."]
-    pub fn heif_item_get_properties_of_type(
-        context: *const heif_context,
-        id: heif_item_id,
-        type_: heif_item_property_type,
-        out_list: *mut heif_property_id,
-        count: libc::c_int,
-    ) -> libc::c_int;
-}
-extern "C" {
-    #[doc = " Returns all transformative properties in the correct order.\n This includes \"irot\", \"imir\", \"clap\".\n The number of properties is returned, which are not more than 'count' if (out_list != nullptr).\n By setting out_list==nullptr, you can query the number of properties, 'count' is ignored."]
-    pub fn heif_item_get_transformation_properties(
-        context: *const heif_context,
-        id: heif_item_id,
-        out_list: *mut heif_property_id,
-        count: libc::c_int,
-    ) -> libc::c_int;
-}
-extern "C" {
-    pub fn heif_item_get_property_type(
-        context: *const heif_context,
-        id: heif_item_id,
-        property_id: heif_property_id,
-    ) -> heif_item_property_type;
-}
-#[doc = " The strings are managed by libheif. They will be deleted in heif_property_user_description_release()."]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct heif_property_user_description {
-    pub version: libc::c_int,
-    #[doc = " version 1"]
-    pub lang: *const libc::c_char,
-    pub name: *const libc::c_char,
-    pub description: *const libc::c_char,
-    pub tags: *const libc::c_char,
-}
-#[test]
-fn bindgen_test_layout_heif_property_user_description() {
-    const UNINIT: ::std::mem::MaybeUninit<heif_property_user_description> =
-        ::std::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::std::mem::size_of::<heif_property_user_description>(),
-        40usize,
-        concat!("Size of: ", stringify!(heif_property_user_description))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<heif_property_user_description>(),
-        8usize,
-        concat!("Alignment of ", stringify!(heif_property_user_description))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).version) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(heif_property_user_description),
-            "::",
-            stringify!(version)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).lang) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(heif_property_user_description),
-            "::",
-            stringify!(lang)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).name) as usize - ptr as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(heif_property_user_description),
-            "::",
-            stringify!(name)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).description) as usize - ptr as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(heif_property_user_description),
-            "::",
-            stringify!(description)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).tags) as usize - ptr as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(heif_property_user_description),
-            "::",
-            stringify!(tags)
-        )
-    );
-}
-extern "C" {
-    #[doc = " Get the \"udes\" user description property content.\n Undefined strings are returned as empty strings."]
-    pub fn heif_item_get_property_user_description(
-        context: *const heif_context,
-        itemId: heif_item_id,
-        propertyId: heif_property_id,
-        out: *mut *mut heif_property_user_description,
-    ) -> heif_error;
-}
-extern "C" {
-    #[doc = " Add a \"udes\" user description property to the item.\n If any string pointers are NULL, an empty string will be used instead."]
-    pub fn heif_item_add_property_user_description(
-        context: *const heif_context,
-        itemId: heif_item_id,
-        description: *const heif_property_user_description,
-        out_propertyId: *mut heif_property_id,
-    ) -> heif_error;
-}
-extern "C" {
-    #[doc = " Release all strings and the object itself.\n Only call for objects that you received from heif_item_get_property_user_description()."]
-    pub fn heif_property_user_description_release(arg1: *mut heif_property_user_description);
-}
-#[doc = " flip image vertically"]
-pub const heif_transform_mirror_direction_heif_transform_mirror_direction_vertical:
-    heif_transform_mirror_direction = 0;
-#[doc = " flip image horizontally"]
-pub const heif_transform_mirror_direction_heif_transform_mirror_direction_horizontal:
-    heif_transform_mirror_direction = 1;
-pub type heif_transform_mirror_direction = libc::c_uint;
-extern "C" {
-    pub fn heif_item_get_property_transform_mirror(
-        context: *const heif_context,
-        itemId: heif_item_id,
-        propertyId: heif_property_id,
-    ) -> heif_transform_mirror_direction;
-}
-extern "C" {
-    #[doc = " Returns only 0, 90, 180, or 270 angle values.\n Returns -1 in case of error (but it will only return an error in case of wrong usage)."]
-    pub fn heif_item_get_property_transform_rotation_ccw(
-        context: *const heif_context,
-        itemId: heif_item_id,
-        propertyId: heif_property_id,
-    ) -> libc::c_int;
-}
-extern "C" {
-    #[doc = " Returns the number of pixels that should be removed from the four edges.\n Because of the way this data is stored, you have to pass the image size at the moment of the crop operation\n to compute the cropped border sizes."]
-    pub fn heif_item_get_property_transform_crop_borders(
-        context: *const heif_context,
-        itemId: heif_item_id,
-        propertyId: heif_property_id,
-        image_width: libc::c_int,
-        image_height: libc::c_int,
-        left: *mut libc::c_int,
-        top: *mut libc::c_int,
-        right: *mut libc::c_int,
-        bottom: *mut libc::c_int,
-    );
-}
-pub const heif_compression_format_heif_compression_undefined: heif_compression_format = 0;
-pub const heif_compression_format_heif_compression_HEVC: heif_compression_format = 1;
-pub const heif_compression_format_heif_compression_AVC: heif_compression_format = 2;
-pub const heif_compression_format_heif_compression_JPEG: heif_compression_format = 3;
-pub const heif_compression_format_heif_compression_AV1: heif_compression_format = 4;
-pub const heif_compression_format_heif_compression_VVC: heif_compression_format = 5;
-pub const heif_compression_format_heif_compression_EVC: heif_compression_format = 6;
-#[doc = " ISO/IEC 15444-16:2021"]
-pub const heif_compression_format_heif_compression_JPEG2000: heif_compression_format = 7;
-#[doc = " ISO/IEC 23001-17:2023"]
-pub const heif_compression_format_heif_compression_uncompressed: heif_compression_format = 8;
-#[doc = " Planar RGB images are specified as heif_colorspace_RGB / heif_chroma_444."]
-pub type heif_compression_format = libc::c_uint;
-pub const heif_chroma_heif_chroma_undefined: heif_chroma = 99;
-pub const heif_chroma_heif_chroma_monochrome: heif_chroma = 0;
-pub const heif_chroma_heif_chroma_420: heif_chroma = 1;
-pub const heif_chroma_heif_chroma_422: heif_chroma = 2;
-pub const heif_chroma_heif_chroma_444: heif_chroma = 3;
-pub const heif_chroma_heif_chroma_interleaved_RGB: heif_chroma = 10;
-pub const heif_chroma_heif_chroma_interleaved_RGBA: heif_chroma = 11;
-#[doc = " HDR, big endian."]
-pub const heif_chroma_heif_chroma_interleaved_RRGGBB_BE: heif_chroma = 12;
-#[doc = " HDR, big endian."]
-pub const heif_chroma_heif_chroma_interleaved_RRGGBBAA_BE: heif_chroma = 13;
-#[doc = " HDR, little endian."]
-pub const heif_chroma_heif_chroma_interleaved_RRGGBB_LE: heif_chroma = 14;
-#[doc = " HDR, little endian."]
-pub const heif_chroma_heif_chroma_interleaved_RRGGBBAA_LE: heif_chroma = 15;
-pub type heif_chroma = libc::c_uint;
-pub const heif_colorspace_heif_colorspace_undefined: heif_colorspace = 99;
-#[doc = " heif_colorspace_YCbCr should be used with one of these heif_chroma values:\n * heif_chroma_444\n * heif_chroma_422\n * heif_chroma_420"]
-pub const heif_colorspace_heif_colorspace_YCbCr: heif_colorspace = 0;
-#[doc = " heif_colorspace_RGB should be used with one of these heif_chroma values:\n * heif_chroma_444 (for planar RGB)\n * heif_chroma_interleaved_RGB\n * heif_chroma_interleaved_RGBA\n * heif_chroma_interleaved_RRGGBB_BE\n * heif_chroma_interleaved_RRGGBBAA_BE\n * heif_chroma_interleaved_RRGGBB_LE\n * heif_chroma_interleaved_RRGGBBAA_LE"]
-pub const heif_colorspace_heif_colorspace_RGB: heif_colorspace = 1;
-#[doc = " heif_colorspace_monochrome should only be used with heif_chroma = heif_chroma_monochrome"]
-pub const heif_colorspace_heif_colorspace_monochrome: heif_colorspace = 2;
-pub type heif_colorspace = libc::c_uint;
-pub const heif_channel_heif_channel_Y: heif_channel = 0;
-pub const heif_channel_heif_channel_Cb: heif_channel = 1;
-pub const heif_channel_heif_channel_Cr: heif_channel = 2;
-pub const heif_channel_heif_channel_R: heif_channel = 3;
-pub const heif_channel_heif_channel_G: heif_channel = 4;
-pub const heif_channel_heif_channel_B: heif_channel = 5;
-pub const heif_channel_heif_channel_Alpha: heif_channel = 6;
-pub const heif_channel_heif_channel_interleaved: heif_channel = 10;
-pub type heif_channel = libc::c_uint;
 pub const heif_progress_step_heif_progress_step_total: heif_progress_step = 0;
 pub const heif_progress_step_heif_progress_step_load_tile: heif_progress_step = 1;
+#[doc = " Planar RGB images are specified as heif_colorspace_RGB / heif_chroma_444."]
 pub type heif_progress_step = libc::c_uint;
 pub const heif_chroma_downsampling_algorithm_heif_chroma_downsampling_nearest_neighbor:
     heif_chroma_downsampling_algorithm = 1;
@@ -1598,7 +1458,7 @@ pub struct heif_color_conversion_options {
     #[doc = " --- version 1 options"]
     pub preferred_chroma_downsampling_algorithm: heif_chroma_downsampling_algorithm,
     pub preferred_chroma_upsampling_algorithm: heif_chroma_upsampling_algorithm,
-    #[doc = " When set to 'false', libheif may also use a different algorithm if the preferred one is not available."]
+    #[doc = " When set to 'false' libheif may also use a different algorithm if the preferred one is not available\n or using a different algorithm is computationally less complex. Note that currently (v1.17.0) this\n means that for RGB input it will usually choose nearest-neighbor sampling because this is computationally\n the simplest.\n Set this field to 'true' if you want to make sure that the specified algorithm is used even\n at the cost of slightly higher computation times."]
     pub only_use_preferred_chroma_algorithm: u8,
 }
 #[test]
@@ -1840,19 +1700,20 @@ extern "C" {
     pub fn heif_image_get_chroma_format(arg1: *const heif_image) -> heif_chroma;
 }
 extern "C" {
-    #[doc = " Get width of the given image channel in pixels. Returns -1 if a non-existing\n channel was given."]
-    pub fn heif_image_get_width(arg1: *const heif_image, channel: heif_channel) -> libc::c_int;
+    #[doc = " Get the width of a specified image channel.\n\n @param img the image to get the width for\n @param channel the channel to select\n @return the width of the channel in pixels, or -1 the channel does not exist in the image"]
+    pub fn heif_image_get_width(img: *const heif_image, channel: heif_channel) -> libc::c_int;
 }
 extern "C" {
-    #[doc = " Get height of the given image channel in pixels. Returns -1 if a non-existing\n channel was given."]
-    pub fn heif_image_get_height(arg1: *const heif_image, channel: heif_channel) -> libc::c_int;
+    #[doc = " Get the height of a specified image channel.\n\n @param img the image to get the height for\n @param channel the channel to select\n @return the height of the channel in pixels, or -1 the channel does not exist in the image"]
+    pub fn heif_image_get_height(img: *const heif_image, channel: heif_channel) -> libc::c_int;
 }
 extern "C" {
-    #[doc = " Get the width of the main channel (Y in YCbCr, or any in RGB)."]
-    pub fn heif_image_get_primary_width(arg1: *const heif_image) -> libc::c_int;
+    #[doc = " Get the width of the main channel.\n\n This is the Y channel in YCbCr or mono, or any in RGB.\n\n @param img the image to get the primary width for\n @return the width in pixels"]
+    pub fn heif_image_get_primary_width(img: *const heif_image) -> libc::c_int;
 }
 extern "C" {
-    pub fn heif_image_get_primary_height(arg1: *const heif_image) -> libc::c_int;
+    #[doc = " Get the height of the main channel.\n\n This is the Y channel in YCbCr or mono, or any in RGB.\n\n @param img the image to get the primary height for\n @return the height in pixels"]
+    pub fn heif_image_get_primary_height(img: *const heif_image) -> libc::c_int;
 }
 extern "C" {
     pub fn heif_image_crop(
@@ -2868,225 +2729,4 @@ extern "C" {
     pub fn heif_encoder_descriptor_supportes_lossless_compression(
         arg1: *const heif_encoder_descriptor,
     ) -> libc::c_int;
-}
-#[doc = " See ISO/IEC 23008-12:2022 Section 6.10 \"Region items and region annotations\""]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct heif_region_item {
-    _unused: [u8; 0],
-}
-pub const heif_region_type_heif_region_type_point: heif_region_type = 0;
-pub const heif_region_type_heif_region_type_rectangle: heif_region_type = 1;
-pub const heif_region_type_heif_region_type_ellipse: heif_region_type = 2;
-pub const heif_region_type_heif_region_type_polygon: heif_region_type = 3;
-#[doc = " TODO"]
-pub const heif_region_type_heif_region_type_referenced_mask: heif_region_type = 4;
-#[doc = " TODO"]
-pub const heif_region_type_heif_region_type_inline_mask: heif_region_type = 5;
-pub const heif_region_type_heif_region_type_polyline: heif_region_type = 6;
-pub type heif_region_type = libc::c_uint;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct heif_region {
-    _unused: [u8; 0],
-}
-extern "C" {
-    #[doc = " How many region items are attached to an image."]
-    pub fn heif_image_handle_get_number_of_region_items(
-        image_handle: *const heif_image_handle,
-    ) -> libc::c_int;
-}
-extern "C" {
-    #[doc = " Get the region_item IDs assigned to an image.\n Returns the number of region items outputted."]
-    pub fn heif_image_handle_get_list_of_region_item_ids(
-        image_handle: *const heif_image_handle,
-        region_item_ids_array: *mut heif_item_id,
-        max_count: libc::c_int,
-    ) -> libc::c_int;
-}
-extern "C" {
-    #[doc = " You have to release the output heif_region_item with heif_region_item_release()."]
-    pub fn heif_context_get_region_item(
-        context: *const heif_context,
-        region_item_id: heif_item_id,
-        out: *mut *mut heif_region_item,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_item_get_id(arg1: *mut heif_region_item) -> heif_item_id;
-}
-extern "C" {
-    pub fn heif_region_item_release(arg1: *mut heif_region_item);
-}
-extern "C" {
-    #[doc = " The reference size specifies the coordinate space using for the region items.\n It is the size of the area of the encoded image prior to any transformations."]
-    pub fn heif_region_item_get_reference_size(
-        arg1: *mut heif_region_item,
-        width: *mut u32,
-        height: *mut u32,
-    );
-}
-extern "C" {
-    pub fn heif_region_item_get_number_of_regions(
-        region_item: *const heif_region_item,
-    ) -> libc::c_int;
-}
-extern "C" {
-    #[doc = " You will have to release all returned heif_region objects with heif_region_release() or heif_region_release_many().\n 'out_regions' should point to an array of size 'max_count'.\n The function returns the number of regions filled into the 'out_regions' array."]
-    pub fn heif_region_item_get_list_of_regions(
-        region_item: *const heif_region_item,
-        out_regions_array: *mut *mut heif_region,
-        max_count: libc::c_int,
-    ) -> libc::c_int;
-}
-extern "C" {
-    pub fn heif_region_release(region: *const heif_region);
-}
-extern "C" {
-    pub fn heif_region_release_many(regions_array: *const *const heif_region, num: libc::c_int);
-}
-extern "C" {
-    pub fn heif_region_get_type(region: *const heif_region) -> heif_region_type;
-}
-extern "C" {
-    #[doc = " When querying the region geometry, there is a version without and a version with \"_transformed\" suffix.\n The version without returns the coordinates in the reference coordinate space.\n The version with \"_transformed\" suffix give the coordinates in pixels after all transformative properties have been applied."]
-    pub fn heif_region_get_point(
-        region: *const heif_region,
-        x: *mut i32,
-        y: *mut i32,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_get_point_transformed(
-        region: *const heif_region,
-        x: *mut f64,
-        y: *mut f64,
-        image_id: heif_item_id,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_get_rectangle(
-        region: *const heif_region,
-        x: *mut i32,
-        y: *mut i32,
-        width: *mut u32,
-        height: *mut u32,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_get_rectangle_transformed(
-        region: *const heif_region,
-        x: *mut f64,
-        y: *mut f64,
-        width: *mut f64,
-        height: *mut f64,
-        image_id: heif_item_id,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_get_ellipse(
-        region: *const heif_region,
-        x: *mut i32,
-        y: *mut i32,
-        radius_x: *mut u32,
-        radius_y: *mut u32,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_get_ellipse_transformed(
-        region: *const heif_region,
-        x: *mut f64,
-        y: *mut f64,
-        radius_x: *mut f64,
-        radius_y: *mut f64,
-        image_id: heif_item_id,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_get_polygon_num_points(region: *const heif_region) -> libc::c_int;
-}
-extern "C" {
-    #[doc = " Point coordinates are stored in the output array 'pts'. This must have twice as many entries as there are points.\n Each point is stored as consecutive x and y positions."]
-    pub fn heif_region_get_polygon_points(
-        region: *const heif_region,
-        out_pts_array: *mut i32,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_get_polygon_points_transformed(
-        region: *const heif_region,
-        out_pts_array: *mut f64,
-        image_id: heif_item_id,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_get_polyline_num_points(region: *const heif_region) -> libc::c_int;
-}
-extern "C" {
-    pub fn heif_region_get_polyline_points(
-        region: *const heif_region,
-        out_pts_array: *mut i32,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_get_polyline_points_transformed(
-        region: *const heif_region,
-        out_pts_array: *mut f64,
-        image_id: heif_item_id,
-    ) -> heif_error;
-}
-extern "C" {
-    #[doc = " --- adding region items"]
-    pub fn heif_image_handle_add_region_item(
-        image_handle: *mut heif_image_handle,
-        reference_width: u32,
-        reference_height: u32,
-        out_region_item: *mut *mut heif_region_item,
-    ) -> heif_error;
-}
-extern "C" {
-    #[doc = " When adding regions, there is an optional 'out_region' parameter.\n This is usually not needed. You may set it to NULL."]
-    pub fn heif_region_item_add_region_point(
-        arg1: *mut heif_region_item,
-        x: i32,
-        y: i32,
-        out_region: *mut *mut heif_region,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_item_add_region_rectangle(
-        arg1: *mut heif_region_item,
-        x: i32,
-        y: i32,
-        width: u32,
-        height: u32,
-        out_region: *mut *mut heif_region,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_item_add_region_ellipse(
-        arg1: *mut heif_region_item,
-        x: i32,
-        y: i32,
-        radius_x: u32,
-        radius_y: u32,
-        out_region: *mut *mut heif_region,
-    ) -> heif_error;
-}
-extern "C" {
-    #[doc = " pts[] is an array of 2*nPoints, each pair representing x and y."]
-    pub fn heif_region_item_add_region_polygon(
-        arg1: *mut heif_region_item,
-        pts_array: *const i32,
-        nPoints: libc::c_int,
-        out_region: *mut *mut heif_region,
-    ) -> heif_error;
-}
-extern "C" {
-    pub fn heif_region_item_add_region_polyline(
-        arg1: *mut heif_region_item,
-        pts_array: *const i32,
-        nPoints: libc::c_int,
-        out_region: *mut *mut heif_region,
-    ) -> heif_error;
 }
