@@ -9,15 +9,25 @@ fn main() {
     // shared library.
     #[allow(unused_mut)]
     #[allow(unused_variables)]
+    #[allow(unused_assignments)]
     let mut include_dirs: Vec<String> = Vec::new();
 
     #[cfg(not(target_os = "windows"))]
-    if let Err(err) = pkg_config::Config::new()
+    match pkg_config::Config::new()
         .atleast_version("1.16")
         .probe("libheif")
     {
-        println!("cargo:warning={}", err);
-        std::process::exit(1);
+        Ok(library) => {
+            include_dirs = library
+                .include_paths
+                .iter()
+                .map(|dir| dir.to_string_lossy().to_string())
+                .collect();
+        }
+        Err(err) => {
+            println!("cargo:warning={}", err);
+            std::process::exit(1);
+        }
     }
 
     #[cfg(target_os = "windows")]
@@ -35,7 +45,7 @@ fn main() {
                         .filter_entry(|e| e.file_type().is_dir())
                     {
                         let dir = subdir.unwrap().path().to_string_lossy().to_string();
-                        include_dirs.push(format!("--include-directory={}", dir));
+                        include_dirs.push(dir);
                     }
                 }
             }
@@ -69,7 +79,7 @@ fn main() {
             ]);
         if !include_dirs.is_empty() {
             dbg!(&include_dirs);
-            builder = builder.clang_args(include_dirs);
+            builder = builder.clang_args(include_dirs.iter().map(|dir| format!("--include-directory={}", dir)));
         }
 
         // Finish the builder and generate the bindings.
