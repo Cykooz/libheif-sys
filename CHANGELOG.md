@@ -15,6 +15,11 @@
     - `heif_image_handle_get_context`
     - `heif_image_handle_get_metadata_item_uri_type`
 
+## [2.0.1] - 2023-11-24
+
+- Changed `build.rs` to fix missing include-directory on macOS 
+  ([#6](https://github.com/Cykooz/libheif-sys/pull/6)).
+
 ## [2.0.0] - 2023-09-12
 
 - Fixed link to crate documentation.
