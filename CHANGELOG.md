@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [2.0.1] - 2023-11-24
 
 - Changed `build.rs` to fix missing include-directory on macOS 
   ([#6](https://github.com/Cykooz/libheif-sys/pull/6)).
