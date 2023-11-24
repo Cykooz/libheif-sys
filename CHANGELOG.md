@@ -1,5 +1,10 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Changed `build.rs` to fix missing include-directory on macOS 
+  ([#6](https://github.com/Cykooz/libheif-sys/pull/6)).
+
 ## [2.0.0] - 2023-09-12
 
 - Fixed link to crate documentation.
