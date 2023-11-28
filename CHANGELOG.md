@@ -2,7 +2,7 @@
 
 ## [Unreleased] - ReleaseDate
 
-- Updated "bindings.rs" to correspond `libheif 1.17.1`:
+- Updated "bindings.rs" to correspond `libheif 1.17.4`:
   - added new values into `heif_compression_format` "enum':
     - `heif_compression_format_heif_compression_mask`
   - added new values into `heif_brand` "enum':

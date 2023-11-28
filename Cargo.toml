@@ -25,7 +25,7 @@ use-bindgen = ["dep:bindgen"]
 
 
 [build-dependencies]
-bindgen = { version = "0.68", optional = true }
+bindgen = { version = "0.69", optional = true }
 pkg-config = "0.3"
 
 
@@ -36,7 +36,7 @@ walkdir = "2"
 
 [package.metadata.vcpkg]
 git = "https://github.com/microsoft/vcpkg"
-tag = "2023.10.19"
+tag = "2023.11.20"
 dependencies = ["libheif"]
 
 
