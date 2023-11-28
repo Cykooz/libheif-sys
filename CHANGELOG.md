@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [2.1.0] - 2023-11-28
 
 - Updated "bindings.rs" to correspond `libheif 1.17.4`:
   - added new values into `heif_compression_format` "enum':
