@@ -14,7 +14,7 @@ fn main() {
 
     #[cfg(not(target_os = "windows"))]
     match pkg_config::Config::new()
-        .atleast_version("1.16")
+        .atleast_version("1.17")
         .probe("libheif")
     {
         Ok(library) => {
@@ -79,7 +79,11 @@ fn main() {
             ]);
         if !include_dirs.is_empty() {
             dbg!(&include_dirs);
-            builder = builder.clang_args(include_dirs.iter().map(|dir| format!("--include-directory={}", dir)));
+            builder = builder.clang_args(
+                include_dirs
+                    .iter()
+                    .map(|dir| format!("--include-directory={}", dir)),
+            );
         }
 
         // Finish the builder and generate the bindings.
