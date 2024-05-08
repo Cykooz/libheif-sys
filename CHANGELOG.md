@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [2.1.1] - 2024-05-08
 
 - Fixed minimal required version of `libheif` specified in `build.rs`.
 
