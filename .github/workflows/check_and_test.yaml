@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-  workflow_dispatch: {}
+  workflow_dispatch: { }
 
 
 env:
@@ -15,31 +15,27 @@ env:
 jobs:
   run_tests_on_linux:
     name: Test `cargo check/test` on Ubuntu
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: root suid tar
         run: sudo chown root:sudo /bin/tar && sudo chmod u+s /bin/tar
 
       - name: Cache APT
         id: cache-apt
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             /etc/apt
             /var/lib/apt
           key: ${{ runner.os }}-apt
 
-      - name: Add libheif PPA
-        if: steps.cache-apt.outputs.cache-hit != 'true'
-        run: sudo add-apt-repository -y ppa:strukturag/libheif
-
-      - name: Install libheif
+      - name: Install libheif dependencies
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: libheif-dev libdav1d-dev
-          version: 1.16.2
+          packages: libheif-dev libdav1d-dev libnuma-dev
+          version: 1.18.2
 
       - uses: Swatinem/rust-cache@v2
         with:
@@ -47,15 +43,15 @@ jobs:
 
       - name: Run tests
         run: |
-          cargo check -p libheif-sys
-          cargo test
+          cargo check -p libheif-sys --features use-bindgen,embedded-libheif-plugins
+          cargo test --features use-bindgen,embedded-libheif-plugins
 
 
   run_tests_on_windows:
     name: Test `cargo check/test` on Windows
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Cache rust artifacts
         uses: Swatinem/rust-cache@v2
@@ -65,7 +61,7 @@ jobs:
 
       - name: Cache vcpkg
         id: cache-vcpkg
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: "target/vcpkg"
           key: ${{ runner.os }}-vcpkg

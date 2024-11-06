@@ -1,5 +1,120 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+### Added
+
+- Added features to compile `libheif` source-code form GitHub and
+  link it statically (not supported for Windows):
+    - `compile-libheif`
+    - `embedded-libheif-plugins`
+- Updated "bindings.rs" to correspond `libheif 1.18.2`:
+    - added new values into `heif_suberror_code` "enum':
+        - `heif_suberror_code_heif_suberror_No_ispe_property`
+        - `heif_suberror_code_heif_suberror_Camera_intrinsic_matrix_undefined`
+        - `heif_suberror_code_heif_suberror_Camera_extrinsic_matrix_undefined`
+        - `heif_suberror_code_heif_suberror_Invalid_J2K_codestream`
+        - `heif_suberror_code_heif_suberror_No_vvcC_box`
+        - `heif_suberror_code_heif_suberror_No_icbr_box`
+        - `heif_suberror_code_heif_suberror_Decompression_invalid_data`
+        - `heif_suberror_code_heif_suberror_Compression_initialisation_error`
+        - `heif_suberror_code_heif_suberror_Unsupported_generic_compression_method`
+        - `heif_suberror_code_heif_suberror_No_matching_decoder_installed`
+    - added new values into `heif_compression_format` "enum':
+        - `heif_compression_format_heif_compression_HTJ2K`
+    - added new values into `heif_metadata_compression` "enum':
+        - `heif_metadata_compression_heif_metadata_compression_zlib`
+        - `heif_metadata_compression_heif_metadata_compression_brotli`
+    - added field `prefer_uncC_short_form` into struct `heif_encoding_options`
+    - added structs:
+        - `heif_camera_intrinsic_matrix`
+        - `heif_property_user_description`
+        - `heif_region_item`
+        - `heif_region`
+    - added enums:
+        - `heif_item_property_type`
+        - `heif_transform_mirror_direction`
+        - `heif_region_type`
+    - added functions:
+        - `heif_has_compatible_filetype`
+        - `heif_context_add_compatible_brand`
+        - `heif_context_encode_grid`
+        - `heif_context_add_generic_uri_metadata`
+        - `heif_context_get_number_of_items`
+        - `heif_context_get_list_of_item_IDs`
+        - `heif_item_get_item_type`
+        - `heif_item_is_item_hidden`
+        - `heif_item_get_mime_item_content_type`
+        - `heif_item_get_mime_item_content_encoding`
+        - `heif_item_get_uri_item_uri_type`
+        - `heif_item_get_item_name`
+        - `heif_item_set_item_name`
+        - `heif_item_get_item_data`
+        - `heif_release_item_data`
+        - `heif_context_get_item_references`
+        - `heif_release_item_references`
+        - `heif_context_add_item_reference`
+        - `heif_context_add_item_references`
+        - `heif_context_add_item`
+        - `heif_context_add_mime_item`
+        - `heif_context_add_precompressed_mime_item`
+        - `heif_context_add_uri_item`
+        - `heif_item_get_properties_of_type`
+        - `heif_item_get_transformation_properties`
+        - `heif_item_get_property_type`
+        - `heif_item_get_property_user_description`
+        - `heif_item_add_property_user_description`
+        - `heif_property_user_description_release`
+        - `heif_item_get_property_transform_mirror`
+        - `heif_item_get_property_transform_rotation_ccw`
+        - `heif_item_get_property_transform_crop_borders`
+        - `heif_item_add_raw_property`
+        - `heif_item_get_property_raw_size`
+        - `heif_item_get_property_raw_data`
+        - `heif_image_handle_get_number_of_region_items`
+        - `heif_image_handle_get_list_of_region_item_ids`
+        - `heif_context_get_region_item`
+        - `heif_region_item_get_id`
+        - `heif_region_item_release`
+        - `heif_region_item_get_reference_size`
+        - `heif_region_item_get_number_of_regions`
+        - `heif_region_item_get_list_of_regions`
+        - `heif_region_release`
+        - `heif_region_release_many`
+        - `heif_region_get_type`
+        - `heif_region_get_point`
+        - `heif_region_get_point_transformed`
+        - `heif_region_get_rectangle`
+        - `heif_region_get_rectangle_transformed`
+        - `heif_region_get_ellipse`
+        - `heif_region_get_ellipse_transformed`
+        - `heif_region_get_polygon_num_points`
+        - `heif_region_get_polygon_points`
+        - `heif_region_get_polygon_points_transformed`
+        - `heif_region_get_polyline_num_points`
+        - `heif_region_get_polyline_points`
+        - `heif_region_get_polyline_points_transformed`
+        - `heif_region_get_referenced_mask_ID`
+        - `heif_region_get_inline_mask_data_len`
+        - `heif_region_get_inline_mask_data`
+        - `heif_region_get_mask_image`
+        - `heif_image_handle_add_region_item`
+        - `heif_region_item_add_region_point`
+        - `heif_region_item_add_region_rectangle`
+        - `heif_region_item_add_region_ellipse`
+        - `heif_region_item_add_region_polygon`
+        - `heif_region_item_add_region_polyline`
+        - `heif_region_item_add_region_referenced_mask`
+        - `heif_region_item_add_region_inline_mask_data`
+        - `heif_region_item_add_region_inline_mask`
+
+### Fixed
+
+- **BREAKING**: Deleted deriving `Copy` and `Clone` for structs with pointers:
+    - `heif_plugin_info`
+    - `heif_decoding_options`
+    - `heif_encoding_options`
+
 ## [2.1.1] - 2024-05-08
 
 - Fixed minimal required version of `libheif` specified in `build.rs`.

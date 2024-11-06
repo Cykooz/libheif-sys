@@ -1,1 +1,0 @@
-#include <libheif/heif.h>
