@@ -1,4 +1,9 @@
-# libheif-sys is bindings to libheif
+# libheif-sys
+
+`libheif-sys` is a binding to [libheif](https://github.com/strukturag/libheif).
+
+A high-level wrapper [libheif-rs](https://github.com/Cykooz/libheif-rs) is also
+available.
 
 [CHANGELOG](https://github.com/Cykooz/libheif-sys/blob/master/CHANGELOG.md)
 
@@ -23,8 +28,8 @@ not work as expected under x32 architectures or other operating systems.
 
 The crate uses `pkg-confing` to find installed `libheif`.
 
-Also, you can enable all or one of next features to compile `libheif` from
-`GitHub` and link it statically:
+You can also enable all or any of the following features to compile
+`libheif v1.18.2` from `GitHub` and link it statically:
 
 - `compile-libheif`
 - `embedded-libheif-plugins`
