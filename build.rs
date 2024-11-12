@@ -230,4 +230,43 @@ fn run_bindgen(include_dirs: &[String]) {
     bindings
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
+
+    // Create linker_test.ts module for testing cases when not all
+    // functions from *.h files are really available in libheif.
+    let code = bindings.to_string();
+    let mut func_names = Vec::new();
+    for line in code.lines() {
+        if !line.contains("pub fn ") {
+            continue;
+        }
+        let line = line.trim();
+        let res: Vec<&str> = line.split(&[' ', '(']).collect();
+        if res.len() > 3 {
+            if let &["pub", "fn", name] = &res[..3] {
+                func_names.push(name)
+            }
+        }
+    }
+
+    let mut result = vec![
+        "use super::*;\n\n",
+        "#[test]\n",
+        "fn is_all_functions_exists_in_libheif() {\n",
+        "    let fn_pointers = [\n",
+    ];
+    for name in func_names {
+        result.push("        ");
+        result.push(name);
+        result.push(" as *const fn(),\n")
+    }
+    result.extend(vec![
+        "    ];\n",
+        "    for pointer in fn_pointers.iter() {\n",
+        "        assert!(!pointer.is_null());\n",
+        "    }\n",
+        "}\n",
+    ]);
+    let test_module = result.join("");
+    let test_path = out_path.join("linker_test.rs");
+    std::fs::write(&test_path, test_module).expect("Couldn't write test module!");
 }

@@ -1,6 +1,6 @@
 # Change Log
 
-## [3.0.0] - 2024-11-07
+## [Unreleased] - ReleaseDate
 
 ### Added
 
@@ -40,25 +40,6 @@
         - `heif_context_add_compatible_brand`
         - `heif_context_encode_grid`
         - `heif_context_add_generic_uri_metadata`
-        - `heif_context_get_number_of_items`
-        - `heif_context_get_list_of_item_IDs`
-        - `heif_item_get_item_type`
-        - `heif_item_is_item_hidden`
-        - `heif_item_get_mime_item_content_type`
-        - `heif_item_get_mime_item_content_encoding`
-        - `heif_item_get_uri_item_uri_type`
-        - `heif_item_get_item_name`
-        - `heif_item_set_item_name`
-        - `heif_item_get_item_data`
-        - `heif_release_item_data`
-        - `heif_context_get_item_references`
-        - `heif_release_item_references`
-        - `heif_context_add_item_reference`
-        - `heif_context_add_item_references`
-        - `heif_context_add_item`
-        - `heif_context_add_mime_item`
-        - `heif_context_add_precompressed_mime_item`
-        - `heif_context_add_uri_item`
         - `heif_item_get_properties_of_type`
         - `heif_item_get_transformation_properties`
         - `heif_item_get_property_type`
@@ -114,6 +95,10 @@
     - `heif_plugin_info`
     - `heif_decoding_options`
     - `heif_encoding_options`
+
+## [3.0.0] - 2024-11-07
+
+**YANKED**
 
 ## [2.1.1] - 2024-05-08
 
