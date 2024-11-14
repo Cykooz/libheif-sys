@@ -111,6 +111,18 @@
 
 **YANKED**
 
+## [2.2.0] - 2024-11-14
+
+### Changes
+
+- Backported from v3:
+    - `.h` files from `libheif` was embedded in the crate sources.
+    - Changed `build.rs` to use embedded `.h` files for the bindgen build stage
+      instead of `.h` files from the installed libheif library.
+
+      Now you can link the crate with any version of `libheif`
+      that is backward compatible with the version supported by the crate.
+
 ## [2.1.1] - 2024-05-08
 
 - Fixed minimal required version of `libheif` specified in `build.rs`.
