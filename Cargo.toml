@@ -11,6 +11,7 @@ license = "MIT"
 documentation = "https://docs.rs/crate/libheif-sys"
 links = "heif"
 build = "build.rs"
+exclude = ["/data"]
 
 
 [dependencies]

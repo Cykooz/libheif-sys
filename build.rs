@@ -13,27 +13,23 @@ fn main() {
     }
 
     println!("cargo:rerun-if-changed=build.rs");
-    println!("cargo:rerun-if-changed=wrapper.hpp");
+    println!("cargo:rerun-if-changed=include/wrapper.h");
 
     // Tell cargo to tell rustc to link the heif library.
-    #[allow(unused_mut)]
-    #[allow(unused_variables)]
-    #[allow(unused_assignments)]
-    let mut include_dirs: Vec<String> = Vec::new();
 
     #[cfg(not(target_os = "windows"))]
     {
         #[cfg(feature = "compile-libheif")]
         compile_libheif();
 
-        include_dirs.extend(find_libheif());
+        find_libheif();
     }
 
     #[cfg(target_os = "windows")]
-    include_dirs.extend(install_libheif_by_vcpkg());
+    install_libheif_by_vcpkg();
 
     #[cfg(feature = "use-bindgen")]
-    run_bindgen(&include_dirs);
+    run_bindgen();
 }
 
 #[allow(dead_code)]
@@ -136,55 +132,31 @@ fn compile_libheif() {
 }
 
 #[cfg(not(target_os = "windows"))]
-fn find_libheif() -> Vec<String> {
+fn find_libheif() {
     let mut config = pkg_config::Config::new();
     config.atleast_version(MIN_LIBHEIF_VERSION);
     #[cfg(feature = "compile-libheif")]
     config.statik(true);
 
-    match config.probe("libheif") {
-        Ok(library) => library
-            .include_paths
-            .iter()
-            .map(|dir| dir.to_string_lossy().to_string())
-            .collect(),
-        Err(err) => {
-            println!("cargo:warning={}", err);
-            std::process::exit(1);
-        }
+    if let Err(err) = config.probe("libheif") {
+        println!("cargo:warning={}", err);
+        std::process::exit(1);
     }
 }
 
 #[cfg(target_os = "windows")]
-fn install_libheif_by_vcpkg() -> Vec<String> {
+fn install_libheif_by_vcpkg() {
     let vcpkg_lib = vcpkg::Config::new()
         .emit_includes(true)
         .find_package("libheif");
-    let mut include_dirs = Vec::new();
-    match vcpkg_lib {
-        Ok(lib) => {
-            // https://users.rust-lang.org/t/bindgen-cant-find-included-file/62687
-            use walkdir::WalkDir;
-            for path in lib.include_paths {
-                for subdir in WalkDir::new(path)
-                    .into_iter()
-                    .filter_entry(|e| e.file_type().is_dir())
-                {
-                    let dir = subdir.unwrap().path().to_string_lossy().to_string();
-                    include_dirs.push(dir);
-                }
-            }
-            include_dirs
-        }
-        Err(err) => {
-            println!("cargo:warning={}", err);
-            std::process::exit(1);
-        }
+    if let Err(err) = vcpkg_lib {
+        println!("cargo:warning={}", err);
+        std::process::exit(1);
     }
 }
 
 #[cfg(feature = "use-bindgen")]
-fn run_bindgen(include_dirs: &[String]) {
+fn run_bindgen() {
     let mut base_builder = bindgen::Builder::default()
         .generate_comments(true)
         .formatter(bindgen::Formatter::Rustfmt)
@@ -199,13 +171,6 @@ fn run_bindgen(include_dirs: &[String]) {
             "-fparse-all-comments",
             "-fretain-comments-from-system-headers",
         ]);
-    if !include_dirs.is_empty() {
-        base_builder = base_builder.clang_args(
-            include_dirs
-                .iter()
-                .map(|dir| format!("--include-directory={}", dir)),
-        );
-    }
 
     // Don't derive Copy and Clone for structures with pointers.
     for struct_name in [
@@ -218,7 +183,7 @@ fn run_bindgen(include_dirs: &[String]) {
     }
 
     // The main module
-    let builder = base_builder.clone().header("wrapper.hpp");
+    let builder = base_builder.clone().header("include/wrapper.h");
     // Finish the builder and generate the bindings.
     let bindings = builder
         .generate()

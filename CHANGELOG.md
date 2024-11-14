@@ -1,5 +1,16 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+### Changes
+
+- `.h` files from `libheif` was embedded in the crate sources.
+- Changed `build.rs` to use embedded `.h` files for the bindgen build stage
+  instead of `.h` files from the installed libheif library.
+
+  Now you can link the crate with any version of `libheif`
+  that is backward compatible with the version supported by the crate.
+
 ## [3.0.1] - 2024-11-12
 
 ### Added
