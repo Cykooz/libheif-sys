@@ -1,5 +1,12 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+### Fixes
+
+- Deleted layout tests from `bindings.rs`
+  ([#8](https://github.com/Cykooz/libheif-sys/issues/8)).
+
 ## [2.2.0] - 2024-11-14
 
 ### Changes

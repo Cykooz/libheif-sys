@@ -51,6 +51,7 @@ fn main() {
 
         // Finish the builder and generate the bindings.
         let bindings = builder
+            .clone()
             .generate()
             // Unwrap the Result and panic on failure.
             .expect("Unable to generate bindings");
@@ -60,5 +61,16 @@ fn main() {
         bindings
             .write_to_file(out_path.join("bindings.rs"))
             .expect("Couldn't write bindings!");
+
+        let bindings = builder
+            .layout_tests(false)
+            .generate()
+            // Unwrap the Result and panic on failure.
+            .expect("Unable to generate bindings without layout tests");
+
+        let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
+        bindings
+            .write_to_file(out_path.join("bindings_wo_tests.rs"))
+            .expect("Couldn't write bindings_wo_tests.rs!");
     }
 }
