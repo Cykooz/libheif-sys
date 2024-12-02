@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [2.2.1] - 2024-12-02
 
 ### Fixes
 
