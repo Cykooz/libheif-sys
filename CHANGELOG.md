@@ -11,6 +11,11 @@
   Now you can link the crate with any version of `libheif`
   that is backward compatible with the version supported by the crate.
 
+### Fixes
+
+- Deleted layout tests from `bindings.rs`
+  ([#8](https://github.com/Cykooz/libheif-sys/issues/8)).
+
 ## [3.0.1] - 2024-11-12
 
 ### Added

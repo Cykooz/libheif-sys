@@ -229,14 +229,6 @@ pub struct heif_error {
     #[doc = " textual error message (is always defined, you do not have to check for NULL)"]
     pub message: *const libc::c_char,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_error"][::std::mem::size_of::<heif_error>() - 16usize];
-    ["Alignment of heif_error"][::std::mem::align_of::<heif_error>() - 8usize];
-    ["Offset of field: heif_error::code"][::std::mem::offset_of!(heif_error, code) - 0usize];
-    ["Offset of field: heif_error::subcode"][::std::mem::offset_of!(heif_error, subcode) - 4usize];
-    ["Offset of field: heif_error::message"][::std::mem::offset_of!(heif_error, message) - 8usize];
-};
 pub type heif_item_id = u32;
 pub type heif_property_id = u32;
 #[doc = " Unspecified / undefined compression format.\n\n This is used to mean \"no match\" or \"any decoder\" for some parts of the\n API. It does not indicate a specific compression format."]
@@ -302,13 +294,6 @@ pub type heif_channel = libc::c_uint;
 pub struct heif_init_params {
     pub version: libc::c_int,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_init_params"][::std::mem::size_of::<heif_init_params>() - 4usize];
-    ["Alignment of heif_init_params"][::std::mem::align_of::<heif_init_params>() - 4usize];
-    ["Offset of field: heif_init_params::version"]
-        [::std::mem::offset_of!(heif_init_params, version) - 0usize];
-};
 extern "C" {
     #[doc = " Initialise library.\n\n You should call heif_init() when you start using libheif and heif_deinit() when you are finished.\n These calls are reference counted. Each call to heif_init() should be matched by one call to heif_deinit().\n\n For backwards compatibility, it is not really necessary to call heif_init(), but some library memory objects\n will never be freed if you do not call heif_init()/heif_deinit().\n\n heif_init() will load the external modules installed in the default plugin path. Thus, you need it when you\n want to load external plugins from the default path.\n Codec plugins that are compiled into the library directly (selected by the compile-time parameters of libheif)\n will be available even without heif_init().\n\n Make sure that you do not have one part of your program use heif_init()/heif_deinit() and another part that does\n not use it as the latter may try to use an uninitialized library. If in doubt, enclose everything with init/deinit.\n\n You may pass nullptr to get default parameters. Currently, no parameters are supported."]
     pub fn heif_init(arg1: *mut heif_init_params) -> heif_error;
@@ -331,19 +316,6 @@ pub struct heif_plugin_info {
     #[doc = " for internal use only"]
     pub internal_handle: *mut libc::c_void,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_plugin_info"][::std::mem::size_of::<heif_plugin_info>() - 24usize];
-    ["Alignment of heif_plugin_info"][::std::mem::align_of::<heif_plugin_info>() - 8usize];
-    ["Offset of field: heif_plugin_info::version"]
-        [::std::mem::offset_of!(heif_plugin_info, version) - 0usize];
-    ["Offset of field: heif_plugin_info::type_"]
-        [::std::mem::offset_of!(heif_plugin_info, type_) - 4usize];
-    ["Offset of field: heif_plugin_info::plugin"]
-        [::std::mem::offset_of!(heif_plugin_info, plugin) - 8usize];
-    ["Offset of field: heif_plugin_info::internal_handle"]
-        [::std::mem::offset_of!(heif_plugin_info, internal_handle) - 16usize];
-};
 extern "C" {
     pub fn heif_load_plugin(
         filename: *const libc::c_char,
@@ -515,19 +487,6 @@ pub struct heif_reader {
         ) -> heif_reader_grow_status,
     >,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_reader"][::std::mem::size_of::<heif_reader>() - 40usize];
-    ["Alignment of heif_reader"][::std::mem::align_of::<heif_reader>() - 8usize];
-    ["Offset of field: heif_reader::reader_api_version"]
-        [::std::mem::offset_of!(heif_reader, reader_api_version) - 0usize];
-    ["Offset of field: heif_reader::get_position"]
-        [::std::mem::offset_of!(heif_reader, get_position) - 8usize];
-    ["Offset of field: heif_reader::read"][::std::mem::offset_of!(heif_reader, read) - 16usize];
-    ["Offset of field: heif_reader::seek"][::std::mem::offset_of!(heif_reader, seek) - 24usize];
-    ["Offset of field: heif_reader::wait_for_file_size"]
-        [::std::mem::offset_of!(heif_reader, wait_for_file_size) - 32usize];
-};
 extern "C" {
     #[doc = " Read a HEIF file from a named disk file.\n The heif_reading_options should currently be set to NULL."]
     pub fn heif_context_read_from_file(
@@ -719,45 +678,6 @@ pub struct heif_depth_representation_info {
     pub depth_nonlinear_representation_model_size: u32,
     pub depth_nonlinear_representation_model: *mut u8,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_depth_representation_info"]
-        [::std::mem::size_of::<heif_depth_representation_info>() - 64usize];
-    ["Alignment of heif_depth_representation_info"]
-        [::std::mem::align_of::<heif_depth_representation_info>() - 8usize];
-    ["Offset of field: heif_depth_representation_info::version"]
-        [::std::mem::offset_of!(heif_depth_representation_info, version) - 0usize];
-    ["Offset of field: heif_depth_representation_info::has_z_near"]
-        [::std::mem::offset_of!(heif_depth_representation_info, has_z_near) - 1usize];
-    ["Offset of field: heif_depth_representation_info::has_z_far"]
-        [::std::mem::offset_of!(heif_depth_representation_info, has_z_far) - 2usize];
-    ["Offset of field: heif_depth_representation_info::has_d_min"]
-        [::std::mem::offset_of!(heif_depth_representation_info, has_d_min) - 3usize];
-    ["Offset of field: heif_depth_representation_info::has_d_max"]
-        [::std::mem::offset_of!(heif_depth_representation_info, has_d_max) - 4usize];
-    ["Offset of field: heif_depth_representation_info::z_near"]
-        [::std::mem::offset_of!(heif_depth_representation_info, z_near) - 8usize];
-    ["Offset of field: heif_depth_representation_info::z_far"]
-        [::std::mem::offset_of!(heif_depth_representation_info, z_far) - 16usize];
-    ["Offset of field: heif_depth_representation_info::d_min"]
-        [::std::mem::offset_of!(heif_depth_representation_info, d_min) - 24usize];
-    ["Offset of field: heif_depth_representation_info::d_max"]
-        [::std::mem::offset_of!(heif_depth_representation_info, d_max) - 32usize];
-    ["Offset of field: heif_depth_representation_info::depth_representation_type"][::std::mem::offset_of!(
-        heif_depth_representation_info,
-        depth_representation_type
-    ) - 40usize];
-    ["Offset of field: heif_depth_representation_info::disparity_reference_view"][::std::mem::offset_of!(
-        heif_depth_representation_info,
-        disparity_reference_view
-    ) - 44usize];
-    ["Offset of field: heif_depth_representation_info::depth_nonlinear_representation_model_size"] [:: std :: mem :: offset_of ! (heif_depth_representation_info , depth_nonlinear_representation_model_size) - 48usize] ;
-    ["Offset of field: heif_depth_representation_info::depth_nonlinear_representation_model"][::std::mem::offset_of!(
-        heif_depth_representation_info,
-        depth_nonlinear_representation_model
-    )
-        - 56usize];
-};
 extern "C" {
     pub fn heif_depth_representation_info_free(info: *const heif_depth_representation_info);
 }
@@ -1007,38 +927,6 @@ pub struct heif_color_profile_nclx {
     pub color_primary_white_x: f32,
     pub color_primary_white_y: f32,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_color_profile_nclx"][::std::mem::size_of::<heif_color_profile_nclx>() - 52usize];
-    ["Alignment of heif_color_profile_nclx"]
-        [::std::mem::align_of::<heif_color_profile_nclx>() - 4usize];
-    ["Offset of field: heif_color_profile_nclx::version"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, version) - 0usize];
-    ["Offset of field: heif_color_profile_nclx::color_primaries"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, color_primaries) - 4usize];
-    ["Offset of field: heif_color_profile_nclx::transfer_characteristics"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, transfer_characteristics) - 8usize];
-    ["Offset of field: heif_color_profile_nclx::matrix_coefficients"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, matrix_coefficients) - 12usize];
-    ["Offset of field: heif_color_profile_nclx::full_range_flag"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, full_range_flag) - 16usize];
-    ["Offset of field: heif_color_profile_nclx::color_primary_red_x"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, color_primary_red_x) - 20usize];
-    ["Offset of field: heif_color_profile_nclx::color_primary_red_y"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, color_primary_red_y) - 24usize];
-    ["Offset of field: heif_color_profile_nclx::color_primary_green_x"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, color_primary_green_x) - 28usize];
-    ["Offset of field: heif_color_profile_nclx::color_primary_green_y"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, color_primary_green_y) - 32usize];
-    ["Offset of field: heif_color_profile_nclx::color_primary_blue_x"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, color_primary_blue_x) - 36usize];
-    ["Offset of field: heif_color_profile_nclx::color_primary_blue_y"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, color_primary_blue_y) - 40usize];
-    ["Offset of field: heif_color_profile_nclx::color_primary_white_x"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, color_primary_white_x) - 44usize];
-    ["Offset of field: heif_color_profile_nclx::color_primary_white_y"]
-        [::std::mem::offset_of!(heif_color_profile_nclx, color_primary_white_y) - 48usize];
-};
 extern "C" {
     pub fn heif_nclx_color_profile_set_color_primaries(
         nclx: *mut heif_color_profile_nclx,
@@ -1099,23 +987,6 @@ pub struct heif_camera_intrinsic_matrix {
     pub principal_point_y: f64,
     pub skew: f64,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_camera_intrinsic_matrix"]
-        [::std::mem::size_of::<heif_camera_intrinsic_matrix>() - 40usize];
-    ["Alignment of heif_camera_intrinsic_matrix"]
-        [::std::mem::align_of::<heif_camera_intrinsic_matrix>() - 8usize];
-    ["Offset of field: heif_camera_intrinsic_matrix::focal_length_x"]
-        [::std::mem::offset_of!(heif_camera_intrinsic_matrix, focal_length_x) - 0usize];
-    ["Offset of field: heif_camera_intrinsic_matrix::focal_length_y"]
-        [::std::mem::offset_of!(heif_camera_intrinsic_matrix, focal_length_y) - 8usize];
-    ["Offset of field: heif_camera_intrinsic_matrix::principal_point_x"]
-        [::std::mem::offset_of!(heif_camera_intrinsic_matrix, principal_point_x) - 16usize];
-    ["Offset of field: heif_camera_intrinsic_matrix::principal_point_y"]
-        [::std::mem::offset_of!(heif_camera_intrinsic_matrix, principal_point_y) - 24usize];
-    ["Offset of field: heif_camera_intrinsic_matrix::skew"]
-        [::std::mem::offset_of!(heif_camera_intrinsic_matrix, skew) - 32usize];
-};
 extern "C" {
     pub fn heif_image_handle_has_camera_intrinsic_matrix(
         handle: *const heif_image_handle,
@@ -1179,30 +1050,6 @@ pub struct heif_color_conversion_options {
     #[doc = " When set to 'false' libheif may also use a different algorithm if the preferred one is not available\n or using a different algorithm is computationally less complex. Note that currently (v1.17.0) this\n means that for RGB input it will usually choose nearest-neighbor sampling because this is computationally\n the simplest.\n Set this field to 'true' if you want to make sure that the specified algorithm is used even\n at the cost of slightly higher computation times."]
     pub only_use_preferred_chroma_algorithm: u8,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_color_conversion_options"]
-        [::std::mem::size_of::<heif_color_conversion_options>() - 16usize];
-    ["Alignment of heif_color_conversion_options"]
-        [::std::mem::align_of::<heif_color_conversion_options>() - 4usize];
-    ["Offset of field: heif_color_conversion_options::version"]
-        [::std::mem::offset_of!(heif_color_conversion_options, version) - 0usize];
-    ["Offset of field: heif_color_conversion_options::preferred_chroma_downsampling_algorithm"][::std::mem::offset_of!(
-        heif_color_conversion_options,
-        preferred_chroma_downsampling_algorithm
-    )
-        - 4usize];
-    ["Offset of field: heif_color_conversion_options::preferred_chroma_upsampling_algorithm"][::std::mem::offset_of!(
-        heif_color_conversion_options,
-        preferred_chroma_upsampling_algorithm
-    )
-        - 8usize];
-    ["Offset of field: heif_color_conversion_options::only_use_preferred_chroma_algorithm"][::std::mem::offset_of!(
-        heif_color_conversion_options,
-        only_use_preferred_chroma_algorithm
-    )
-        - 12usize];
-};
 #[repr(C)]
 #[derive(Debug)]
 pub struct heif_decoding_options {
@@ -1236,32 +1083,6 @@ pub struct heif_decoding_options {
     #[doc = " version 5 options"]
     pub color_conversion_options: heif_color_conversion_options,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_decoding_options"][::std::mem::size_of::<heif_decoding_options>() - 72usize];
-    ["Alignment of heif_decoding_options"]
-        [::std::mem::align_of::<heif_decoding_options>() - 8usize];
-    ["Offset of field: heif_decoding_options::version"]
-        [::std::mem::offset_of!(heif_decoding_options, version) - 0usize];
-    ["Offset of field: heif_decoding_options::ignore_transformations"]
-        [::std::mem::offset_of!(heif_decoding_options, ignore_transformations) - 1usize];
-    ["Offset of field: heif_decoding_options::start_progress"]
-        [::std::mem::offset_of!(heif_decoding_options, start_progress) - 8usize];
-    ["Offset of field: heif_decoding_options::on_progress"]
-        [::std::mem::offset_of!(heif_decoding_options, on_progress) - 16usize];
-    ["Offset of field: heif_decoding_options::end_progress"]
-        [::std::mem::offset_of!(heif_decoding_options, end_progress) - 24usize];
-    ["Offset of field: heif_decoding_options::progress_user_data"]
-        [::std::mem::offset_of!(heif_decoding_options, progress_user_data) - 32usize];
-    ["Offset of field: heif_decoding_options::convert_hdr_to_8bit"]
-        [::std::mem::offset_of!(heif_decoding_options, convert_hdr_to_8bit) - 40usize];
-    ["Offset of field: heif_decoding_options::strict_decoding"]
-        [::std::mem::offset_of!(heif_decoding_options, strict_decoding) - 41usize];
-    ["Offset of field: heif_decoding_options::decoder_id"]
-        [::std::mem::offset_of!(heif_decoding_options, decoder_id) - 48usize];
-    ["Offset of field: heif_decoding_options::color_conversion_options"]
-        [::std::mem::offset_of!(heif_decoding_options, color_conversion_options) - 56usize];
-};
 extern "C" {
     #[doc = " Allocate decoding options and fill with default values.\n Note: you should always get the decoding options through this function since the\n option structure may grow in size in future versions."]
     pub fn heif_decoding_options_alloc() -> *mut heif_decoding_options;
@@ -1398,17 +1219,6 @@ pub struct heif_content_light_level {
     pub max_content_light_level: u16,
     pub max_pic_average_light_level: u16,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_content_light_level"]
-        [::std::mem::size_of::<heif_content_light_level>() - 4usize];
-    ["Alignment of heif_content_light_level"]
-        [::std::mem::align_of::<heif_content_light_level>() - 2usize];
-    ["Offset of field: heif_content_light_level::max_content_light_level"]
-        [::std::mem::offset_of!(heif_content_light_level, max_content_light_level) - 0usize];
-    ["Offset of field: heif_content_light_level::max_pic_average_light_level"]
-        [::std::mem::offset_of!(heif_content_light_level, max_pic_average_light_level) - 2usize];
-};
 extern "C" {
     pub fn heif_image_has_content_light_level(arg1: *const heif_image) -> libc::c_int;
 }
@@ -1435,35 +1245,6 @@ pub struct heif_mastering_display_colour_volume {
     pub max_display_mastering_luminance: u32,
     pub min_display_mastering_luminance: u32,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_mastering_display_colour_volume"]
-        [::std::mem::size_of::<heif_mastering_display_colour_volume>() - 24usize];
-    ["Alignment of heif_mastering_display_colour_volume"]
-        [::std::mem::align_of::<heif_mastering_display_colour_volume>() - 4usize];
-    ["Offset of field: heif_mastering_display_colour_volume::display_primaries_x"][::std::mem::offset_of!(
-        heif_mastering_display_colour_volume,
-        display_primaries_x
-    ) - 0usize];
-    ["Offset of field: heif_mastering_display_colour_volume::display_primaries_y"][::std::mem::offset_of!(
-        heif_mastering_display_colour_volume,
-        display_primaries_y
-    ) - 6usize];
-    ["Offset of field: heif_mastering_display_colour_volume::white_point_x"]
-        [::std::mem::offset_of!(heif_mastering_display_colour_volume, white_point_x) - 12usize];
-    ["Offset of field: heif_mastering_display_colour_volume::white_point_y"]
-        [::std::mem::offset_of!(heif_mastering_display_colour_volume, white_point_y) - 14usize];
-    ["Offset of field: heif_mastering_display_colour_volume::max_display_mastering_luminance"][::std::mem::offset_of!(
-        heif_mastering_display_colour_volume,
-        max_display_mastering_luminance
-    )
-        - 16usize];
-    ["Offset of field: heif_mastering_display_colour_volume::min_display_mastering_luminance"][::std::mem::offset_of!(
-        heif_mastering_display_colour_volume,
-        min_display_mastering_luminance
-    )
-        - 20usize];
-};
 #[doc = " The units for max_display_mastering_luminance and min_display_mastering_luminance is Candelas per square meter."]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1475,33 +1256,6 @@ pub struct heif_decoded_mastering_display_colour_volume {
     pub max_display_mastering_luminance: f64,
     pub min_display_mastering_luminance: f64,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_decoded_mastering_display_colour_volume"]
-        [::std::mem::size_of::<heif_decoded_mastering_display_colour_volume>() - 48usize];
-    ["Alignment of heif_decoded_mastering_display_colour_volume"]
-        [::std::mem::align_of::<heif_decoded_mastering_display_colour_volume>() - 8usize];
-    ["Offset of field: heif_decoded_mastering_display_colour_volume::display_primaries_x"][::std::mem::offset_of!(
-        heif_decoded_mastering_display_colour_volume,
-        display_primaries_x
-    )
-        - 0usize];
-    ["Offset of field: heif_decoded_mastering_display_colour_volume::display_primaries_y"][::std::mem::offset_of!(
-        heif_decoded_mastering_display_colour_volume,
-        display_primaries_y
-    )
-        - 12usize];
-    ["Offset of field: heif_decoded_mastering_display_colour_volume::white_point_x"][::std::mem::offset_of!(
-        heif_decoded_mastering_display_colour_volume,
-        white_point_x
-    ) - 24usize];
-    ["Offset of field: heif_decoded_mastering_display_colour_volume::white_point_y"][::std::mem::offset_of!(
-        heif_decoded_mastering_display_colour_volume,
-        white_point_y
-    ) - 28usize];
-    ["Offset of field: heif_decoded_mastering_display_colour_volume::max_display_mastering_luminance"] [:: std :: mem :: offset_of ! (heif_decoded_mastering_display_colour_volume , max_display_mastering_luminance) - 32usize] ;
-    ["Offset of field: heif_decoded_mastering_display_colour_volume::min_display_mastering_luminance"] [:: std :: mem :: offset_of ! (heif_decoded_mastering_display_colour_volume , min_display_mastering_luminance) - 40usize] ;
-};
 extern "C" {
     pub fn heif_image_has_mastering_display_colour_volume(arg1: *const heif_image) -> libc::c_int;
 }
@@ -1556,14 +1310,6 @@ pub struct heif_writer {
         ) -> heif_error,
     >,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_writer"][::std::mem::size_of::<heif_writer>() - 16usize];
-    ["Alignment of heif_writer"][::std::mem::align_of::<heif_writer>() - 8usize];
-    ["Offset of field: heif_writer::writer_api_version"]
-        [::std::mem::offset_of!(heif_writer, writer_api_version) - 0usize];
-    ["Offset of field: heif_writer::write"][::std::mem::offset_of!(heif_writer, write) - 8usize];
-};
 extern "C" {
     pub fn heif_context_write(
         arg1: *mut heif_context,
@@ -1892,36 +1638,6 @@ pub struct heif_encoding_options {
     #[doc = " Set this to true to use compressed form of uncC where possible"]
     pub prefer_uncC_short_form: u8,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_encoding_options"][::std::mem::size_of::<heif_encoding_options>() - 48usize];
-    ["Alignment of heif_encoding_options"]
-        [::std::mem::align_of::<heif_encoding_options>() - 8usize];
-    ["Offset of field: heif_encoding_options::version"]
-        [::std::mem::offset_of!(heif_encoding_options, version) - 0usize];
-    ["Offset of field: heif_encoding_options::save_alpha_channel"]
-        [::std::mem::offset_of!(heif_encoding_options, save_alpha_channel) - 1usize];
-    ["Offset of field: heif_encoding_options::macOS_compatibility_workaround"]
-        [::std::mem::offset_of!(heif_encoding_options, macOS_compatibility_workaround) - 2usize];
-    ["Offset of field: heif_encoding_options::save_two_colr_boxes_when_ICC_and_nclx_available"][::std::mem::offset_of!(
-        heif_encoding_options,
-        save_two_colr_boxes_when_ICC_and_nclx_available
-    )
-        - 3usize];
-    ["Offset of field: heif_encoding_options::output_nclx_profile"]
-        [::std::mem::offset_of!(heif_encoding_options, output_nclx_profile) - 8usize];
-    ["Offset of field: heif_encoding_options::macOS_compatibility_workaround_no_nclx_profile"][::std::mem::offset_of!(
-        heif_encoding_options,
-        macOS_compatibility_workaround_no_nclx_profile
-    )
-        - 16usize];
-    ["Offset of field: heif_encoding_options::image_orientation"]
-        [::std::mem::offset_of!(heif_encoding_options, image_orientation) - 20usize];
-    ["Offset of field: heif_encoding_options::color_conversion_options"]
-        [::std::mem::offset_of!(heif_encoding_options, color_conversion_options) - 24usize];
-    ["Offset of field: heif_encoding_options::prefer_uncC_short_form"]
-        [::std::mem::offset_of!(heif_encoding_options, prefer_uncC_short_form) - 40usize];
-};
 extern "C" {
     pub fn heif_encoding_options_alloc() -> *mut heif_encoding_options;
 }
@@ -2170,23 +1886,6 @@ pub struct heif_property_user_description {
     pub description: *const libc::c_char,
     pub tags: *const libc::c_char,
 }
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of heif_property_user_description"]
-        [::std::mem::size_of::<heif_property_user_description>() - 40usize];
-    ["Alignment of heif_property_user_description"]
-        [::std::mem::align_of::<heif_property_user_description>() - 8usize];
-    ["Offset of field: heif_property_user_description::version"]
-        [::std::mem::offset_of!(heif_property_user_description, version) - 0usize];
-    ["Offset of field: heif_property_user_description::lang"]
-        [::std::mem::offset_of!(heif_property_user_description, lang) - 8usize];
-    ["Offset of field: heif_property_user_description::name"]
-        [::std::mem::offset_of!(heif_property_user_description, name) - 16usize];
-    ["Offset of field: heif_property_user_description::description"]
-        [::std::mem::offset_of!(heif_property_user_description, description) - 24usize];
-    ["Offset of field: heif_property_user_description::tags"]
-        [::std::mem::offset_of!(heif_property_user_description, tags) - 32usize];
-};
 extern "C" {
     #[doc = " Get the \"udes\" user description property content.\n Undefined strings are returned as empty strings."]
     pub fn heif_item_get_property_user_description(

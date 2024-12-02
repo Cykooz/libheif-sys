@@ -158,6 +158,7 @@ fn install_libheif_by_vcpkg() {
 #[cfg(feature = "use-bindgen")]
 fn run_bindgen() {
     let mut base_builder = bindgen::Builder::default()
+        .header("include/wrapper.h")
         .generate_comments(true)
         .formatter(bindgen::Formatter::Rustfmt)
         .generate_cstr(true)
@@ -183,9 +184,9 @@ fn run_bindgen() {
     }
 
     // The main module
-    let builder = base_builder.clone().header("include/wrapper.h");
     // Finish the builder and generate the bindings.
-    let bindings = builder
+    let bindings = base_builder
+        .clone()
         .generate()
         // Unwrap the Result and panic on failure.
         .expect("Unable to generate bindings");
@@ -194,7 +195,7 @@ fn run_bindgen() {
     let out_path = PathBuf::from(std::env::var("OUT_DIR").unwrap());
     bindings
         .write_to_file(out_path.join("bindings.rs"))
-        .expect("Couldn't write bindings!");
+        .expect("Couldn't write bindings.rs!");
 
     // Create linker_test.ts module for testing cases when not all
     // functions from *.h files are really available in libheif.
@@ -234,4 +235,12 @@ fn run_bindgen() {
     let test_module = result.join("");
     let test_path = out_path.join("linker_test.rs");
     std::fs::write(&test_path, test_module).expect("Couldn't write test module!");
+
+    let bindings = base_builder
+        .layout_tests(false)
+        .generate()
+        .expect("Unable to generate bindings without tests");
+    bindings
+        .write_to_file(out_path.join("bindings_wo_tests.rs"))
+        .expect("Couldn't write bindings_wo_tests.rs!");
 }
