@@ -17,13 +17,6 @@ available.
 In this case the pre-generated file `bindings.rs` will be used
 instead of generating it on the fly with help of `bindgen` crate.
 
-<div class="warning">
-
-Warning: `bindings.rs` file was generated under x64 linux and may
-not work as expected under x32 architectures or other operating systems.
-
-</div>
-
 ### Linux
 
 The crate uses `pkg-confing` to find installed `libheif`.
