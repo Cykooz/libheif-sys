@@ -1,5 +1,64 @@
 # Change Log
 
+# [Unreleased] - ReleaseDate
+
+### Added
+
+- Feature `use-bindgen` was removed from default features.
+- Updated "bindings.rs" to correspond `libheif 1.19.5`:
+    - added new values into `heif_error_code` "enum':
+        - `heif_error_code_heif_error_Canceled`
+    - added new values into `heif_suberror_code` "enum':
+        - `heif_suberror_code_heif_suberror_No_avcC_box`
+        - `heif_suberror_code_heif_suberror_Invalid_mini_box`
+        - `heif_suberror_code_heif_suberror_Unsupported_essential_property`
+    - added new values into `heif_colorspace` "enum':
+        - `heif_colorspace_heif_colorspace_nonvisual`
+    - added new values into `heif_channel` "enum':
+        - `heif_channel_heif_channel_filter_array`
+        - `heif_channel_heif_channel_depth`
+        - `heif_channel_heif_channel_disparity`
+    - added new values into `heif_reader_grow_status` "enum':
+        - `heif_reader_grow_status_heif_reader_grow_status_error`
+    - added new values into `heif_item_property_type` "enum':
+        - `heif_item_property_type_heif_item_property_type_tai_clock_info`
+        - `heif_item_property_type_heif_item_property_type_tai_timestamp`
+    - struct `heif_reader` was updated up to version 2, added new fields:
+        - `request_range`
+        - `preload_range_hint`
+        - `release_file_range`
+        - `release_error_msg`
+    - added new fields into struct `heif_decoding_options`:
+        - `cancel_decoding`
+    - added type aliases:
+        - `heif_entity_group_id`
+    - added structs:
+        - `heif_reader_range_request_result`
+        - `heif_security_limits`
+        - `heif_image_tiling`
+        - `heif_entity_group`
+        - `heif_ambient_viewing_environment`
+    - added functions:
+        - `heif_read_minor_version_brand`
+        - `heif_get_global_security_limits`
+        - `heif_get_disabled_security_limits`
+        - `heif_context_get_security_limits`
+        - `heif_context_set_security_limits`
+        - `heif_image_handle_get_image_tiling`
+        - `heif_image_handle_get_grid_image_tile_id`
+        - `heif_image_handle_decode_image_tile`
+        - `heif_context_get_entity_groups`
+        - `heif_entity_groups_release`
+        - `heif_color_conversion_options_set_defaults`
+        - `heif_image_extend_to_size_fill_with_zero`
+        - `heif_image_handle_get_content_light_level`
+        - `heif_image_handle_get_mastering_display_colour_volume`
+        - `heif_image_handle_get_pixel_aspect_ratio`
+        - `heif_context_add_grid_image`
+        - `heif_context_add_image_tile`
+        - `heif_context_add_overlay_image`
+        - `heif_item_get_property_uuid_type`
+
 ## [3.1.0] - 2024-12-04
 
 ### Changes
@@ -70,6 +129,7 @@
         - `heif_item_get_property_raw_data`
         - `heif_image_handle_get_number_of_region_items`
         - `heif_image_handle_get_list_of_region_item_ids`
+        - `heif_image_handle_add_region_item`
         - `heif_context_get_region_item`
         - `heif_region_item_get_id`
         - `heif_region_item_release`
@@ -95,7 +155,6 @@
         - `heif_region_get_inline_mask_data_len`
         - `heif_region_get_inline_mask_data`
         - `heif_region_get_mask_image`
-        - `heif_image_handle_add_region_item`
         - `heif_region_item_add_region_point`
         - `heif_region_item_add_region_rectangle`
         - `heif_region_item_add_region_ellipse`

@@ -2,9 +2,9 @@ use std::path::PathBuf;
 use std::process::Command;
 
 #[allow(dead_code)]
-const MIN_LIBHEIF_VERSION: &str = "1.18";
+const MIN_LIBHEIF_VERSION: &str = "1.19";
 #[allow(dead_code)]
-const LIBHEIF_GITHUB_VERSION: &str = "v1.18.2";
+const LIBHEIF_GITHUB_VERSION: &str = "v1.19.5";
 
 fn main() {
     if std::env::var("DOCS_RS").is_ok() {

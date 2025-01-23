@@ -10,19 +10,13 @@ available.
 ## System dependencies
 
 - `libheif-dev` >= 1.18.0.
-- `clang` - to generate rust bindings for `libheif`.
-  [See bindgen requirements.](https://rust-lang.github.io/rust-bindgen/requirements.html)
-
-`clang` wouldn't be needed if you disable `use-bindgen` feature.
-In this case the pre-generated file `bindings.rs` will be used
-instead of generating it on the fly with help of `bindgen` crate.
 
 ### Linux
 
 The crate uses `pkg-confing` to find installed `libheif`.
 
 You can also enable all or any of the following features to compile
-`libheif v1.18.2` from `GitHub` and link it statically:
+`libheif v1.19.5` from `GitHub` and link it statically:
 
 - `compile-libheif`
 - `embedded-libheif-plugins`
@@ -59,7 +53,7 @@ use std::ptr;
 use libheif_sys as lh;
 
 #[test]
-fn read_and_decode_heic_file() {
+fn read_and_decode_heif_file() {
     unsafe {
         lh::heif_init(ptr::null_mut());
 
@@ -75,7 +69,10 @@ fn read_and_decode_heic_file() {
         assert_eq!(err.code, lh::heif_error_code_heif_error_Ok);
 
         let mut handle = ptr::null_mut();
-        let err = lh::heif_context_get_primary_image_handle(ctx, &mut handle);
+        let err = lh::heif_context_get_primary_image_handle(
+            ctx,
+            &mut handle
+        );
         assert_eq!(err.code, lh::heif_error_code_heif_error_Ok);
         assert!(!handle.is_null());
 
@@ -98,9 +95,15 @@ fn read_and_decode_heic_file() {
         assert!(!image.is_null());
 
         let colorspace = lh::heif_image_get_colorspace(image);
-        assert_eq!(colorspace, lh::heif_colorspace_heif_colorspace_RGB);
+        assert_eq!(
+            colorspace,
+            lh::heif_colorspace_heif_colorspace_RGB
+        );
         let chroma_format = lh::heif_image_get_chroma_format(image);
-        assert_eq!(chroma_format, lh::heif_chroma_heif_chroma_interleaved_RGB);
+        assert_eq!(
+            chroma_format,
+            lh::heif_chroma_heif_chroma_interleaved_RGB
+        );
         let width = lh::heif_image_get_width(
             image,
             lh::heif_channel_heif_channel_interleaved

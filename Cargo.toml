@@ -19,7 +19,7 @@ libc = "0.2.162"
 
 
 [features]
-default = ["use-bindgen"]
+default = []
 # Use bindgen to generate bindings for libheif,
 # instead using of pre-generated bindings.rs.
 use-bindgen = ["dep:bindgen", "dep:prettyplease"]
@@ -29,9 +29,9 @@ embedded-libheif-plugins = ["compile-libheif"]
 
 [build-dependencies]
 pkg-config = "0.3.31"
-prettyplease = { version = "0.2.25", optional = true }
-bindgen = { version = "0.70.1", optional = true }
-cmake = { version = "0.1.51", optional = true }
+prettyplease = { version = "0.2.29", optional = true }
+bindgen = { version = "0.71.1", optional = true }
+cmake = { version = "0.1.52", optional = true }
 
 
 [target.'cfg(windows)'.build-dependencies]
@@ -41,7 +41,7 @@ walkdir = "2"
 
 [package.metadata.vcpkg]
 git = "https://github.com/microsoft/vcpkg"
-tag = "2024.10.21"
+tag = "2025.01.13"
 dependencies = ["libheif"]
 
 
