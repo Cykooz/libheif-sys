@@ -121,11 +121,14 @@ fn compile_libheif() {
     // Enable some options
     for key in [
         "ENABLE_PLUGIN_LOADING",
-        "WITH_UNCOMPRESSED_CODEC",
         "WITH_OPENJPH_ENCODER",
         "WITH_REDUCED_VISIBILITY",
-        "WITH_HEADER_COMPRESSION",
         "WITH_LIBSHARPYUV",
+        // TODO: Try to enable this in the future.
+        //       Right now it is the reason of linker's errors like
+        //       "undefined reference to `BrotliEncoderDestroyInstance'"
+        // "WITH_UNCOMPRESSED_CODEC",
+        // "WITH_HEADER_COMPRESSION",
     ] {
         build_config.define(key, "ON");
     }
