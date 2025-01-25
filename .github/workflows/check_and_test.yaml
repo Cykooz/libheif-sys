@@ -32,10 +32,13 @@ jobs:
           key: ${{ runner.os }}-apt
 
       - name: Install libheif dependencies
-        uses: awalsh128/cache-apt-pkgs-action@latest
+        uses: awalsh128/cache-apt-pkgs-action@v1.4.3
         with:
-          packages: libheif-dev libdav1d-dev libnuma-dev
-          version: 1.18.2
+          packages:
+            libheif-dev libdav1d-dev libheif-plugin-aomdec
+            libheif-plugin-aomenc libheif-plugin-libde265
+            libnuma-dev
+          version: 1.17.6
 
       - uses: Swatinem/rust-cache@v2
         with:
