@@ -59,6 +59,13 @@
         - `heif_context_add_overlay_image`
         - `heif_item_get_property_uuid_type`
 
+### Changes
+
+- Disabled building of example applications and tests for `libheif`
+  if `compile-libheif` feature is enabled.
+- Enabled libheif's cmake options for build all encoders and decoders
+  if `compile-libheif` feature is enabled.
+
 ## [3.1.0] - 2024-12-04
 
 ### Changes

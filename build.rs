@@ -95,31 +95,76 @@ fn compile_libheif() {
 
     let out_path = PathBuf::from(std::env::var("OUT_DIR").unwrap());
     let libheif_dir = fetch_libheif();
+
+    // Patch CMakeLists.txt to disable a building `heifio` library
+    // that is used for example applications.
+    let cmake_lists_path = libheif_dir.join("CMakeLists.txt");
+    let mut contents =
+        std::fs::read_to_string(&cmake_lists_path).expect("failed to read libheif/CMakeLists.txt");
+    contents = contents.replace("add_subdirectory(heifio)", "");
+    std::fs::write(&cmake_lists_path, contents).expect("failed to write libheif/CMakeLists.txt");
+
     let mut build_config = cmake::Config::new(libheif_dir);
     build_config.out_dir(out_path.join("libheif_build"));
-    build_config.define("BUILD_SHARED_LIBS", "OFF");
 
-    #[cfg(feature = "embedded-libheif-plugins")]
+    // Disable some options
     for key in [
-        "WITH_AOM_DECODER_PLUGIN",
-        "WITH_AOM_ENCODER_PLUGIN",
-        "WITH_DAV1D_PLUGIN",
-        "WITH_FFMPEG_DECODER_PLUGIN",
-        "WITH_JPEG_DECODER_PLUGIN",
-        "WITH_JPEG_ENCODER_PLUGIN",
-        "WITH_KVAZAAR_PLUGIN",
-        "WITH_LIBDE265_PLUGIN",
-        "WITH_OPENJPH_ENCODER_PLUGIN",
-        "WITH_OpenJPEG_DECODER_PLUGIN",
-        "WITH_OpenJPEG_ENCODER_PLUGIN",
-        "WITH_RAV1E_PLUGIN",
-        "WITH_SvtEnc_PLUGIN",
-        "WITH_UVG266_PLUGIN",
-        "WITH_VVDEC_PLUGIN",
-        "WITH_VVENC_PLUGIN",
-        "WITH_X265_PLUGIN",
+        "BUILD_SHARED_LIBS",
+        "BUILD_TESTING",
+        "WITH_GDK_PIXBUF",
+        "WITH_EXAMPLES",
+        "ENABLE_EXPERIMENTAL_FEATURES",
     ] {
         build_config.define(key, "OFF");
+    }
+
+    // Enable some options
+    for key in [
+        "ENABLE_PLUGIN_LOADING",
+        "WITH_UNCOMPRESSED_CODEC",
+        "WITH_OPENJPH_ENCODER",
+        "WITH_REDUCED_VISIBILITY",
+        "WITH_HEADER_COMPRESSION",
+        "WITH_LIBSHARPYUV",
+    ] {
+        build_config.define(key, "ON");
+    }
+
+    // List of encoders and decoders that have corresponding plugins
+    let encoders_decoders = [
+        "AOM_DECODER",
+        "AOM_ENCODER",
+        "DAV1D",
+        "LIBDE265",
+        "RAV1E",
+        "SvtEnc",
+        "X265",
+        "JPEG_DECODER",
+        "JPEG_ENCODER",
+        "KVAZAAR",
+        "OpenJPEG_DECODER",
+        "OpenJPEG_ENCODER",
+        "FFMPEG_DECODER",
+        "OpenH264_DECODER",
+        "UVG266",
+        "VVDEC",
+        "VVENC",
+    ];
+
+    // Enable encoders and decoders
+    for key in encoders_decoders {
+        build_config.define(format!("WITH_{}", key), "ON");
+    }
+
+    // Disable external plugins
+    #[cfg(feature = "embedded-libheif-plugins")]
+    const PLUGIN_OPTION_VALUE: &str = "OFF";
+    // Enable external plugins
+    #[cfg(not(feature = "embedded-libheif-plugins"))]
+    const PLUGIN_OPTION_VALUE: &str = "ON";
+
+    for key in encoders_decoders {
+        build_config.define(format!("WITH_{}_PLUGIN", key), PLUGIN_OPTION_VALUE);
     }
 
     let libheif_build = build_config.build();
