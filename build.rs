@@ -227,6 +227,8 @@ fn run_bindgen() {
         "heif_decoding_options",
         "heif_encoding_options",
         "heif_property_user_description",
+        "heif_reader_range_request_result",
+        "heif_entity_group",
     ] {
         base_builder = base_builder.no_copy(struct_name);
     }
@@ -236,7 +238,6 @@ fn run_bindgen() {
     let bindings = base_builder
         .clone()
         .generate()
-        // Unwrap the Result and panic on failure.
         .expect("Unable to generate bindings");
 
     // Write the bindings to the $OUT_DIR/bindings.rs file.
@@ -245,7 +246,7 @@ fn run_bindgen() {
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings.rs!");
 
-    // Create linker_test.ts module for testing cases when not all
+    // Create linker_test.rs module for testing cases when not all
     // functions from *.h files are really available in libheif.
     let code = bindings.to_string();
     let mut func_names = Vec::new();
