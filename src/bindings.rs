@@ -492,7 +492,7 @@ pub const heif_reader_grow_status_heif_reader_grow_status_size_beyond_eof: heif_
 pub const heif_reader_grow_status_heif_reader_grow_status_error: heif_reader_grow_status = 3;
 pub type heif_reader_grow_status = libc::c_uint;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_reader_range_request_result {
     #[doc = " should not return 'heif_reader_grow_status_timeout'"]
     pub status: heif_reader_grow_status,
@@ -780,7 +780,7 @@ unsafe extern "C" {
 #[doc = " ------------------------- entity groups ------------------------"]
 pub type heif_entity_group_id = u32;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_entity_group {
     pub entity_group_id: heif_entity_group_id,
     #[doc = " this is a FourCC constant"]
