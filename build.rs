@@ -4,7 +4,7 @@ use std::process::Command;
 #[allow(dead_code)]
 const MIN_LIBHEIF_VERSION: &str = "1.19";
 #[allow(dead_code)]
-const LIBHEIF_GITHUB_VERSION: &str = "v1.19.5";
+const LIBHEIF_GITHUB_VERSION: &str = "v1.19.7";
 
 fn main() {
     if std::env::var("DOCS_RS").is_ok() {
