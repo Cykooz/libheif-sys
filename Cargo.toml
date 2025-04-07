@@ -14,34 +14,47 @@ build = "build.rs"
 exclude = ["/data"]
 
 
-[dependencies]
-libc = "0.2.170"
+[package.metadata.system-deps.libheif]
+v1_17 = { version = "1.17" }
+v1_18 = { version = "1.18" }
+v1_19 = { version = "1.19" }
 
 
 [features]
-default = []
+v1_17 = []
+v1_18 = []
+v1_19 = []
+latest = ["v1_19"]
 # Use bindgen to generate bindings for libheif,
 # instead using of pre-generated bindings.rs.
-use-bindgen = ["dep:bindgen", "dep:prettyplease"]
-compile-libheif = ["dep:cmake"]
-embedded-libheif-plugins = ["compile-libheif"]
+use-bindgen = ["latest", "dep:bindgen", "dep:prettyplease"]
+embedded-libheif = ["dep:cmake"]
+
+
+[package.metadata.docs.rs]
+features = ["latest"]
+
+
+[dependencies]
+libc = "0.2.171"
+cfg-if = "1.0"
 
 
 [build-dependencies]
-pkg-config = "0.3.31"
-prettyplease = { version = "0.2.29", optional = true }
+system-deps = "7.0"
+prettyplease = { version = "0.2.32", optional = true }
 bindgen = { version = "0.71.1", optional = true }
-cmake = { version = "0.1.52", optional = true }
+cmake = { version = "0.1.54", optional = true }
 
 
 [target.'cfg(windows)'.build-dependencies]
-vcpkg = "0.2"
-walkdir = "2"
+vcpkg = "0.2.15"
+walkdir = "2.5"
 
 
 [package.metadata.vcpkg]
 git = "https://github.com/microsoft/vcpkg"
-tag = "2025.01.13"
+tag = "2025.03.19"
 dependencies = ["libheif"]
 
 

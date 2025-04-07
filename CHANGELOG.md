@@ -4,8 +4,16 @@
 
 ### Added
 
-- Feature `use-bindgen` was removed from default features.
-- Updated "bindings.rs" to correspond `libheif 1.19.5`:
+- **BREAKING**: Feature `use-bindgen` was removed from default features.
+- **BREAKING**: Features `compile-libheif` and `embedded-libheif-plugins` were removed.
+- The crate `system-deps` is now used instead of `pkg-config` to find
+  and link a required version of `libheif`.
+- Added features `v1_17`, `v1_18` and `v1_19` to choose a minimal
+  version of supported `libheif` API.
+- Added embedded source code of `libheif 1.19.7`.
+- Added feature `embedded-libheif` to compile and then link statically
+  the embedded version of `libheif`.
+- Added support of `libheif 1.19`:
     - added new values into `heif_error_code` "enum':
         - `heif_error_code_heif_error_Canceled`
     - added new values into `heif_suberror_code` "enum':
@@ -23,7 +31,7 @@
     - added new values into `heif_item_property_type` "enum':
         - `heif_item_property_type_heif_item_property_type_tai_clock_info`
         - `heif_item_property_type_heif_item_property_type_tai_timestamp`
-    - struct `heif_reader` was updated up to version 2, added new fields:
+    - struct `heif_reader` **was updated to version 2**, added new fields:
         - `request_range`
         - `preload_range_hint`
         - `release_file_range`

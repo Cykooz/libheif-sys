@@ -9,17 +9,32 @@ available.
 
 ## System dependencies
 
-- `libheif-dev` >= 1.18.0.
+- `libheif-dev` >= 1.17.0.
+
+## Minimal supported API version
+
+This crate supports `libheif` versions 1.17, 1.18 and 1.19.
+
+You MUST specify a minimal version of `libheif` that is required for you.
+To do this, enable the corresponding feature: `v1_17`, `v1_18` or `v1_19`.
+
+Example:
+
+```toml
+[dependencies]
+libheif-sys = { version = "4.0", features = ["v1_18"] }
+```
+
+There is also the `latest` feature. It always corresponds to
+the maximal supported by the crate version of `libheif`.
 
 ### Linux
 
-The crate uses `pkg-confing` to find installed `libheif`.
+The crate uses `pkg-confing` to find installed `libheif` (with
+help of `system-deps` crate).
 
-You can also enable all or any of the following features to compile
-`libheif v1.19.5` from `GitHub` and link it statically:
-
-- `compile-libheif`
-- `embedded-libheif-plugins`
+You can also enable `embedded-libheif` feature to compile
+`libheif v1.19.7` from embedded sources and then link it statically.
 
 <div class="warning">
 

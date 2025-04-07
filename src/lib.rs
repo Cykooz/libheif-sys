@@ -6,10 +6,12 @@
 #[cfg(all(feature = "use-bindgen", not(docsrs)))]
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
-#[cfg(any(not(feature = "use-bindgen"), docsrs))]
-mod bindings;
-#[cfg(any(not(feature = "use-bindgen"), docsrs))]
-pub use bindings::*;
+cfg_if::cfg_if! {
+    if #[cfg(any(not(feature = "use-bindgen"), docsrs))] {
+        mod bindings;
+        pub use bindings::*;
+    }
+}
 
 #[cfg(all(test, feature = "use-bindgen", not(docsrs)))]
 mod linker_test {

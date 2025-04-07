@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+        submodules: true
 
       - name: root suid tar
         run: sudo chown root:sudo /bin/tar && sudo chmod u+s /bin/tar
@@ -46,8 +47,8 @@ jobs:
 
       - name: Run tests
         run: |
-          cargo check -p libheif-sys --features use-bindgen,embedded-libheif-plugins
-          cargo test --features use-bindgen,embedded-libheif-plugins
+          cargo check -p libheif-sys --features latest,embedded-libheif
+          cargo test --features latest,embedded-libheif
 
 
   run_tests_on_windows:
@@ -77,5 +78,5 @@ jobs:
 
       - name: Run tests
         run: |
-          cargo check -p libheif-sys
-          cargo test
+          cargo check -p libheif-sys --features latest
+          cargo test --features latest
