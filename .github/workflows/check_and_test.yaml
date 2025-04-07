@@ -18,7 +18,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-        submodules: true
+        with:
+          submodules: true
 
       - name: root suid tar
         run: sudo chown root:sudo /bin/tar && sudo chmod u+s /bin/tar
