@@ -70,9 +70,9 @@
 ### Changes
 
 - Disabled building of example applications and tests for `libheif`
-  if `compile-libheif` feature is enabled.
+  if `embedded-libheif` feature is enabled.
 - Enabled libheif's cmake options for building all encoders and decoders
-  if `compile-libheif` feature is enabled.
+  if `embedded-libheif` feature is enabled.
 
 ## [3.1.0] - 2024-12-04
 
