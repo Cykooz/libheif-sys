@@ -11,7 +11,15 @@ license = "MIT"
 documentation = "https://docs.rs/crate/libheif-sys"
 links = "heif"
 build = "build.rs"
-exclude = ["/data"]
+exclude = [
+    "/data",
+    "/vendor/libheif/examples",
+    "/vendor/libheif/fuzzing",
+    "/vendor/libheif/go",
+    "/vendor/libheif/heifio",
+    "/vendor/libheif/logos",
+    "/vendor/libheif/tests"
+]
 
 
 [package.metadata.system-deps.libheif]
