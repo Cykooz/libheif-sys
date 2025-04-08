@@ -1,5 +1,11 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+### Fixes
+
+- Fixed building of the embedded version of `libheif`.
+
 # [4.0.0] - 2025-04-07
 
 ### Added

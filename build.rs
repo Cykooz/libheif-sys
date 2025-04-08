@@ -49,6 +49,7 @@ fn compile_libheif() -> String {
 
     let mut build_config = cmake::Config::new(libheif_dir);
     build_config.out_dir(out_path.join("libheif_build"));
+    build_config.define("CMAKE_INSTALL_LIBDIR", "lib");
 
     // Disable some options
     for key in [
