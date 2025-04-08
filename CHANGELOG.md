@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [4.0.1] - 2025-04-08
 
 ### Fixes
 
