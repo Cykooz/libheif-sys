@@ -4,7 +4,7 @@
 
 ### Added
 
-- Added API from `heif_items.h` file for `libheif 1.19`
+- Added API from `heif_items.h` file from `libheif 1.19`
   ([#11](https://github.com/Cykooz/libheif-sys/pull/11)).
 
 ### Changes
