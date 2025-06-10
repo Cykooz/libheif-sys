@@ -1,5 +1,16 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+### Added
+
+- Added API from `heif_items.h` file for `libheif 1.19`
+  ([#11](https://github.com/Cykooz/libheif-sys/pull/11)).
+
+### Changes
+
+- Updated embedded source code of `libheif` to version 1.19.8.
+
 ## [4.0.1] - 2025-04-08
 
 ### Fixes

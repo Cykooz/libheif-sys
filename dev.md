@@ -19,3 +19,14 @@ git submodule update
 ```shell
 git pull --recurse-submodules
 ```
+
+# Update a version of embedded libheif
+
+- Fetch required tag from remote repository:
+  ```shell
+  git -C vendor/libheif fetch origin refs/tags/v1.19.8
+  ```
+- Checkout to required tag:
+  ```shell
+  git -C vendor/libheif/ checkout v1.19.8
+  ```
