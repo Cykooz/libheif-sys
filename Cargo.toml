@@ -1,6 +1,6 @@
 [package]
 name = "libheif-sys"
-version = "4.0.1+1.19.7"
+version = "4.1.0+1.19.8"
 authors = ["Kirill Kuzminykh <cykooz@gmail.com>"]
 edition = "2021"
 description = "libheif bindings"
