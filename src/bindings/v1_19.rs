@@ -2561,3 +2561,143 @@ unsafe extern "C" {
         out_region: *mut *mut heif_region,
     ) -> heif_error;
 }
+unsafe extern "C" {
+    #[doc = " Gets the number of items.\n\n This is not the same as the number of images, since there can be other types of items,\n such as metadata.\n\n @param ctx the file context\n @return the number of items"]
+    pub fn heif_context_get_number_of_items(ctx: *const heif_context) -> libc::c_int;
+}
+unsafe extern "C" {
+    #[doc = " Get the item identifiers.\n\n Fills in the item IDs into the user-supplied array {@code ID_array}, preallocated with {@code count} entries.\n\n @param ctx the file context\n @param ID_array the output array.\n @param count the number of items allocated within {@code ID_array}.\n @return the total number of IDs filled into the array, which may be less than {@code count}."]
+    pub fn heif_context_get_list_of_item_IDs(
+        ctx: *const heif_context,
+        ID_array: *mut heif_item_id,
+        count: libc::c_int,
+    ) -> libc::c_int;
+}
+unsafe extern "C" {
+    #[doc = " Gets the item type.\n\n Usually, this is a four character code (e.g. `mime` or `uri `), but it can theoretically be\n any 4-byte number. Thus, the type is returned as an integer. You can use {@link heif_fourcc} to map\n between the two representations.\n\n @param ctx the file context\n @param item_id the item identifier for the item\n @return the item type"]
+    pub fn heif_item_get_item_type(ctx: *const heif_context, item_id: heif_item_id) -> u32;
+}
+unsafe extern "C" {
+    pub fn heif_item_is_item_hidden(ctx: *const heif_context, item_id: heif_item_id)
+        -> libc::c_int;
+}
+unsafe extern "C" {
+    #[doc = " Gets the MIME content_type for an item.\n\n Only valid if the item type is `mime`.\n If the item does not exist, or if it is not a `mime` item, NULL is returned.\n\n @param ctx the file context\n @param item_id the item identifier for the item\n @return the item content_type"]
+    pub fn heif_item_get_mime_item_content_type(
+        ctx: *const heif_context,
+        item_id: heif_item_id,
+    ) -> *const libc::c_char;
+}
+unsafe extern "C" {
+    #[doc = " Gets the content_encoding for a MIME item.\n\n Only valid if the item type is `mime`.\n If the item does not exist, or if it is not a `mime` item, NULL is returned.\n\n If the item is not encoded, the returned value will be an empty string (not null).\n\n @param ctx the file context\n @param item_id the item identifier for the item\n @return the item content_type"]
+    pub fn heif_item_get_mime_item_content_encoding(
+        ctx: *const heif_context,
+        item_id: heif_item_id,
+    ) -> *const libc::c_char;
+}
+unsafe extern "C" {
+    #[doc = " Gets the item_uri_type for an item.\n\n Only valid if the item type is `uri `.\n If the item does not exist, or if it is not a `uri ` item, NULL is returned.\n\n @param ctx the file context\n @param item_id the item identifier for the item\n @return the item item_uri_type"]
+    pub fn heif_item_get_uri_item_uri_type(
+        ctx: *const heif_context,
+        item_id: heif_item_id,
+    ) -> *const libc::c_char;
+}
+unsafe extern "C" {
+    pub fn heif_item_get_item_name(
+        ctx: *const heif_context,
+        item_id: heif_item_id,
+    ) -> *const libc::c_char;
+}
+unsafe extern "C" {
+    pub fn heif_item_set_item_name(
+        ctx: *mut heif_context,
+        item: heif_item_id,
+        item_name: *const libc::c_char,
+    ) -> heif_error;
+}
+unsafe extern "C" {
+    #[doc = " Gets the raw metadata, as stored in the HEIF file.\n\n Data in a \"mime\" item with \"content_encoding\" can be compressed.\n When `out_compression_format` is NULL, the decompressed data will be returned.\n Otherwise, the compressed data is returned and `out_compression_format` will be filled with the\n compression format.\n If the compression method is not supported, an error will be returned.\n\n It is valid to set `out_data` to NULL. In that case, only the `out_data_size` is filled.\n Note that it is inefficient to use `out_data=NULL` just to get the size of compressed data.\n In general, this should be avoided.\n\n If there is no data assigned to the item or there is an error, `out_data_size` is set to zero.\n\n @param ctx the file context\n @param item_id the item identifier for the item\n @param out_compression_format how the data is compressed. If the pointer is NULL, the decompressed data will be returned.\n @param out_data the corresponding raw metadata\n @param out_data_size the size of the metadata in bytes\n @return whether the call succeeded, or there was an error"]
+    pub fn heif_item_get_item_data(
+        ctx: *const heif_context,
+        item_id: heif_item_id,
+        out_compression_format: *mut heif_metadata_compression,
+        out_data: *mut *mut u8,
+        out_data_size: *mut usize,
+    ) -> heif_error;
+}
+unsafe extern "C" {
+    #[doc = " Free the item data.\n\n This is used to free memory associated with the data returned by\n {@link heif_item_get_item_data} in 'out_data' and set the pointer to NULL.\n\n @param ctx the file context\n @param item_data the data to free"]
+    pub fn heif_release_item_data(ctx: *const heif_context, item_data: *mut *mut u8);
+}
+unsafe extern "C" {
+    #[doc = " Get the item ids that reference the given item.\n\n @param ctx the file context.\n @param from_item_id the item identifier for the item.\n @param index the index of the reference to get.\n @param out_reference_type_4cc The 4cc of the reference. (e.g dimg, thmb, cdsc, or auxl)\n @param out_references_to the item references. Use {@link heif_release_item_references} to free the memory.\n @return the number of items that reference the given item. Returns 0 if the index exceeds the number of references."]
+    pub fn heif_context_get_item_references(
+        ctx: *const heif_context,
+        from_item_id: heif_item_id,
+        index: libc::c_int,
+        out_reference_type_4cc: *mut u32,
+        out_references_to: *mut *mut heif_item_id,
+    ) -> usize;
+}
+unsafe extern "C" {
+    pub fn heif_release_item_references(
+        ctx: *const heif_context,
+        references: *mut *mut heif_item_id,
+    );
+}
+unsafe extern "C" {
+    pub fn heif_context_add_item_reference(
+        ctx: *mut heif_context,
+        reference_type: u32,
+        from_item: heif_item_id,
+        to_item: heif_item_id,
+    ) -> heif_error;
+}
+unsafe extern "C" {
+    pub fn heif_context_add_item_references(
+        ctx: *mut heif_context,
+        reference_type: u32,
+        from_item: heif_item_id,
+        to_item: *const heif_item_id,
+        num_to_items: libc::c_int,
+    ) -> heif_error;
+}
+unsafe extern "C" {
+    #[doc = " ------------------------- adding new items -------------------------"]
+    pub fn heif_context_add_item(
+        ctx: *mut heif_context,
+        item_type: *const libc::c_char,
+        data: *const libc::c_void,
+        size: libc::c_int,
+        out_item_id: *mut heif_item_id,
+    ) -> heif_error;
+}
+unsafe extern "C" {
+    pub fn heif_context_add_mime_item(
+        ctx: *mut heif_context,
+        content_type: *const libc::c_char,
+        content_encoding: heif_metadata_compression,
+        data: *const libc::c_void,
+        size: libc::c_int,
+        out_item_id: *mut heif_item_id,
+    ) -> heif_error;
+}
+unsafe extern "C" {
+    pub fn heif_context_add_precompressed_mime_item(
+        ctx: *mut heif_context,
+        content_type: *const libc::c_char,
+        content_encoding: *const libc::c_char,
+        data: *const libc::c_void,
+        size: libc::c_int,
+        out_item_id: *mut heif_item_id,
+    ) -> heif_error;
+}
+unsafe extern "C" {
+    pub fn heif_context_add_uri_item(
+        ctx: *mut heif_context,
+        item_uri_type: *const libc::c_char,
+        data: *const libc::c_void,
+        size: libc::c_int,
+        out_item_id: *mut heif_item_id,
+    ) -> heif_error;
+}
