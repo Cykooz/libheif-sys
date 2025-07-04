@@ -1,5 +1,138 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+### Added
+
+- Added feature `v1_20`.
+- Updated embedded source code of `libheif` to version 1.20.1.
+- Added support of `libheif 1.20`:
+    - added new values into `heif_error_code` "enum':
+        - `heif_error_code_heif_error_End_of_sequence`
+    - added new values into `heif_suberror_code` "enum':
+        - `heif_suberror_code_heif_suberror_No_moov_box`
+    - struct `heif_security_limits` **was updated to version 2**, added new fields:
+        - `max_total_memory`
+        - `max_sample_description_box_entries`
+        - `max_sample_group_description_box_entries`
+    - struct `heif_decoding_options` **was updated to version 7**, added new fields:
+        - `color_conversion_options_ext`
+    - added enums:
+        - `heif_alpha_composition_mode`
+        - `heif_track_type`
+        - `heif_sample_aux_info_presence`
+        - `heif_track_reference_type`
+    - added type aliases:
+        - `heif_track_type_4cc`
+    - added structs:
+        - `heif_color_conversion_options_ext`
+        - `heif_track`
+        - `heif_raw_sequence_sample`
+        - `heif_track_options`
+        - `heif_sequence_encoding_options`
+        - `heif_sample_aux_info_type`
+        - `heif_tai_clock_info`
+        - `heif_tai_timestamp_packet`
+    - added functions:
+        - `heif_string_release`
+        - `heif_image_extract_area`
+        - `heif_image_get_plane_readonly2`
+        - `heif_image_get_plane2`
+        - `heif_image_add_plane_safe`
+        - `heif_color_conversion_options_ext_alloc`
+        - `heif_color_conversion_options_ext_copy`
+        - `heif_color_conversion_options_ext_free`
+        - `heif_encoding_options_copy`
+        - `heif_context_set_major_brand`
+        - `heif_decoding_options_copy`
+        - `heif_context_has_sequence`
+        - `heif_context_get_sequence_timescale`
+        - `heif_context_get_sequence_duration`
+        - `heif_track_release`
+        - `heif_context_number_of_sequence_tracks`
+        - `heif_context_get_track_ids`
+        - `heif_track_get_id`
+        - `heif_context_get_track`
+        - `heif_track_get_track_handler_type`
+        - `heif_track_get_timescale`
+        - `heif_track_get_image_resolution`
+        - `heif_track_decode_next_image`
+        - `heif_image_get_duration`
+        - `heif_track_get_sample_entry_type_of_first_cluster`
+        - `heif_track_get_urim_sample_entry_uri_of_first_cluster`
+        - `heif_track_get_next_raw_sequence_sample`
+        - `heif_raw_sequence_sample_release`
+        - `heif_raw_sequence_sample_get_data`
+        - `heif_raw_sequence_sample_get_data_size`
+        - `heif_raw_sequence_sample_get_duration`
+        - `heif_context_set_sequence_timescale`
+        - `heif_track_options_alloc`
+        - `heif_track_options_release`
+        - `heif_track_options_set_timescale`
+        - `heif_track_options_set_interleaved_sample_aux_infos`
+        - `heif_track_options_enable_sample_tai_timestamps`
+        - `heif_track_options_enable_sample_gimi_content_ids`
+        - `heif_track_options_set_gimi_track_id`
+        - `heif_sequence_encoding_options_alloc`
+        - `heif_sequence_encoding_options_release`
+        - `heif_context_add_visual_sequence_track`
+        - `heif_image_set_duration`
+        - `heif_track_encode_sequence_image`
+        - `heif_context_add_uri_metadata_sequence_track`
+        - `heif_raw_sequence_sample_alloc`
+        - `heif_raw_sequence_sample_set_data`
+        - `heif_raw_sequence_sample_set_duration`
+        - `heif_track_add_raw_sequence_sample`
+        - `heif_track_get_number_of_sample_aux_infos`
+        - `heif_track_get_sample_aux_info_types`
+        - `heif_track_get_gimi_track_content_id`
+        - `heif_image_get_gimi_sample_content_id`
+        - `heif_raw_sequence_sample_get_gimi_sample_content_id`
+        - `heif_image_set_gimi_sample_content_id`
+        - `heif_raw_sequence_sample_set_gimi_sample_content_id`
+        - `heif_raw_sequence_sample_has_tai_timestamp`
+        - `heif_raw_sequence_sample_get_tai_timestamp`
+        - `heif_raw_sequence_sample_set_tai_timestamp`
+        - `heif_track_get_tai_clock_info_of_first_cluster`
+        - `heif_track_add_reference_to_track`
+        - `heif_track_get_number_of_track_reference_types`
+        - `heif_track_get_track_reference_types`
+        - `heif_track_get_number_of_track_reference_of_type`
+        - `heif_track_get_references_from_track`
+        - `heif_track_find_referring_tracks`
+        - `heif_tai_clock_info_alloc`
+        - `heif_tai_clock_info_copy`
+        - `heif_tai_clock_info_release`
+        - `heif_tai_timestamp_packet_alloc`
+        - `heif_tai_timestamp_packet_copy`
+        - `heif_tai_timestamp_packet_release`
+        - `heif_item_set_property_tai_clock_info`
+        - `heif_item_get_property_tai_clock_info`
+        - `heif_item_set_property_tai_timestamp`
+        - `heif_item_get_property_tai_timestamp`
+        - `heif_image_set_tai_timestamp`
+        - `heif_image_get_tai_timestamp`
+
+### Fixed
+
+- **BREAKING**: Deleted deriving `Copy` and `Clone` for structs with pointers
+  and for structs representing `shared_ptr` from C++:
+    - `heif_depth_representation_info`
+    - `heif_camera_extrinsic_matrix`
+    - `heif_context`
+    - `heif_image_handle`
+    - `heif_decoder_plugin`
+    - `heif_encoder_plugin`
+    - `heif_image`
+    - `heif_scaling_options`
+    - `heif_encoder`
+    - `heif_reading_options`
+    - `heif_encoder_descriptor`
+    - `heif_encoder_parameter`
+    - `heif_decoder_descriptor`
+    - `heif_region_item`
+    - `heif_region`
+
 ## [4.1.0] - 2025-06-10
 
 ### Added
@@ -17,7 +150,7 @@
 
 - Fixed building of the embedded version of `libheif`.
 
-# [4.0.0] - 2025-04-07
+## [4.0.0] - 2025-04-07
 
 ### Added
 

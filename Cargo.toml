@@ -26,13 +26,15 @@ exclude = [
 v1_17 = { version = "1.17" }
 v1_18 = { version = "1.18" }
 v1_19 = { version = "1.19" }
+v1_20 = { version = "1.20" }
 
 
 [features]
 v1_17 = []
 v1_18 = []
 v1_19 = []
-latest = ["v1_19"]
+v1_20 = []
+latest = ["v1_20"]
 # Use bindgen to generate bindings for libheif,
 # instead using of pre-generated bindings.rs.
 use-bindgen = ["latest", "dep:bindgen", "dep:prettyplease"]
@@ -50,8 +52,8 @@ cfg-if = "1.0"
 
 [build-dependencies]
 system-deps = "7.0"
-prettyplease = { version = "0.2.32", optional = true }
-bindgen = { version = "0.71.1", optional = true }
+prettyplease = { version = "0.2.35", optional = true }
+bindgen = { version = "0.72.0", optional = true }
 cmake = { version = "0.1.54", optional = true }
 
 
@@ -62,7 +64,7 @@ walkdir = "2.5"
 
 [package.metadata.vcpkg]
 git = "https://github.com/microsoft/vcpkg"
-tag = "2025.03.19"
+tag = "2025.06.13"
 dependencies = ["libheif"]
 
 

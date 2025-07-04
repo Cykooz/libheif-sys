@@ -13,13 +13,17 @@ fn main() {
     // Tell cargo to tell rustc to link the heif library.
 
     #[cfg(not(target_os = "windows"))]
-    find_libheif();
+    #[allow(unused_variables)]
+    let include_paths = find_libheif();
+    #[cfg(target_os = "windows")]
+    #[allow(unused_variables)]
+    let include_paths = Vec::new();
 
     #[cfg(target_os = "windows")]
     install_libheif_by_vcpkg();
 
     #[cfg(feature = "use-bindgen")]
-    run_bindgen();
+    run_bindgen(&include_paths);
 }
 
 #[allow(dead_code)]
@@ -125,7 +129,7 @@ fn compile_libheif() -> String {
 }
 
 #[cfg(not(target_os = "windows"))]
-fn find_libheif() {
+fn find_libheif() -> Vec<String> {
     #[allow(unused_mut)]
     let mut config = system_deps::Config::new();
 
@@ -140,21 +144,29 @@ fn find_libheif() {
 
     use system_deps::Error;
 
-    if let Err(err) = config.probe() {
-        let err_msg = match &err {
-            Error::InvalidMetadata(msg) => {
-                if msg.contains("No version") && msg.contains("libheif") {
-                    "You MUST enable one of the crate features to specify \
+    match config.probe() {
+        Ok(deps) => deps
+            .all_include_paths()
+            .iter()
+            .filter_map(|p| p.to_str())
+            .map(|p| p.to_string())
+            .collect(),
+        Err(err) => {
+            let err_msg = match &err {
+                Error::InvalidMetadata(msg) => {
+                    if msg.contains("No version") && msg.contains("libheif") {
+                        "You MUST enable one of the crate features to specify \
                     minimal supported version of 'libheif' API (e.g. v1_17)."
-                        .to_string()
-                } else {
-                    err.to_string()
+                            .to_string()
+                    } else {
+                        err.to_string()
+                    }
                 }
-            }
-            _ => err.to_string(),
-        };
-        println!("cargo:error={}", err_msg);
-        std::process::exit(1);
+                _ => err.to_string(),
+            };
+            println!("cargo:error={err_msg}");
+            std::process::exit(1);
+        }
     }
 }
 
@@ -170,7 +182,7 @@ fn install_libheif_by_vcpkg() {
 }
 
 #[cfg(feature = "use-bindgen")]
-fn run_bindgen() {
+fn run_bindgen(include_paths: &[String]) {
     let mut base_builder = bindgen::Builder::default()
         .header("wrapper.h")
         .generate_comments(true)
@@ -187,7 +199,12 @@ fn run_bindgen() {
             "-fretain-comments-from-system-headers",
         ]);
 
-    // Don't derive Copy and Clone for structures with pointers.
+    for path in include_paths {
+        base_builder = base_builder.clang_arg(format!("-I{path}"));
+    }
+
+    // Don't derive Copy and Clone for structures with pointers
+    // and which represents shared_ptr from C++.
     for struct_name in [
         "heif_plugin_info",
         "heif_decoding_options",
@@ -195,6 +212,25 @@ fn run_bindgen() {
         "heif_property_user_description",
         "heif_reader_range_request_result",
         "heif_entity_group",
+        "heif_depth_representation_info",
+        "heif_camera_extrinsic_matrix",
+        "heif_track",
+        "heif_raw_sequence_sample",
+        "heif_track_options",
+        "heif_sequence_encoding_options",
+        "heif_context",
+        "heif_image_handle",
+        "heif_decoder_plugin",
+        "heif_encoder_plugin",
+        "heif_image",
+        "heif_scaling_options",
+        "heif_encoder",
+        "heif_reading_options",
+        "heif_encoder_descriptor",
+        "heif_encoder_parameter",
+        "heif_decoder_descriptor",
+        "heif_region_item",
+        "heif_region",
     ] {
         base_builder = base_builder.no_copy(struct_name);
     }

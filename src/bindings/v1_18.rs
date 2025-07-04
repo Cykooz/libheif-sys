@@ -21,17 +21,17 @@ extern "C" {
     pub fn heif_get_version_number_maintenance() -> libc::c_int;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_context {
     _unused: [u8; 0],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_image_handle {
     _unused: [u8; 0],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_image {
     _unused: [u8; 0],
 }
@@ -448,7 +448,7 @@ extern "C" {
     pub fn heif_context_free(arg1: *mut heif_context);
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_reading_options {
     _unused: [u8; 0],
 }
@@ -661,7 +661,7 @@ pub const heif_depth_representation_type_heif_depth_representation_type_nonunifo
     heif_depth_representation_type = 3;
 pub type heif_depth_representation_type = libc::c_uint;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_depth_representation_info {
     pub version: u8,
     #[doc = " version 1 fields"]
@@ -999,7 +999,7 @@ extern "C" {
     ) -> heif_error;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_camera_extrinsic_matrix {
     _unused: [u8; 0],
 }
@@ -1166,7 +1166,7 @@ extern "C" {
     ) -> *mut u8;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_scaling_options {
     _unused: [u8; 0],
 }
@@ -1323,24 +1323,24 @@ extern "C" {
 }
 #[doc = " The encoder used for actually encoding an image."]
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_encoder {
     _unused: [u8; 0],
 }
 #[doc = " A description of the encoder's capabilities and name."]
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_encoder_descriptor {
     _unused: [u8; 0],
 }
 #[doc = " A configuration parameter of the encoder. Each encoder implementation may have a different\n set of parameters. For the most common settings (e.q. quality), special functions to set\n the parameters are provided."]
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_encoder_parameter {
     _unused: [u8; 0],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_decoder_descriptor {
     _unused: [u8; 0],
 }
@@ -1793,12 +1793,12 @@ extern "C" {
 }
 #[doc = " --- register plugins"]
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_decoder_plugin {
     _unused: [u8; 0],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_encoder_plugin {
     _unused: [u8; 0],
 }
@@ -1979,7 +1979,7 @@ extern "C" {
 }
 #[doc = " See ISO/IEC 23008-12:2022 Section 6.10 \"Region items and region annotations\""]
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_region_item {
     _unused: [u8; 0],
 }
@@ -2000,7 +2000,7 @@ pub const heif_region_type_heif_region_type_polyline: heif_region_type = 6;
 #[doc = " Region type.\n\n Each region item will contain zero or more regions, which may have different geometry or\n mask representations."]
 pub type heif_region_type = libc::c_uint;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct heif_region {
     _unused: [u8; 0],
 }
