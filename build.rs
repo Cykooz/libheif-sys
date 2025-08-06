@@ -15,10 +15,10 @@ fn main() {
     #[cfg(not(target_os = "windows"))]
     #[allow(unused_variables)]
     let include_paths = find_libheif();
+
     #[cfg(target_os = "windows")]
     #[allow(unused_variables)]
-    let include_paths = Vec::new();
-
+    let include_paths: Vec<String> = Vec::new();
     #[cfg(target_os = "windows")]
     install_libheif_by_vcpkg();
 

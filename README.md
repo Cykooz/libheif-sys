@@ -35,7 +35,7 @@ The crate uses `pkg-confing` to find installed `libheif` (with
 help of `system-deps` crate).
 
 You can also enable `embedded-libheif` feature to compile
-`libheif v1.20.1` from embedded sources and then link it statically.
+`libheif v1.20.2` from embedded sources and then link it statically.
 
 <div class="warning">
 
@@ -58,7 +58,7 @@ cargo vcpkg -v build
 
 `cargo-vcpkg` can fetch and build a `vcpkg` installation of required
 packages from scratch. It merges package requirements specified in
-the `Cargo.toml` of crates in the dependency tree.
+the `Cargo.toml` of all crates in the dependency tree.
 
 ## Example of reading and decoding HEIF-image
 

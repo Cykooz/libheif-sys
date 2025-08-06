@@ -5,7 +5,7 @@
 ### Added
 
 - Added feature `v1_20`.
-- Updated embedded source code of `libheif` to version 1.20.1.
+- Updated embedded source code of `libheif` to version 1.20.2.
 - Added support of `libheif 1.20`:
     - added new values into `heif_error_code` "enum':
         - `heif_error_code_heif_error_End_of_sequence`
