@@ -73,6 +73,7 @@ x86_64-pc-windows-msvc = { triplet = "x64-windows-static-md", dependencies = ["l
 
 
 [package.metadata.release]
+enable-features = ["latest", "embedded-libheif"]
 pre-release-replacements = [
     { file = "CHANGELOG.md", search = "Unreleased", replace = "{{version}}" },
     { file = "CHANGELOG.md", search = "ReleaseDate", replace = "{{date}}" }
