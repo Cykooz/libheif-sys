@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [5.0.0] - 2025-08-07
 
 ### Added
 
