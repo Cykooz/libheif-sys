@@ -13,11 +13,11 @@ available.
 
 ## Minimal supported API version
 
-This crate supports `libheif` versions 1.17, 1.18, 1.19 and 1.20.
+This crate supports `libheif` versions 1.17, 1.18, 1.19, 1.20 and 1.21.
 
 You MUST specify a minimal version of `libheif` that is required for you.
-To do this, enable the corresponding feature: `v1_17`, `v1_18`, `v1_19`
-or `v1_20`.
+To do this, enable the corresponding feature: `v1_17`, `v1_18`, `v1_19`, `v1_20`
+or `v1_21`.
 
 Example:
 
@@ -35,7 +35,7 @@ The crate uses `pkg-confing` to find installed `libheif` (with
 help of `system-deps` crate).
 
 You can also enable `embedded-libheif` feature to compile
-`libheif v1.20.2` from embedded sources and then link it statically.
+`libheif v1.21.1` from embedded sources and then link it statically.
 
 <div class="warning">
 

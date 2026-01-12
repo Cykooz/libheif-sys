@@ -1,4 +1,8 @@
 cfg_if::cfg_if! {
+    if #[cfg(feature = "v1_21")] {
+        mod v1_21;
+        pub use v1_21::*;
+    } else
     if #[cfg(feature = "v1_20")] {
         mod v1_20;
         pub use v1_20::*;

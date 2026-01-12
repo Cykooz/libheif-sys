@@ -61,8 +61,11 @@ fn compile_libheif() -> String {
         "BUILD_TESTING",
         "WITH_GDK_PIXBUF",
         "WITH_EXAMPLES",
+        "WITH_EXAMPLE_HEIF_THUMB",
+        "WITH_EXAMPLE_HEIF_VIEW",
         "ENABLE_EXPERIMENTAL_FEATURES",
         "ENABLE_PLUGIN_LOADING",
+        "BUILD_DOCUMENTATION",
     ] {
         build_config.define(key, "OFF");
     }
@@ -88,6 +91,7 @@ fn compile_libheif() -> String {
         "LIBDE265",
         "RAV1E",
         "SvtEnc",
+        "X264",
         "X265",
         "JPEG_DECODER",
         "JPEG_ENCODER",
@@ -95,6 +99,7 @@ fn compile_libheif() -> String {
         "OPENJPH_ENCODER",
         "OpenJPEG_DECODER",
         "OpenJPEG_ENCODER",
+        "OPEN_JPH_ENCODER",
         "FFMPEG_DECODER",
         "OpenH264_DECODER",
         "UVG266",

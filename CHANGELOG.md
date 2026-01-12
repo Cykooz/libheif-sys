@@ -1,5 +1,50 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+- Added feature `v1_21`.
+- Updated embedded source code of `libheif` to version 1.21.1.
+- Added support of `libheif 1.21`:
+    - added new values into `heif_suberror_code` "enum':
+        - `heif_suberror_code_heif_suberror_Unsupported_track_type`
+    - added new values into `heif_item_property_type` "enum':
+        - `heif_item_property_type_heif_item_property_type_extended_language`
+    - added new values into `heif_track_type_4cc` "enum':
+        - `heif_track_type_4cc_heif_track_type_auxiliary`
+    - added enums:
+        - `heif_auxiliary_track_info_type`
+        - `heif_sequence_gop_structure`
+    - struct `heif_security_limits` **was updated to version 3**,
+      added new fields:
+        - `max_sequence_frames`
+        - `max_number_of_file_brands`
+    - struct `heif_decoding_options` **was updated to version 8**,
+      added new fields:
+        - `ignore_sequence_editlist`
+        - `output_image_nclx_profile`
+        - `num_library_threads`
+        - `num_codec_threads`
+    - struct `heif_sequence_encoding_options` **was updated to version 2**,
+      added new fields:
+        - `gop_structure`
+        - `keyframe_distance_min`
+        - `keyframe_distance_max`
+        - `save_alpha_channel`
+    - added functions:
+        - `heif_context_set_number_of_sequence_repetitions`
+        - `heif_image_handle_get_gimi_content_id`
+        - `heif_image_handle_set_content_light_level`
+        - `heif_image_handle_set_mastering_display_colour_volume`
+        - `heif_image_handle_set_pixel_aspect_ratio`
+        - `heif_item_get_property_extended_language`
+        - `heif_item_set_property_extended_language`
+        - `heif_metadata_compression_method_supported`
+        - `heif_track_encode_end_of_sequence`
+        - `heif_track_get_auxiliary_info_data`
+        - `heif_track_get_auxiliary_info_type_urn`
+        - `heif_track_get_auxiliary_info_type`
+        - `heif_track_has_alpha_channel`
+
 ## [5.0.0] - 2025-08-07
 
 ### Added
