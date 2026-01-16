@@ -1927,6 +1927,7 @@ pub type heif_progress_step = libc::c_uint;
 #[derive(Debug)]
 pub struct heif_decoding_options {
     pub version: u8,
+    // version 1 options
     #[doc = " Ignore geometric transformations like cropping, rotation, mirroring.\n Default: false (do not ignore)."]
     pub ignore_transformations: u8,
     #[doc = " Any of the progress functions may be called from background threads."]
@@ -1948,21 +1949,27 @@ pub struct heif_decoding_options {
         unsafe extern "C" fn(step: heif_progress_step, progress_user_data: *mut libc::c_void),
     >,
     pub progress_user_data: *mut libc::c_void,
-    #[doc = " version 2 options"]
+    // version 2 options
     pub convert_hdr_to_8bit: u8,
+    // version 3 options
     #[doc = " When enabled, an error is returned for invalid input. Otherwise, it will try its best and\n add decoding warnings to the decoded heif_image. Default is non-strict."]
     pub strict_decoding: u8,
+    // version 4 options
     #[doc = " name_id of the decoder to use for the decoding.\n If set to NULL (default), the highest priority decoder is chosen.\n The priority is defined in the plugin."]
     pub decoder_id: *const libc::c_char,
-    #[doc = " version 5 options"]
+    // version 5 options
     pub color_conversion_options: heif_color_conversion_options,
-    #[doc = " version 6 options"]
+    // version 6 options
     pub cancel_decoding: ::std::option::Option<
         unsafe extern "C" fn(progress_user_data: *mut libc::c_void) -> libc::c_int,
     >,
+    // version 7 options
     #[doc = " When set to NULL, default options will be used"]
     pub color_conversion_options_ext: *mut heif_color_conversion_options_ext,
-    #[doc = " bool"]
+    // version 8 options (v1.21.0)
+    /// If enabled, it will decode the media timeline, ignoring the sequence tracks edit-list.
+    ///
+    /// In must be used as bool type.
     pub ignore_sequence_editlist: libc::c_int,
     pub output_image_nclx_profile: *mut heif_color_profile_nclx,
     #[doc = " 0 = let libheif decide (TODO, currently ignored)"]
