@@ -22,7 +22,7 @@ git pull --recurse-submodules
 
 # Update a version of embedded libheif
 
-- Fetch from remote repository:
+- Fetch from a remote repository:
   ```shell
   git -C vendor/libheif fetch origin
   ```

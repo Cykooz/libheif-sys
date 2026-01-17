@@ -81,5 +81,5 @@ pre-release-replacements = [
     { file = "CHANGELOG.md", search = "ReleaseDate", replace = "{{date}}" }
 ]
 
-# Header of next release in CHANGELOG.md:
+# Header of the next release in CHANGELOG.md:
 #   ## [Unreleased] - ReleaseDate

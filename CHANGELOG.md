@@ -1,6 +1,14 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+### Changes
+
+- Updated embedded source code of `libheif` to version 1.21.2.
+
 ## [5.1.0] - 2026-01-16
+
+### Added
 
 - Added feature `v1_21`.
 - Updated embedded source code of `libheif` to version 1.21.1.
