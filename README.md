@@ -1,5 +1,9 @@
 # libheif-sys
 
+[![github](https://img.shields.io/badge/github-Cykooz%2Flibheif--sys-8da0cb)](https://github.com/Cykooz/libheif-sys)
+[![crates.io](https://img.shields.io/crates/v/libheif-sys?logo=rust)](https://crates.io/crates/libheif-sys)
+[![docs.rs](https://img.shields.io/docsrs/libheif-sys?logo=docs.rs&color=66c2a5)](https://docs.rs/libheif-sys)
+
 `libheif-sys` is a binding to [libheif](https://github.com/strukturag/libheif).
 
 A high-level wrapper [libheif-rs](https://github.com/Cykooz/libheif-rs) is also
