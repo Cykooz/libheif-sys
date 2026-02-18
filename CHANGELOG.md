@@ -1,5 +1,16 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+## Changed
+
+- Updated version of `vcpkg`. Enabled optional codecs (x264, h264-decoder, jpeg)
+  that will be installed from `vcpkg`.
+
+## Fixed
+
+- Use `vcpkg` only for Windows-MSVC ([#12](https://github.com/Cykooz/libheif-sys/pull/12)).
+
 ## [5.1.1] - 2026-01-17
 
 ### Changes
