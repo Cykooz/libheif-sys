@@ -17,7 +17,7 @@ jobs:
     name: Test `cargo check/test` on Ubuntu
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: true
 
@@ -26,7 +26,7 @@ jobs:
 
       - name: Cache APT
         id: cache-apt
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             /etc/apt
@@ -34,7 +34,7 @@ jobs:
           key: ${{ runner.os }}-apt
 
       - name: Install libheif dependencies
-        uses: awalsh128/cache-apt-pkgs-action@v1.4.3
+        uses: awalsh128/cache-apt-pkgs-action@v1.6.0
         with:
           packages:
             libheif-dev libdav1d-dev libheif-plugin-aomdec
@@ -56,7 +56,7 @@ jobs:
     name: Test `cargo check/test` on Windows
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Cache rust artifacts
         uses: Swatinem/rust-cache@v2
@@ -66,7 +66,7 @@ jobs:
 
       - name: Cache vcpkg
         id: cache-vcpkg
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: "target/vcpkg"
           key: ${{ runner.os }}-vcpkg

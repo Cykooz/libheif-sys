@@ -28,6 +28,7 @@ v1_18 = { version = "1.18" }
 v1_19 = { version = "1.19" }
 v1_20 = { version = "1.20" }
 v1_21 = { version = "1.21" }
+v1_22 = { version = "1.22" }
 
 
 [features]
@@ -36,7 +37,8 @@ v1_18 = []
 v1_19 = []
 v1_20 = []
 v1_21 = []
-latest = ["v1_21"]
+v1_22 = []
+latest = ["v1_22"]
 # Use bindgen to generate bindings for libheif,
 # instead using of pre-generated bindings.rs.
 use-bindgen = ["latest", "dep:bindgen", "dep:prettyplease"]
@@ -48,7 +50,7 @@ features = ["latest"]
 
 
 [dependencies]
-libc = "0.2.180"
+libc = "0.2.186"
 cfg-if = "1.0"
 
 
@@ -56,7 +58,7 @@ cfg-if = "1.0"
 system-deps = "7.0"
 prettyplease = { version = "0.2.37", optional = true }
 bindgen = { version = "0.72.1", optional = true }
-cmake = { version = "0.1.57", optional = true }
+cmake = { version = "0.1.58", optional = true }
 
 
 [target.'cfg(windows)'.build-dependencies]
@@ -66,7 +68,7 @@ walkdir = "2.5"
 
 [package.metadata.vcpkg]
 git = "https://github.com/microsoft/vcpkg"
-tag = "2026.01.16"
+tag = "2026.04.27"
 dependencies = ["libheif[hevc,aom,x264,h264-decoder,jpeg]"]
 
 

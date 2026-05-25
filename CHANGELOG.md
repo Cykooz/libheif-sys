@@ -1,5 +1,138 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+### Added
+
+- Added feature `v1_22`.
+- Updated embedded source code of `libheif` to version 1.22.2.
+- Added support of `libheif 1.22`:
+    - added new values into `heif_suberror_code` "enum':
+        - `heif_suberror_code_heif_suberror_NCLX_colr_VUI_mismatch`
+    - value `heif_chroma_heif_chroma_monochrome` of `heif_chroma` enum
+      renamed to `heif_chroma_heif_chroma_planar`
+    - value `heif_colorspace_heif_colorspace_nonvisual` of `heif_colorspace` enum
+      renamed to `heif_colorspace_heif_colorspace_custom`
+    - added new values into `heif_colorspace` "enum':
+        - `heif_colorspace_heif_colorspace_filter_array`
+    - added new values into `heif_channel` "enum':
+        - `heif_channel_heif_channel_unknown`
+    - added enums:
+        - `heif_component_datatype`
+        - `heif_sequence_gop_structure`
+        - `heif_cmpd_component_type`
+        - `heif_omaf_image_projection`
+        - `heif_chroma420_sample_location`
+        - `heif_sequence_content_kind`
+    - struct `heif_security_limits` **was updated to version 4**,
+      added new fields:
+        - `max_bad_pixels`
+        - `max_iso23001_17_pixel_size_bytes`
+        - `parent`
+    - struct `heif_encoding_options` **was updated to version 8**,
+      added new fields:
+        - `unci_parameters`
+    - struct `heif_decoding_options` **was updated to version 9**,
+      added new fields:
+        - `autocorrect_broken_input`
+    - struct `heif_sequence_encoding_options` **was updated to version 3**,
+      added new fields:
+        - `heif_sequence_content_kind`
+    - added structs:
+        - `heif_unci_image_parameters`
+        - `heif_complex32`
+        - `heif_complex64`
+        - `heif_bayer_pattern_pixel`
+        - `heif_text_item`
+    - added functions:
+        - `heif_context_get_max_decoding_threads`
+        - `heif_context_get_text_item`
+        - `heif_context_set_unif`
+        - `heif_context_set_write_mini_format`
+        - `heif_image_add_bayer_component`
+        - `heif_image_add_component`
+        - `heif_image_add_polarization_pattern`
+        - `heif_image_add_sensor_bad_pixels_map`
+        - `heif_image_add_sensor_nuc`
+        - `heif_image_get_bayer_pattern_size`
+        - `heif_image_get_bayer_pattern`
+        - `heif_image_get_chroma_location`
+        - `heif_image_get_component_bits_per_pixel`
+        - `heif_image_get_component_channel`
+        - `heif_image_get_component_complex32_readonly`
+        - `heif_image_get_component_complex32`
+        - `heif_image_get_component_complex64_readonly`
+        - `heif_image_get_component_complex64`
+        - `heif_image_get_component_datatype`
+        - `heif_image_get_component_float32_readonly`
+        - `heif_image_get_component_float32`
+        - `heif_image_get_component_float64_readonly`
+        - `heif_image_get_component_float64`
+        - `heif_image_get_component_height`
+        - `heif_image_get_component_int16_readonly`
+        - `heif_image_get_component_int16`
+        - `heif_image_get_component_int32_readonly`
+        - `heif_image_get_component_int32`
+        - `heif_image_get_component_int64_readonly`
+        - `heif_image_get_component_int64`
+        - `heif_image_get_component_int8_readonly`
+        - `heif_image_get_component_int8`
+        - `heif_image_get_component_readonly`
+        - `heif_image_get_component_type`
+        - `heif_image_get_component_uint16_readonly`
+        - `heif_image_get_component_uint16`
+        - `heif_image_get_component_uint32_readonly`
+        - `heif_image_get_component_uint32`
+        - `heif_image_get_component_uint64_readonly`
+        - `heif_image_get_component_uint64`
+        - `heif_image_get_component_width`
+        - `heif_image_get_component`
+        - `heif_image_get_number_of_polarization_patterns`
+        - `heif_image_get_number_of_sensor_bad_pixels_maps`
+        - `heif_image_get_number_of_sensor_nucs`
+        - `heif_image_get_number_of_used_components`
+        - `heif_image_get_omaf_image_projection`
+        - `heif_image_get_polarization_pattern_data`
+        - `heif_image_get_polarization_pattern_index_for_component`
+        - `heif_image_get_polarization_pattern_info`
+        - `heif_image_get_sensor_bad_pixels_map_data`
+        - `heif_image_get_sensor_bad_pixels_map_info`
+        - `heif_image_get_sensor_nuc_data`
+        - `heif_image_get_sensor_nuc_info`
+        - `heif_image_get_used_component_ids`
+        - `heif_image_handle_add_text_item`
+        - `heif_image_handle_get_cmpd_component_type_uri`
+        - `heif_image_handle_get_cmpd_component_type`
+        - `heif_image_handle_get_component_bits_per_pixel`
+        - `heif_image_handle_get_component_datatype`
+        - `heif_image_handle_get_component_type`
+        - `heif_image_handle_get_gimi_component_content_id`
+        - `heif_image_handle_get_list_of_text_item_ids`
+        - `heif_image_handle_get_number_of_cmpd_components`
+        - `heif_image_handle_get_number_of_components`
+        - `heif_image_handle_get_number_of_text_items`
+        - `heif_image_handle_get_omaf_image_projection`
+        - `heif_image_handle_get_used_component_ids`
+        - `heif_image_handle_has_gimi_component_content_ids`
+        - `heif_image_handle_set_gimi_component_content_id`
+        - `heif_image_handle_set_gimi_content_id`
+        - `heif_image_handle_set_omaf_image_projection`
+        - `heif_image_has_chroma_location`
+        - `heif_image_set_bayer_pattern`
+        - `heif_image_set_chroma_location`
+        - `heif_image_set_gimi_component_content_id`
+        - `heif_image_set_omaf_image_projection`
+        - `heif_orientation_concat`
+        - `heif_polarization_angle_is_no_filter`
+        - `heif_polarization_angle_no_filter`
+        - `heif_sequence_encoding_options_copy`
+        - `heif_text_item_get_content`
+        - `heif_text_item_get_id`
+        - `heif_text_item_get_property_extended_language`
+        - `heif_text_item_release`
+        - `heif_text_item_set_extended_language`
+        - `heif_track_get_number_of_repetitions`
+
 ## [5.2.0] - 2026-02-18
 
 ## Changed
