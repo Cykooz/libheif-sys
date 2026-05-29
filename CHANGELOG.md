@@ -147,7 +147,6 @@
         - `heif_image_handle_has_nominal_diffuse_white_luminance`
         - `heif_image_handle_get_nominal_diffuse_white_luminance`
         - `heif_image_handle_set_nominal_diffuse_white_luminance`
-        -
 
 ## [5.2.0] - 2026-02-18
 
