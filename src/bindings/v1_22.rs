@@ -323,6 +323,11 @@ unsafe extern "C" {
     ) -> heif_error;
 }
 pub const heif_chroma_heif_chroma_undefined: heif_chroma = 99;
+#[deprecated(
+    since = "5.3.0",
+    note = "use `heif_chroma_heif_chroma_planar` instead."
+)]
+pub const heif_chroma_heif_chroma_monochrome: heif_chroma = 0;
 pub const heif_chroma_heif_chroma_planar: heif_chroma = 0;
 pub const heif_chroma_heif_chroma_420: heif_chroma = 1;
 pub const heif_chroma_heif_chroma_422: heif_chroma = 2;
@@ -346,6 +351,11 @@ pub const heif_colorspace_heif_colorspace_YCbCr: heif_colorspace = 0;
 pub const heif_colorspace_heif_colorspace_RGB: heif_colorspace = 1;
 #[doc = " heif_colorspace_monochrome should only be used with heif_chroma = heif_chroma_planar."]
 pub const heif_colorspace_heif_colorspace_monochrome: heif_colorspace = 2;
+#[deprecated(
+    since = "5.3.0",
+    note = "use `heif_colorspace_heif_colorspace_custom` instead."
+)]
+pub const heif_colorspace_heif_colorspace_nonvisual: heif_colorspace = 3;
 #[doc = " Indicates that this image has a special, custom arrangement of components.\n For example, it can have several monochrome channels or just a depth component with no color image.\n Images of this type are always planar and use heif_chroma_planar."]
 pub const heif_colorspace_heif_colorspace_custom: heif_colorspace = 3;
 #[doc = " Images of this type are filter-array (CFA / Bayer) mosaics. The single\n mosaicked plane is described as heif_chroma_planar."]

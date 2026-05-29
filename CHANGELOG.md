@@ -10,9 +10,9 @@
     - added new values into `heif_suberror_code` "enum':
         - `heif_suberror_code_heif_suberror_NCLX_colr_VUI_mismatch`
     - value `heif_chroma_heif_chroma_monochrome` of `heif_chroma` enum
-      renamed to `heif_chroma_heif_chroma_planar`
+      renamed to `heif_chroma_heif_chroma_planar` (the old version was depreceted)
     - value `heif_colorspace_heif_colorspace_nonvisual` of `heif_colorspace` enum
-      renamed to `heif_colorspace_heif_colorspace_custom`
+      renamed to `heif_colorspace_heif_colorspace_custom` (the old version was depreceted)
     - added new values into `heif_colorspace` "enum':
         - `heif_colorspace_heif_colorspace_filter_array`
     - added new values into `heif_channel` "enum':
