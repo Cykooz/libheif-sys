@@ -20,8 +20,8 @@ fn create_heic_context() {
 }
 
 fn get_version() -> &'static str {
-    if cfg!(feature = "v1_22") {
-        "1.22"
+    if cfg!(feature = "v1_23") {
+        "1.23"
     } else if cfg!(feature = "v1_21") {
         "1.21"
     } else if cfg!(feature = "v1_20") {
@@ -33,6 +33,6 @@ fn get_version() -> &'static str {
     } else if cfg!(feature = "v1_17") {
         "1.17"
     } else {
-        "1.22"
+        "1.23"
     }
 }

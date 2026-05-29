@@ -4,9 +4,9 @@
 
 ### Added
 
-- Added feature `v1_22`.
-- Updated embedded source code of `libheif` to version 1.22.2.
-- Added support of `libheif 1.22`:
+- Added feature `v1_23`.
+- Updated embedded source code of `libheif` to version 1.23.0.
+- Added support of `libheif 1.23`:
     - added new values into `heif_suberror_code` "enum':
         - `heif_suberror_code_heif_suberror_NCLX_colr_VUI_mismatch`
     - value `heif_chroma_heif_chroma_monochrome` of `heif_chroma` enum
@@ -32,9 +32,10 @@
     - struct `heif_encoding_options` **was updated to version 8**,
       added new fields:
         - `unci_parameters`
-    - struct `heif_decoding_options` **was updated to version 9**,
+    - struct `heif_decoding_options` **was updated to version 10**,
       added new fields:
         - `autocorrect_broken_input`
+        - `output_image_nclx_profile_passthrough`
     - struct `heif_sequence_encoding_options` **was updated to version 3**,
       added new fields:
         - `heif_sequence_content_kind`
@@ -132,6 +133,21 @@
         - `heif_text_item_release`
         - `heif_text_item_set_extended_language`
         - `heif_track_get_number_of_repetitions`
+        - `heif_image_handle_has_content_light_level`
+        - `heif_image_handle_has_mastering_display_colour_volume`
+        - `heif_image_has_ambient_viewing_environment`
+        - `heif_image_handle_has_ambient_viewing_environment`
+        - `heif_image_get_ambient_viewing_environment`
+        - `heif_image_handle_get_ambient_viewing_environment`
+        - `heif_image_set_ambient_viewing_environment`
+        - `heif_image_handle_set_ambient_viewing_environment`
+        - `heif_image_has_nominal_diffuse_white_luminance`
+        - `heif_image_get_nominal_diffuse_white_luminance`
+        - `heif_image_set_nominal_diffuse_white_luminance`
+        - `heif_image_handle_has_nominal_diffuse_white_luminance`
+        - `heif_image_handle_get_nominal_diffuse_white_luminance`
+        - `heif_image_handle_set_nominal_diffuse_white_luminance`
+        -
 
 ## [5.2.0] - 2026-02-18
 
