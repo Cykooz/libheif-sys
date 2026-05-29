@@ -68,7 +68,7 @@ walkdir = "2.5"
 
 [package.metadata.vcpkg]
 git = "https://github.com/microsoft/vcpkg"
-tag = "2026.04.27"
+tag = "2026.05.25"
 dependencies = ["libheif[hevc,aom,x264,h264-decoder,jpeg]"]
 
 
