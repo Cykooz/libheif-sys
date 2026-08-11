@@ -185,6 +185,10 @@ fn install_libheif_by_vcpkg() {
         println!("cargo:warning={}", err);
         std::process::exit(1);
     }
+    // Static libraries on Windows do not automatically pull in all of their own
+    // system-library dependencies. Since x265 uses registry functions from Advapi32,
+    // your Rust crate must explicitly tell Cargo to link that Windows system library.
+    println!("cargo:rustc-link-lib=advapi32");
 }
 
 #[cfg(feature = "use-bindgen")]
