@@ -17,7 +17,7 @@ jobs:
     name: Test `cargo check/test` on Ubuntu
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: true
 
@@ -26,7 +26,7 @@ jobs:
 
       - name: Cache APT
         id: cache-apt
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: |
             /etc/apt
@@ -56,7 +56,7 @@ jobs:
     name: Test `cargo check/test` on Windows
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Cache rust artifacts
         uses: Swatinem/rust-cache@v2
@@ -66,7 +66,7 @@ jobs:
 
       - name: Cache vcpkg
         id: cache-vcpkg
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: "target/vcpkg"
           key: ${{ runner.os }}-vcpkg
