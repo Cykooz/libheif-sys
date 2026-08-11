@@ -55,8 +55,8 @@ cfg-if = "1.0"
 
 
 [build-dependencies]
-system-deps = "7.0"
-prettyplease = { version = "0.2.37", optional = true }
+system-deps = "8.0"
+prettyplease = { version = "0.3.0", optional = true }
 bindgen = { version = "0.72.1", optional = true }
 cmake = { version = "0.1.58", optional = true }
 
@@ -68,7 +68,7 @@ walkdir = "2.5"
 
 [package.metadata.vcpkg]
 git = "https://github.com/microsoft/vcpkg"
-tag = "2026.05.25"
+tag = "2026-07-29"
 dependencies = ["libheif[hevc,aom,x264,h264-decoder,jpeg]"]
 
 

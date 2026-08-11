@@ -6,8 +6,7 @@ Clone this repo with fetching all the data of submodules
 git clone --recurse-submodules https://github.com/Cykooz/libheif-sys.git
 ```
 
-Or init and fetch all the data of submodules if you already have cloned the
-repo without submodules:
+Or init and fetch all the data of submodules if you already have cloned the repo without submodules:
 
 ```shell
 git submodule init
@@ -26,7 +25,7 @@ git pull --recurse-submodules
   ```shell
   git -C vendor/libheif fetch origin
   ```
-- Checkout to required tag:
+- Checkout the required tag:
   ```shell
   git -C vendor/libheif/ checkout v1.19.8
   ```

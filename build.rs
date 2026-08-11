@@ -10,17 +10,19 @@ fn main() {
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=wrapper.h");
 
-    // Tell cargo to tell rustc to link the heif library.
+    // https://github.com/Cykooz/libheif-sys/issues/14
+    let target_os = std::env::var("CARGO_CFG_TARGET_OS").unwrap_or_default();
+    let target_env = std::env::var("CARGO_CFG_TARGET_ENV").unwrap_or_default();
+    let windows_is_build_target = target_os == "windows" && target_env == "msvc";
 
-    #[cfg(not(all(target_os = "windows", target_env = "msvc")))]
     #[allow(unused_variables)]
-    let include_paths = find_libheif();
-
-    #[cfg(all(target_os = "windows", target_env = "msvc"))]
-    #[allow(unused_variables)]
-    let include_paths: Vec<String> = Vec::new();
-    #[cfg(all(target_os = "windows", target_env = "msvc"))]
-    install_libheif_by_vcpkg();
+    let include_paths = if windows_is_build_target {
+        #[cfg(all(target_os = "windows", target_env = "msvc"))]
+        install_libheif_by_vcpkg();
+        Vec::new()
+    } else {
+        find_libheif()
+    };
 
     #[cfg(feature = "use-bindgen")]
     run_bindgen(&include_paths);
@@ -133,7 +135,6 @@ fn compile_libheif() -> String {
         .to_string()
 }
 
-#[cfg(not(all(target_os = "windows", target_env = "msvc")))]
 fn find_libheif() -> Vec<String> {
     #[allow(unused_mut)]
     let mut config = system_deps::Config::new();

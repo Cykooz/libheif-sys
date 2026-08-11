@@ -2142,7 +2142,7 @@ unsafe extern "C" {
     ) -> *const libc::c_char;
 }
 unsafe extern "C" {
-    #[doc = " Decode an heif_image_handle into the actual pixel image and also carry out\n all geometric transformations specified in the HEIF file (rotation, cropping, mirroring).\n\n If colorspace or chroma is set to heif_colorspace_undefined or heif_chroma_undefined,\n respectively, the original colorspace is taken.\n Decoding options may be NULL. If you want to supply options, always use\n heif_decoding_options_alloc() to get the structure."]
+    #[doc = " Decode an heif_image_handle into the actual pixel image and also carry out\n all geometric transformations specified in the HEIF file (rotation, cropping, mirroring).\n\n If colorspace or chroma is set to heif_colorspace_undefined or heif_chroma_undefined,\n respectively, the original colorspace is taken.\n Note: for images with matrix_coefficients=0 the \"original colorspace\" is YCbCr\n (tagged with matrix_coefficients=0); this is not specified and may change in a future\n version. See heif_image_handle_get_preferred_decoding_colorspace().\n Decoding options may be NULL. If you want to supply options, always use\n heif_decoding_options_alloc() to get the structure."]
     pub fn heif_decode_image(
         in_handle: *const heif_image_handle,
         out_img: *mut *mut heif_image,
@@ -2188,7 +2188,7 @@ unsafe extern "C" {
     ) -> libc::c_int;
 }
 unsafe extern "C" {
-    #[doc = " Return the colorspace that libheif proposes to use for decoding.\n Usually, these will be either YCbCr or Monochrome, but it may also propose RGB for images\n encoded with matrix_coefficients=0 or for images coded natively in RGB.\n It may also return *_undefined if the file misses relevant information to determine this without decoding.\n These are only proposed values that avoid colorspace conversions as much as possible.\n You can still request the output in your preferred colorspace, but this may involve an internal conversion."]
+    #[doc = " Return the colorspace that libheif proposes to use for decoding.\n Usually, these will be either YCbCr or Monochrome, but it may also propose RGB for images\n encoded with matrix_coefficients=0 or for images coded natively in RGB.\n It may also return *_undefined if the file misses relevant information to determine this without decoding.\n These are only proposed values that avoid colorspace conversions as much as possible.\n You can still request the output in your preferred colorspace, but this may involve an internal conversion.\n\n Note on matrix_coefficients=0 (H.273 identity, i.e. RGB carried in YCbCr planes):\n for such images this function proposes RGB. However, heif_decode_image() called with\n heif_colorspace_undefined currently returns the image still tagged as YCbCr (with\n matrix_coefficients=0). That tagging is self-consistent. Converting it to RGB applies\n the identity mapping and yields correct colors, so request heif_colorspace_RGB\n explicitly if you need RGB output. This exact behavior is not specified and may change.\n A later version may return RGB directly when decoding with an undefined colorspace.\n See heif_decode_image()."]
     pub fn heif_image_handle_get_preferred_decoding_colorspace(
         image_handle: *const heif_image_handle,
         out_colorspace: *mut heif_colorspace,

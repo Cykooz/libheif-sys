@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+## Changed
+
+- Updated embedded source code of `libheif` to version 1.23.1.
+- `build.rs` was changed to support cross-compilation on Windows host
+  ([#14](https://github.com/Cykooz/libheif-sys/issues/14)).
+
 ## [5.3.0] - 2026-05-29
 
 ### Added
@@ -9,10 +17,10 @@
 - Added support of `libheif 1.23`:
     - added new values into `heif_suberror_code` "enum':
         - `heif_suberror_code_heif_suberror_NCLX_colr_VUI_mismatch`
-    - value `heif_chroma_heif_chroma_monochrome` of `heif_chroma` enum
-      renamed to `heif_chroma_heif_chroma_planar` (the old version was depreceted)
-    - value `heif_colorspace_heif_colorspace_nonvisual` of `heif_colorspace` enum
-      renamed to `heif_colorspace_heif_colorspace_custom` (the old version was depreceted)
+    - value `heif_chroma_heif_chroma_monochrome` of `heif_chroma` enum renamed to `heif_chroma_heif_chroma_planar` (the
+      old version was deprecated)
+    - value `heif_colorspace_heif_colorspace_nonvisual` of `heif_colorspace` enum renamed to
+      `heif_colorspace_heif_colorspace_custom` (the old version was deprecated)
     - added new values into `heif_colorspace` "enum':
         - `heif_colorspace_heif_colorspace_filter_array`
     - added new values into `heif_channel` "enum':
@@ -24,20 +32,16 @@
         - `heif_omaf_image_projection`
         - `heif_chroma420_sample_location`
         - `heif_sequence_content_kind`
-    - struct `heif_security_limits` **was updated to version 4**,
-      added new fields:
+    - struct `heif_security_limits` **was updated to version 4**, added new fields:
         - `max_bad_pixels`
         - `max_iso23001_17_pixel_size_bytes`
         - `parent`
-    - struct `heif_encoding_options` **was updated to version 8**,
-      added new fields:
+    - struct `heif_encoding_options` **was updated to version 8**, added new fields:
         - `unci_parameters`
-    - struct `heif_decoding_options` **was updated to version 10**,
-      added new fields:
+    - struct `heif_decoding_options` **was updated to version 10**, added new fields:
         - `autocorrect_broken_input`
         - `output_image_nclx_profile_passthrough`
-    - struct `heif_sequence_encoding_options` **was updated to version 3**,
-      added new fields:
+    - struct `heif_sequence_encoding_options` **was updated to version 3**, added new fields:
         - `heif_sequence_content_kind`
     - added structs:
         - `heif_unci_image_parameters`
@@ -181,18 +185,15 @@
     - added enums:
         - `heif_auxiliary_track_info_type`
         - `heif_sequence_gop_structure`
-    - struct `heif_security_limits` **was updated to version 3**,
-      added new fields:
+    - struct `heif_security_limits` **was updated to version 3**, added new fields:
         - `max_sequence_frames`
         - `max_number_of_file_brands`
-    - struct `heif_decoding_options` **was updated to version 8**,
-      added new fields:
+    - struct `heif_decoding_options` **was updated to version 8**, added new fields:
         - `ignore_sequence_editlist`
         - `output_image_nclx_profile`
         - `num_library_threads`
         - `num_codec_threads`
-    - struct `heif_sequence_encoding_options` **was updated to version 2**,
-      added new fields:
+    - struct `heif_sequence_encoding_options` **was updated to version 2**, added new fields:
         - `gop_structure`
         - `keyframe_distance_min`
         - `keyframe_distance_max`
@@ -327,8 +328,8 @@
 
 ### Fixed
 
-- **BREAKING**: Deleted deriving `Copy` and `Clone` for structs with pointers
-  and for structs representing `shared_ptr` from C++:
+- **BREAKING**: Deleted deriving `Copy` and `Clone` for structs with pointers and for structs representing `shared_ptr`
+  from C++:
     - `heif_depth_representation_info`
     - `heif_camera_extrinsic_matrix`
     - `heif_context`
@@ -368,13 +369,10 @@
 
 - **BREAKING**: Feature `use-bindgen` was removed from default features.
 - **BREAKING**: Features `compile-libheif` and `embedded-libheif-plugins` were removed.
-- The crate `system-deps` is now used instead of `pkg-config` to find
-  and link a required version of `libheif`.
-- Added features `v1_17`, `v1_18` and `v1_19` to choose a minimal
-  version of supported `libheif` API.
+- The crate `system-deps` is now used instead of `pkg-config` to find and link a required version of `libheif`.
+- Added features `v1_17`, `v1_18` and `v1_19` to choose a minimal version of supported `libheif` API.
 - Added embedded source code of `libheif 1.19.7`.
-- Added feature `embedded-libheif` to compile and then link statically
-  the embedded version of `libheif`.
+- Added feature `embedded-libheif` to compile and then link statically the embedded version of `libheif`.
 - Added support of `libheif 1.19`:
     - added new values into `heif_error_code` "enum':
         - `heif_error_code_heif_error_Canceled`
@@ -433,16 +431,15 @@
 
 - Disabled building of example applications and tests for `libheif`
   if `embedded-libheif` feature is enabled.
-- Enabled libheif's cmake options for building all encoders and decoders
-  if `embedded-libheif` feature is enabled.
+- Enabled libheif's cmake options for building all encoders and decoders if `embedded-libheif` feature is enabled.
 
 ## [3.1.0] - 2024-12-04
 
 ### Changes
 
 - `.h` files from `libheif` was embedded in the crate sources.
-- Changed `build.rs` to use embedded `.h` files for the bindgen build stage
-  instead of `.h` files from the installed libheif library.
+- Changed `build.rs` to use embedded `.h` files for the bindgen build stage instead of `.h` files from the installed
+  libheif library.
 
   Now you can link the crate with any version of `libheif`
   that is backward compatible with the version supported by the crate.
@@ -456,8 +453,7 @@
 
 ### Added
 
-- Added features to compile `libheif` source-code form GitHub and
-  link it statically (not supported for Windows):
+- Added features to compile `libheif` source-code form GitHub and link it statically (not supported for Windows):
     - `compile-libheif`
     - `embedded-libheif-plugins`
 - Updated "bindings.rs" to correspond `libheif 1.18.2`:
@@ -565,8 +561,8 @@
 
 - Backported from v3:
     - `.h` files from `libheif` was embedded in the crate sources.
-    - Changed `build.rs` to use embedded `.h` files for the bindgen build stage
-      instead of `.h` files from the installed libheif library.
+    - Changed `build.rs` to use embedded `.h` files for the bindgen build stage instead of `.h` files from the installed
+      libheif library.
 
       Now you can link the crate with any version of `libheif`
       that is backward compatible with the version supported by the crate.
@@ -592,15 +588,13 @@
 
 ## [2.0.1] - 2023-11-24
 
-- Changed `build.rs` to fix missing include-directory on macOS
-  ([#6](https://github.com/Cykooz/libheif-sys/pull/6)).
+- Changed `build.rs` to fix missing include-directory on macOS ([#6](https://github.com/Cykooz/libheif-sys/pull/6)).
 
 ## [2.0.0] - 2023-09-12
 
 - Fixed link to crate documentation.
 - Updated version of `bindgen` to 0.68.
-- Added bindgen settings to copy comments from `heif.h` into generated
-  rust file.
+- Added bindgen settings to copy comments from `heif.h` into generated rust file.
 - **BREAKING**: Feature `use-binding` added into list of default features.
 
 ## [1.16.2] - 2023-09-08
@@ -731,8 +725,8 @@
 
 ## [1.14.4] - 2023-06-21
 
-- For Windows target [vcpkg crate](https://crates.io/crates/vcpkg) is used
-  to find `libheif` installed with help of `vcpkg`.
+- For Windows target [vcpkg crate](https://crates.io/crates/vcpkg) is used to find `libheif` installed with help of
+  `vcpkg`.
 - Added support of [cargo-vcpkg](https://crates.io/crates/cargo-vcpkg)
   to install `libheif` with help of `cargo`.
 
@@ -889,8 +883,7 @@
 
 ## [1.4.1] - 2019-05-24
 
-- Added the feature "use-bindgen" to enable generate bindings
-  during building time.
+- Added the feature "use-bindgen" to enable generate bindings during building time.
 
 ## [1.4.0]
 
