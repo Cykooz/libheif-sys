@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - ReleaseDate
+## [5.3.1] - 2026-08-13
 
 ## Changed
 
