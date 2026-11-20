@@ -1,5 +1,11 @@
 # Change Log
 
+## [Unreleased] - ReleaseDate
+
+### Fixes
+
+- Updated embedded source code of `libheif` to version 1.23.7.
+
 ## [5.3.1] - 2026-08-13
 
 ## Changed
@@ -17,9 +23,11 @@
 - Added support of `libheif 1.23`:
     - added new values into `heif_suberror_code` "enum':
         - `heif_suberror_code_heif_suberror_NCLX_colr_VUI_mismatch`
-    - value `heif_chroma_heif_chroma_monochrome` of `heif_chroma` enum renamed to `heif_chroma_heif_chroma_planar` (the
+    - value `heif_chroma_heif_chroma_monochrome` of `heif_chroma` enum renamed
+      to `heif_chroma_heif_chroma_planar` (the
       old version was deprecated)
-    - value `heif_colorspace_heif_colorspace_nonvisual` of `heif_colorspace` enum renamed to
+    - value `heif_colorspace_heif_colorspace_nonvisual` of `heif_colorspace`
+      enum renamed to
       `heif_colorspace_heif_colorspace_custom` (the old version was deprecated)
     - added new values into `heif_colorspace` "enum':
         - `heif_colorspace_heif_colorspace_filter_array`
@@ -32,16 +40,20 @@
         - `heif_omaf_image_projection`
         - `heif_chroma420_sample_location`
         - `heif_sequence_content_kind`
-    - struct `heif_security_limits` **was updated to version 4**, added new fields:
+    - struct `heif_security_limits` **was updated to version 4**, added new
+      fields:
         - `max_bad_pixels`
         - `max_iso23001_17_pixel_size_bytes`
         - `parent`
-    - struct `heif_encoding_options` **was updated to version 8**, added new fields:
+    - struct `heif_encoding_options` **was updated to version 8**, added new
+      fields:
         - `unci_parameters`
-    - struct `heif_decoding_options` **was updated to version 10**, added new fields:
+    - struct `heif_decoding_options` **was updated to version 10**, added new
+      fields:
         - `autocorrect_broken_input`
         - `output_image_nclx_profile_passthrough`
-    - struct `heif_sequence_encoding_options` **was updated to version 3**, added new fields:
+    - struct `heif_sequence_encoding_options` **was updated to version 3**,
+      added new fields:
         - `heif_sequence_content_kind`
     - added structs:
         - `heif_unci_image_parameters`
@@ -161,7 +173,8 @@
 
 ## Fixed
 
-- Use `vcpkg` only for Windows-MSVC ([#12](https://github.com/Cykooz/libheif-sys/pull/12)).
+- Use `vcpkg` only for Windows-MSVC
+  ([#12](https://github.com/Cykooz/libheif-sys/pull/12)).
 
 ## [5.1.1] - 2026-01-17
 
@@ -185,15 +198,18 @@
     - added enums:
         - `heif_auxiliary_track_info_type`
         - `heif_sequence_gop_structure`
-    - struct `heif_security_limits` **was updated to version 3**, added new fields:
+    - struct `heif_security_limits` **was updated to version 3**, added new
+      fields:
         - `max_sequence_frames`
         - `max_number_of_file_brands`
-    - struct `heif_decoding_options` **was updated to version 8**, added new fields:
+    - struct `heif_decoding_options` **was updated to version 8**, added new
+      fields:
         - `ignore_sequence_editlist`
         - `output_image_nclx_profile`
         - `num_library_threads`
         - `num_codec_threads`
-    - struct `heif_sequence_encoding_options` **was updated to version 2**, added new fields:
+    - struct `heif_sequence_encoding_options` **was updated to version 2**,
+      added new fields:
         - `gop_structure`
         - `keyframe_distance_min`
         - `keyframe_distance_max`
@@ -224,11 +240,13 @@
         - `heif_error_code_heif_error_End_of_sequence`
     - added new values into `heif_suberror_code` "enum':
         - `heif_suberror_code_heif_suberror_No_moov_box`
-    - struct `heif_security_limits` **was updated to version 2**, added new fields:
+    - struct `heif_security_limits` **was updated to version 2**, added new
+      fields:
         - `max_total_memory`
         - `max_sample_description_box_entries`
         - `max_sample_group_description_box_entries`
-    - struct `heif_decoding_options` **was updated to version 7**, added new fields:
+    - struct `heif_decoding_options` **was updated to version 7**, added new
+      fields:
         - `color_conversion_options_ext`
     - added enums:
         - `heif_alpha_composition_mode`
@@ -328,7 +346,8 @@
 
 ### Fixed
 
-- **BREAKING**: Deleted deriving `Copy` and `Clone` for structs with pointers and for structs representing `shared_ptr`
+- **BREAKING**: Deleted deriving `Copy` and `Clone` for structs with pointers
+  and for structs representing `shared_ptr`
   from C++:
     - `heif_depth_representation_info`
     - `heif_camera_extrinsic_matrix`
@@ -368,11 +387,15 @@
 ### Added
 
 - **BREAKING**: Feature `use-bindgen` was removed from default features.
-- **BREAKING**: Features `compile-libheif` and `embedded-libheif-plugins` were removed.
-- The crate `system-deps` is now used instead of `pkg-config` to find and link a required version of `libheif`.
-- Added features `v1_17`, `v1_18` and `v1_19` to choose a minimal version of supported `libheif` API.
+- **BREAKING**: Features `compile-libheif` and `embedded-libheif-plugins` were
+  removed.
+- The crate `system-deps` is now used instead of `pkg-config` to find and link a
+  required version of `libheif`.
+- Added features `v1_17`, `v1_18` and `v1_19` to choose a minimal version of
+  supported `libheif` API.
 - Added embedded source code of `libheif 1.19.7`.
-- Added feature `embedded-libheif` to compile and then link statically the embedded version of `libheif`.
+- Added feature `embedded-libheif` to compile and then link statically the
+  embedded version of `libheif`.
 - Added support of `libheif 1.19`:
     - added new values into `heif_error_code` "enum':
         - `heif_error_code_heif_error_Canceled`
@@ -431,14 +454,16 @@
 
 - Disabled building of example applications and tests for `libheif`
   if `embedded-libheif` feature is enabled.
-- Enabled libheif's cmake options for building all encoders and decoders if `embedded-libheif` feature is enabled.
+- Enabled libheif's cmake options for building all encoders and decoders if
+  `embedded-libheif` feature is enabled.
 
 ## [3.1.0] - 2024-12-04
 
 ### Changes
 
 - `.h` files from `libheif` was embedded in the crate sources.
-- Changed `build.rs` to use embedded `.h` files for the bindgen build stage instead of `.h` files from the installed
+- Changed `build.rs` to use embedded `.h` files for the bindgen build stage
+  instead of `.h` files from the installed
   libheif library.
 
   Now you can link the crate with any version of `libheif`
@@ -453,7 +478,8 @@
 
 ### Added
 
-- Added features to compile `libheif` source-code form GitHub and link it statically (not supported for Windows):
+- Added features to compile `libheif` source-code form GitHub and link it
+  statically (not supported for Windows):
     - `compile-libheif`
     - `embedded-libheif-plugins`
 - Updated "bindings.rs" to correspond `libheif 1.18.2`:
@@ -466,7 +492,8 @@
         - `heif_suberror_code_heif_suberror_No_icbr_box`
         - `heif_suberror_code_heif_suberror_Decompression_invalid_data`
         - `heif_suberror_code_heif_suberror_Compression_initialisation_error`
-        - `heif_suberror_code_heif_suberror_Unsupported_generic_compression_method`
+        -
+      `heif_suberror_code_heif_suberror_Unsupported_generic_compression_method`
         - `heif_suberror_code_heif_suberror_No_matching_decoder_installed`
     - added new values into `heif_compression_format` "enum':
         - `heif_compression_format_heif_compression_HTJ2K`
@@ -561,7 +588,8 @@
 
 - Backported from v3:
     - `.h` files from `libheif` was embedded in the crate sources.
-    - Changed `build.rs` to use embedded `.h` files for the bindgen build stage instead of `.h` files from the installed
+    - Changed `build.rs` to use embedded `.h` files for the bindgen build stage
+      instead of `.h` files from the installed
       libheif library.
 
       Now you can link the crate with any version of `libheif`
@@ -588,13 +616,15 @@
 
 ## [2.0.1] - 2023-11-24
 
-- Changed `build.rs` to fix missing include-directory on macOS ([#6](https://github.com/Cykooz/libheif-sys/pull/6)).
+- Changed `build.rs` to fix missing include-directory on macOS
+  ([#6](https://github.com/Cykooz/libheif-sys/pull/6)).
 
 ## [2.0.0] - 2023-09-12
 
 - Fixed link to crate documentation.
 - Updated version of `bindgen` to 0.68.
-- Added bindgen settings to copy comments from `heif.h` into generated rust file.
+- Added bindgen settings to copy comments from `heif.h` into generated rust
+  file.
 - **BREAKING**: Feature `use-binding` added into list of default features.
 
 ## [1.16.2] - 2023-09-08
@@ -636,14 +666,19 @@
         - `heif_item_property_type_heif_item_property_type_transform_crop`
         - `heif_item_property_type_heif_item_property_type_image_size`
     - added new "enum" `heif_transform_mirror_direction` with follow values:
-        - `heif_transform_mirror_direction_heif_transform_mirror_direction_vertical`
-        - `heif_transform_mirror_direction_heif_transform_mirror_direction_horizontal`
+      -
+      `heif_transform_mirror_direction_heif_transform_mirror_direction_vertical`
+      -
+      `heif_transform_mirror_direction_heif_transform_mirror_direction_horizontal`
     - added new "enum" `heif_chroma_downsampling_algorithm` with follow values:
-        - `heif_chroma_downsampling_algorithm_heif_chroma_downsampling_nearest_neighbor`
+      -
+      `heif_chroma_downsampling_algorithm_heif_chroma_downsampling_nearest_neighbor`
         - `heif_chroma_downsampling_algorithm_heif_chroma_downsampling_average`
-        - `heif_chroma_downsampling_algorithm_heif_chroma_downsampling_sharp_yuv`
+        -
+      `heif_chroma_downsampling_algorithm_heif_chroma_downsampling_sharp_yuv`
     - added new "enum" `heif_chroma_upsampling_algorithm` with follow values:
-        - `heif_chroma_upsampling_algorithm_heif_chroma_upsampling_nearest_neighbor`
+      -
+      `heif_chroma_upsampling_algorithm_heif_chroma_upsampling_nearest_neighbor`
         - `heif_chroma_upsampling_algorithm_heif_chroma_upsampling_bilinear`
     - added new "enum" `heif_region_type` with follow values:
         - `heif_region_type_heif_region_type_point`
@@ -666,7 +701,8 @@
     - added new fields into `heif_decoding_options` struct:
         - `decoder_id`
         - `color_conversion_options`
-    - added field `color_conversion_options` into structure `heif_encoding_options`;
+    - added field `color_conversion_options` into structure
+      `heif_encoding_options`;
     - added functions:
         - `heif_image_handle_get_item_id`
         - `heif_image_handle_release_auxiliary_type`
@@ -725,7 +761,8 @@
 
 ## [1.14.4] - 2023-06-21
 
-- For Windows target [vcpkg crate](https://crates.io/crates/vcpkg) is used to find `libheif` installed with help of
+- For Windows target [vcpkg crate](https://crates.io/crates/vcpkg) is used to
+  find `libheif` installed with help of
   `vcpkg`.
 - Added support of [cargo-vcpkg](https://crates.io/crates/cargo-vcpkg)
   to install `libheif` with help of `cargo`.
@@ -733,7 +770,8 @@
 ## [1.14.3] - 2023-06-05
 
 - Updated version of `bindgen` to 0.65.
-- Use `pkg-config` in `build.rs` ([#1](https://github.com/Cykooz/libheif-sys/pull/1)).
+- Use `pkg-config` in `build.rs`
+  ([#1](https://github.com/Cykooz/libheif-sys/pull/1)).
 
 ## [1.14.2] - 2023-01-31
 
@@ -784,7 +822,8 @@
     - added new values into `heif_suberror_code` "enum":
       `heif_suberror_code_heif_suberror_Wrong_tile_image_pixel_depth`.
     - added new functions: `heif_image_handle_is_premultiplied_alpha`,
-      `heif_image_set_premultiplied_alpha`,  `heif_image_is_premultiplied_alpha`.
+      `heif_image_set_premultiplied_alpha`,
+      `heif_image_is_premultiplied_alpha`.
 
 ## [1.11.0] - 2021-02-03
 
@@ -872,9 +911,12 @@
 
 - Updated "bindings.rs" to correspond `libheif 1.5`:
     - added new value of `heif_brand` - `heif_brand_heif_msf1 = 10`;
-    - added new functions: `heif_get_file_mime_type`, `heif_image_get_color_profile_type`,
-      `heif_image_get_raw_color_profile_size`, `heif_image_get_raw_color_profile`,
-      `heif_image_get_nclx_color_profile`, `heif_image_get_bits_per_pixel_range`.
+    - added new functions: `heif_get_file_mime_type`,
+      `heif_image_get_color_profile_type`,
+      `heif_image_get_raw_color_profile_size`,
+      `heif_image_get_raw_color_profile`,
+      `heif_image_get_nclx_color_profile`,
+      `heif_image_get_bits_per_pixel_range`.
 
 ## [1.4.2] - 2019-07-16
 
@@ -883,7 +925,8 @@
 
 ## [1.4.1] - 2019-05-24
 
-- Added the feature "use-bindgen" to enable generate bindings during building time.
+- Added the feature "use-bindgen" to enable generate bindings during building
+  time.
 
 ## [1.4.0]
 
